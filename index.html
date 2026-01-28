@@ -43,7 +43,7 @@
         
         /* Header */
         .header {
-            background: linear-gradient(135deg, var(--china-red), #991B1B);
+            background: var(--celeste);
             padding: 20px;
             text-align: center;
             position: sticky;
@@ -54,12 +54,13 @@
         .header h1 {
             font-size: 1.5rem;
             font-weight: 700;
-            color: var(--celeste);
+            color: #000000;
         }
         
         .header p {
             font-size: 0.875rem;
-            opacity: 0.9;
+            color: #000000;
+            opacity: 0.8;
             margin-top: 4px;
         }
         
@@ -148,30 +149,32 @@
         
         /* Countdown */
         .countdown {
-            background: linear-gradient(135deg, var(--china-red), var(--china-gold));
+            background: var(--verde-claro);
             border-radius: 16px;
-            padding: 24px;
+            padding: 32px 24px;
             text-align: center;
             margin-bottom: 16px;
         }
         
         .countdown-title {
-            font-size: 0.875rem;
-            opacity: 0.9;
-            margin-bottom: 8px;
+            font-size: 1rem;
+            color: #000000;
+            font-weight: 600;
+            margin-bottom: 12px;
         }
         
         .countdown-time {
-            font-size: 2.5rem;
+            font-size: 4rem;
             font-weight: 700;
-            color: var(--verde-claro);
+            color: #000000;
+            line-height: 1;
         }
         
         .countdown-label {
-            font-size: 0.875rem;
-            opacity: 0.9;
-            margin-top: 4px;
-            color: var(--verde-claro);
+            font-size: 1.25rem;
+            color: #000000;
+            font-weight: 600;
+            margin-top: 8px;
         }
         
         /* Flight Card */
@@ -262,6 +265,50 @@
             border-radius: 20px;
             font-size: 0.875rem;
             margin-left: auto;
+        }
+        
+        /* Hotel Info */
+        .hotel-info {
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid rgba(75, 85, 99, 0.5);
+        }
+        
+        .hotel-name {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 6px;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+        
+        .hotel-address {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            font-size: 0.875rem;
+            color: #9CA3AF;
+            line-height: 1.4;
+        }
+        
+        .hotel-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            margin-top: 6px;
+        }
+        
+        .hotel-status.pending {
+            background: rgba(245, 158, 11, 0.2);
+            color: var(--china-gold);
+        }
+        
+        .hotel-status.confirmed {
+            background: rgba(34, 197, 94, 0.2);
+            color: #22C55E;
         }
         
         /* Day Cards */
@@ -597,6 +644,15 @@
             border-left: 4px solid var(--china-gold);
         }
         
+        .transport-card .card-title {
+            font-size: 1.25rem;
+        }
+        
+        .transport-card p,
+        .transport-card .text-sm {
+            font-size: 1rem;
+        }
+        
         .transport-type {
             display: inline-block;
             padding: 2px 8px;
@@ -667,7 +723,7 @@
 <body>
     <!-- Header -->
     <header class="header">
-        <h1>🇨🇳 China Trip 2026</h1>
+        <h1>China Trip 2026</h1>
         <p>1-21 Abril • 2 adultos + 1 niño</p>
     </header>
 
@@ -783,6 +839,17 @@
                 </div>
                 <span class="city-nights">6 noches</span>
             </div>
+            <div class="hotel-info">
+                <div class="hotel-name">
+                    <span>🏨</span>
+                    <span>Pendiente</span>
+                </div>
+                <div class="hotel-address">
+                    <span>📍</span>
+                    <span>Pendiente</span>
+                </div>
+                <span class="hotel-status pending">⏳ Pendiente</span>
+            </div>
         </div>
 
         <div class="card city-card xian" onclick="showCity('xian')">
@@ -793,6 +860,17 @@
                     <p>8-10 Abril</p>
                 </div>
                 <span class="city-nights">3 noches</span>
+            </div>
+            <div class="hotel-info">
+                <div class="hotel-name">
+                    <span>🏨</span>
+                    <span>Pendiente</span>
+                </div>
+                <div class="hotel-address">
+                    <span>📍</span>
+                    <span>Pendiente</span>
+                </div>
+                <span class="hotel-status pending">⏳ Pendiente</span>
             </div>
         </div>
 
@@ -805,6 +883,17 @@
                 </div>
                 <span class="city-nights">3 noches</span>
             </div>
+            <div class="hotel-info">
+                <div class="hotel-name">
+                    <span>🏨</span>
+                    <span>Pendiente</span>
+                </div>
+                <div class="hotel-address">
+                    <span>📍</span>
+                    <span>Pendiente</span>
+                </div>
+                <span class="hotel-status pending">⏳ Pendiente</span>
+            </div>
         </div>
 
         <div class="card city-card shanghai" onclick="showCity('shanghai')">
@@ -815,6 +904,17 @@
                     <p>14-20 Abril</p>
                 </div>
                 <span class="city-nights">6 noches</span>
+            </div>
+            <div class="hotel-info">
+                <div class="hotel-name">
+                    <span>🏨</span>
+                    <span>Pendiente</span>
+                </div>
+                <div class="hotel-address">
+                    <span>📍</span>
+                    <span>Pendiente</span>
+                </div>
+                <span class="hotel-status pending">⏳ Pendiente</span>
             </div>
         </div>
 
