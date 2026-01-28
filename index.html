@@ -586,6 +586,42 @@
             gap: 8px;
         }
         
+        /* Extra sites (del Excel) */
+        .extra-site-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px;
+            background: rgba(0,0,0,0.2);
+            border-radius: 8px;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+        
+        .extra-site-info {
+            flex: 1;
+        }
+        
+        .extra-site-city {
+            font-size: 0.75rem;
+            color: #9CA3AF;
+        }
+        
+        .extra-site-delete {
+            background: rgba(220, 38, 38, 0.3);
+            border: 1px solid var(--china-red);
+            color: white;
+            border-radius: 6px;
+            padding: 6px 12px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+        
+        .extra-site-delete:hover {
+            background: var(--china-red);
+        }
+        
         /* Converter */
         .converter {
             background: rgba(0,0,0,0.2);
@@ -985,6 +1021,10 @@
             <div class="tip-item">🚄 Tren Maglev 430km/h</div>
             <div class="tip-item">🚲 Muralla de Xi'an en bici</div>
         </div>
+
+        <h2 class="section-title">📋 Otros sitios (del Excel)</h2>
+        <p class="text-sm text-gray mb-2">Puedes borrar los que no quieras visitar.</p>
+        <div id="extra-sites-container" class="card"></div>
     </div>
 
     <!-- CIUDADES PAGE -->
@@ -1421,6 +1461,29 @@
                         { id: 'eq6', text: 'Candado maleta TSA' }
                     ]
                 }
+            ],
+
+            // Sitios del Excel que no están en el itinerario principal (se pueden borrar)
+            extraSites: [
+                { id: 'ex1', city: 'Beijing', name: 'National Museum' },
+                { id: 'ex2', city: 'Beijing', name: 'Qianmen Street' },
+                { id: 'ex3', city: 'Beijing', name: 'Prince Gong\'s Mansion' },
+                { id: 'ex4', city: 'Beijing', name: 'Old Summer Palace' },
+                { id: 'ex5', city: 'Beijing', name: 'Tsinghua University' },
+                { id: 'ex6', city: 'Beijing', name: 'Peking University' },
+                { id: 'ex7', city: 'Beijing', name: 'Guozijian' },
+                { id: 'ex8', city: 'Beijing', name: 'Military Museum' },
+                { id: 'ex9', city: 'Beijing', name: 'Wukesong' },
+                { id: 'ex10', city: 'Beijing', name: 'Beijing Universal Studios' },
+                { id: 'ex11', city: "Xi'an", name: 'Bell Tower' },
+                { id: 'ex12', city: "Xi'an", name: 'Shanxi History Museum' },
+                { id: 'ex13', city: "Xi'an", name: 'SaJinQiao' },
+                { id: 'ex14', city: "Xi'an", name: 'Grand Tang Mall' },
+                { id: 'ex15', city: "Xi'an", name: 'HuaQing Palace' },
+                { id: 'ex16', city: "Xi'an", name: 'Lishan Mountain' },
+                { id: 'ex17', city: "Xi'an", name: 'The Song of Everlasting Sorrow' },
+                { id: 'ex18', city: 'Zhangjiajie', name: 'Golden Whip Stream' },
+                { id: 'ex19', city: 'Zhangjiajie', name: 'Ancient Town of Fenghuang' }
             ]
         };
 
@@ -1681,6 +1744,36 @@
             document.getElementById('cny-result').textContent = cny;
         }
 
+        // Extra sites (del Excel) - se pueden borrar
+        function renderExtraSites() {
+            const deleted = JSON.parse(localStorage.getItem('chinaTrip_deletedExtraSites') || '[]');
+            const visible = tripData.extraSites.filter(s => !deleted.includes(s.id));
+            const container = document.getElementById('extra-sites-container');
+            if (!container) return;
+            if (visible.length === 0) {
+                container.innerHTML = '<p class="text-sm text-gray">No hay sitios extra o los has borrado todos.</p>';
+                return;
+            }
+            container.innerHTML = visible.map(s => `
+                <div class="extra-site-item" data-id="${s.id}">
+                    <div class="extra-site-info">
+                        <div>${s.name}</div>
+                        <div class="extra-site-city">${s.city}</div>
+                    </div>
+                    <button type="button" class="extra-site-delete" onclick="removeExtraSite('${s.id}')">Borrar</button>
+                </div>
+            `).join('');
+        }
+
+        function removeExtraSite(id) {
+            const deleted = JSON.parse(localStorage.getItem('chinaTrip_deletedExtraSites') || '[]');
+            if (!deleted.includes(id)) {
+                deleted.push(id);
+                localStorage.setItem('chinaTrip_deletedExtraSites', JSON.stringify(deleted));
+                renderExtraSites();
+            }
+        }
+
         // ==================== INIT ====================
         document.addEventListener('DOMContentLoaded', function() {
             // Update countdown
@@ -1690,6 +1783,7 @@
             // Render components
             renderReservations();
             renderChecklist();
+            renderExtraSites();
             
             // Restore last page
             const lastPage = localStorage.getItem('chinaTrip_currentPage');
