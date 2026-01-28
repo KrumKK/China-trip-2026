@@ -1,0 +1,1565 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#DC2626">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🇨🇳</text></svg>">
+    <link rel="apple-touch-icon" href="icon-192.png">
+    <title>China Trip 2026 🇨🇳</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        :root {
+            --china-red: #DC2626;
+            --china-gold: #F59E0B;
+            --china-dark: #1F2937;
+            --beijing: #22C55E;
+            --xian: #F97316;
+            --zhangjiajie: #3B82F6;
+            --shanghai: #EAB308;
+        }
+        
+        body {
+            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #1F2937 0%, #111827 100%);
+            min-height: 100vh;
+            min-height: 100dvh;
+            color: #F3F4F6;
+            padding-bottom: 80px;
+        }
+        
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--china-red), #991B1B);
+            padding: 20px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .header p {
+            font-size: 0.875rem;
+            opacity: 0.9;
+            margin-top: 4px;
+        }
+        
+        /* Tab Navigation */
+        .tab-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(17, 24, 39, 0.95);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-around;
+            padding: 8px 4px;
+            padding-bottom: max(8px, env(safe-area-inset-bottom));
+            border-top: 1px solid #374151;
+            z-index: 1000;
+        }
+        
+        .tab-btn {
+            background: none;
+            border: none;
+            color: #9CA3AF;
+            font-size: 0.7rem;
+            padding: 8px 12px;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            transition: all 0.2s;
+            border-radius: 8px;
+        }
+        
+        .tab-btn.active {
+            color: var(--china-red);
+            background: rgba(220, 38, 38, 0.1);
+        }
+        
+        .tab-btn span {
+            font-size: 1.25rem;
+        }
+        
+        /* Pages */
+        .page {
+            display: none;
+            padding: 16px;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .page.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Cards */
+        .card {
+            background: rgba(55, 65, 81, 0.5);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 12px;
+            border: 1px solid rgba(75, 85, 99, 0.5);
+        }
+        
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        
+        .card-title {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        
+        .card-subtitle {
+            font-size: 0.875rem;
+            color: #9CA3AF;
+        }
+        
+        /* Countdown */
+        .countdown {
+            background: linear-gradient(135deg, var(--china-red), var(--china-gold));
+            border-radius: 16px;
+            padding: 24px;
+            text-align: center;
+            margin-bottom: 16px;
+        }
+        
+        .countdown-title {
+            font-size: 0.875rem;
+            opacity: 0.9;
+            margin-bottom: 8px;
+        }
+        
+        .countdown-time {
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+        
+        .countdown-label {
+            font-size: 0.875rem;
+            opacity: 0.9;
+            margin-top: 4px;
+        }
+        
+        /* Flight Card */
+        .flight-card {
+            border-left: 4px solid var(--china-red);
+        }
+        
+        .flight-route {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 12px 0;
+        }
+        
+        .flight-city {
+            text-align: center;
+        }
+        
+        .flight-code {
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+        
+        .flight-name {
+            font-size: 0.75rem;
+            color: #9CA3AF;
+        }
+        
+        .flight-arrow {
+            flex: 1;
+            text-align: center;
+            color: var(--china-gold);
+        }
+        
+        .flight-details {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.875rem;
+            color: #9CA3AF;
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid #374151;
+        }
+        
+        /* City Cards */
+        .city-card {
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .city-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+        
+        .city-card.beijing { border-left: 4px solid var(--beijing); }
+        .city-card.xian { border-left: 4px solid var(--xian); }
+        .city-card.zhangjiajie { border-left: 4px solid var(--zhangjiajie); }
+        .city-card.shanghai { border-left: 4px solid var(--shanghai); }
+        
+        .city-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .city-emoji {
+            font-size: 2rem;
+        }
+        
+        .city-info h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+        
+        .city-info p {
+            font-size: 0.875rem;
+            color: #9CA3AF;
+        }
+        
+        .city-nights {
+            background: rgba(255,255,255,0.1);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            margin-left: auto;
+        }
+        
+        /* Day Cards */
+        .day-card {
+            margin-bottom: 12px;
+        }
+        
+        .day-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            padding: 12px 0;
+        }
+        
+        .day-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .day-number {
+            background: var(--china-red);
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        }
+        
+        .day-content {
+            display: none;
+            padding: 12px;
+            background: rgba(0,0,0,0.2);
+            border-radius: 12px;
+            margin-top: 8px;
+        }
+        
+        .day-content.open {
+            display: block;
+        }
+        
+        .day-section {
+            margin-bottom: 12px;
+        }
+        
+        .day-section-title {
+            font-size: 0.75rem;
+            color: var(--china-gold);
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+        
+        .day-section-text {
+            font-size: 0.9rem;
+        }
+        
+        /* Checklist */
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            background: rgba(0,0,0,0.2);
+            border-radius: 8px;
+            margin-bottom: 8px;
+            cursor: pointer;
+        }
+        
+        .checklist-item.checked {
+            opacity: 0.6;
+        }
+        
+        .checklist-item.checked .checklist-text {
+            text-decoration: line-through;
+        }
+        
+        .checkbox {
+            width: 24px;
+            height: 24px;
+            border: 2px solid #6B7280;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+        
+        .checklist-item.checked .checkbox {
+            background: var(--china-red);
+            border-color: var(--china-red);
+        }
+        
+        .checkbox-icon {
+            display: none;
+            color: white;
+        }
+        
+        .checklist-item.checked .checkbox-icon {
+            display: block;
+        }
+        
+        /* Progress Bar */
+        .progress-container {
+            margin-bottom: 16px;
+        }
+        
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 0.875rem;
+        }
+        
+        .progress-bar {
+            height: 8px;
+            background: #374151;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--china-red), var(--china-gold));
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+        
+        /* Reservation Cards */
+        .reservation-card {
+            position: relative;
+        }
+        
+        .reservation-card.mandatory::before {
+            content: '⚠️ Obligatorio';
+            position: absolute;
+            top: -8px;
+            right: 12px;
+            background: var(--china-red);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+        }
+        
+        .reservation-dates {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin: 12px 0;
+        }
+        
+        .reservation-date {
+            background: rgba(0,0,0,0.2);
+            padding: 8px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .reservation-date-label {
+            font-size: 0.7rem;
+            color: #9CA3AF;
+        }
+        
+        .reservation-date-value {
+            font-weight: 600;
+            margin-top: 2px;
+        }
+        
+        /* Info Section */
+        .info-section {
+            margin-bottom: 20px;
+        }
+        
+        .info-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .phrase-card {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+            background: rgba(0,0,0,0.2);
+            border-radius: 8px;
+            margin-bottom: 8px;
+        }
+        
+        .phrase-chinese {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+        
+        .phrase-pinyin {
+            font-size: 0.8rem;
+            color: var(--china-gold);
+        }
+        
+        .phrase-spanish {
+            font-size: 0.875rem;
+            color: #9CA3AF;
+            text-align: right;
+        }
+        
+        .emergency-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+        }
+        
+        .emergency-card {
+            background: rgba(220, 38, 38, 0.2);
+            border: 1px solid var(--china-red);
+            border-radius: 8px;
+            padding: 12px;
+            text-align: center;
+        }
+        
+        .emergency-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--china-red);
+        }
+        
+        .emergency-name {
+            font-size: 0.75rem;
+            color: #9CA3AF;
+        }
+        
+        .tip-item {
+            padding: 8px 12px;
+            background: rgba(0,0,0,0.2);
+            border-radius: 8px;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+        
+        /* Converter */
+        .converter {
+            background: rgba(0,0,0,0.2);
+            border-radius: 12px;
+            padding: 16px;
+        }
+        
+        .converter-input {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+        
+        .converter-input input {
+            flex: 1;
+            background: #374151;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            color: white;
+            font-size: 1.25rem;
+            width: 100%;
+        }
+        
+        .converter-result {
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--china-gold);
+        }
+        
+        /* Category */
+        .category {
+            margin-bottom: 16px;
+        }
+        
+        .category-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+            background: rgba(55, 65, 81, 0.5);
+            border-radius: 12px;
+            cursor: pointer;
+            margin-bottom: 8px;
+        }
+        
+        .category-title {
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .category-progress {
+            font-size: 0.875rem;
+            color: #9CA3AF;
+        }
+        
+        .category-content {
+            display: none;
+            padding: 0 8px;
+        }
+        
+        .category-content.open {
+            display: block;
+        }
+        
+        /* Back Button */
+        .back-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: none;
+            border: none;
+            color: var(--china-gold);
+            font-size: 1rem;
+            cursor: pointer;
+            margin-bottom: 16px;
+            padding: 8px 0;
+        }
+        
+        /* Transport Cards */
+        .transport-card {
+            border-left: 4px solid var(--china-gold);
+        }
+        
+        .transport-type {
+            display: inline-block;
+            padding: 2px 8px;
+            background: rgba(245, 158, 11, 0.2);
+            color: var(--china-gold);
+            border-radius: 4px;
+            font-size: 0.75rem;
+            margin-bottom: 8px;
+        }
+        
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+        
+        .stat-card {
+            background: rgba(55, 65, 81, 0.5);
+            border-radius: 12px;
+            padding: 16px;
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--china-gold);
+        }
+        
+        .stat-label {
+            font-size: 0.8rem;
+            color: #9CA3AF;
+            margin-top: 4px;
+        }
+        
+        /* Section Title */
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 20px 0 12px 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        /* Utilities */
+        .text-red { color: var(--china-red); }
+        .text-gold { color: var(--china-gold); }
+        .text-green { color: #22C55E; }
+        .text-gray { color: #9CA3AF; }
+        .mt-2 { margin-top: 8px; }
+        .mb-2 { margin-bottom: 8px; }
+        .text-sm { font-size: 0.875rem; }
+        .text-center { text-align: center; }
+        .font-bold { font-weight: 700; }
+        
+        /* Hidden on desktop message */
+        @media (min-width: 768px) {
+            body {
+                max-width: 480px;
+                margin: 0 auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <h1>🇨🇳 China Trip 2026</h1>
+        <p>1-21 Abril • 2 adultos + 1 niño</p>
+    </header>
+
+    <!-- Pages -->
+    
+    <!-- VUELOS PAGE -->
+    <div id="page-vuelos" class="page active">
+        <div class="countdown" id="countdown">
+            <div class="countdown-title">⏱️ Cuenta atrás para el viaje</div>
+            <div class="countdown-time" id="countdown-time">--</div>
+            <div class="countdown-label" id="countdown-label">días</div>
+        </div>
+
+        <h2 class="section-title">✈️ Vuelos Internacionales</h2>
+        
+        <div class="card flight-card">
+            <div class="card-header">
+                <span class="card-title">🛫 Vuelo de Ida</span>
+                <span class="text-sm text-gray">1 Abril 2026</span>
+            </div>
+            <div class="flight-route">
+                <div class="flight-city">
+                    <div class="flight-code">BCN</div>
+                    <div class="flight-name">Barcelona</div>
+                </div>
+                <div class="flight-arrow">✈️ ―――→</div>
+                <div class="flight-city">
+                    <div class="flight-code">PEK</div>
+                    <div class="flight-name">Pekín</div>
+                </div>
+            </div>
+            <div class="flight-details">
+                <span>🕐 12:30 → 05:45+1</span>
+                <span>⏱️ ~11h</span>
+                <span>Air China</span>
+            </div>
+        </div>
+
+        <div class="card flight-card">
+            <div class="card-header">
+                <span class="card-title">🛬 Vuelo de Vuelta</span>
+                <span class="text-sm text-gray">21 Abril 2026</span>
+            </div>
+            <div class="flight-route">
+                <div class="flight-city">
+                    <div class="flight-code">PVG</div>
+                    <div class="flight-name">Shanghái</div>
+                </div>
+                <div class="flight-arrow">✈️ ―――→</div>
+                <div class="flight-city">
+                    <div class="flight-code">BCN</div>
+                    <div class="flight-name">Barcelona</div>
+                </div>
+            </div>
+            <div class="flight-details">
+                <span>🕐 00:40 → 07:55</span>
+                <span>⏱️ ~13h</span>
+                <span>Air China</span>
+            </div>
+        </div>
+
+        <h2 class="section-title">🚄 Transporte Interno</h2>
+        
+        <div class="card transport-card">
+            <span class="transport-type">🚄 TREN</span>
+            <div class="card-title">Beijing → Xi'an</div>
+            <p class="text-sm text-gray mt-2">8 Abril • ~4h30 • 55-80€/persona</p>
+            <p class="text-sm text-green mt-2">💡 Niño <1.2m GRATIS</p>
+        </div>
+
+        <div class="card transport-card">
+            <span class="transport-type">✈️ VUELO</span>
+            <div class="card-title">Xi'an → Zhangjiajie</div>
+            <p class="text-sm text-gray mt-2">11 Abril • ~1h45 • 50-100€/persona</p>
+        </div>
+
+        <div class="card transport-card">
+            <span class="transport-type">✈️ VUELO</span>
+            <div class="card-title">Zhangjiajie → Shanghai</div>
+            <p class="text-sm text-gray mt-2">14 Abril • ~2h • 60-120€/persona</p>
+        </div>
+    </div>
+
+    <!-- RUTA PAGE -->
+    <div id="page-ruta" class="page">
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-value">20</div>
+                <div class="stat-label">Días totales</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">4</div>
+                <div class="stat-label">Ciudades</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">18</div>
+                <div class="stat-label">Noches</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">2</div>
+                <div class="stat-label">Días Disney</div>
+            </div>
+        </div>
+
+        <h2 class="section-title">📍 Ruta del Viaje</h2>
+        
+        <div class="card city-card beijing" onclick="showCity('beijing')">
+            <div class="city-header">
+                <span class="city-emoji">🏯</span>
+                <div class="city-info">
+                    <h3>Beijing</h3>
+                    <p>2-7 Abril</p>
+                </div>
+                <span class="city-nights">6 noches</span>
+            </div>
+        </div>
+
+        <div class="card city-card xian" onclick="showCity('xian')">
+            <div class="city-header">
+                <span class="city-emoji">⚔️</span>
+                <div class="city-info">
+                    <h3>Xi'an</h3>
+                    <p>8-10 Abril</p>
+                </div>
+                <span class="city-nights">3 noches</span>
+            </div>
+        </div>
+
+        <div class="card city-card zhangjiajie" onclick="showCity('zhangjiajie')">
+            <div class="city-header">
+                <span class="city-emoji">🏔️</span>
+                <div class="city-info">
+                    <h3>Zhangjiajie</h3>
+                    <p>11-13 Abril</p>
+                </div>
+                <span class="city-nights">3 noches</span>
+            </div>
+        </div>
+
+        <div class="card city-card shanghai" onclick="showCity('shanghai')">
+            <div class="city-header">
+                <span class="city-emoji">🎡</span>
+                <div class="city-info">
+                    <h3>Shanghai</h3>
+                    <p>14-20 Abril</p>
+                </div>
+                <span class="city-nights">6 noches</span>
+            </div>
+        </div>
+
+        <h2 class="section-title">⭐ Highlights del viaje</h2>
+        <div class="card">
+            <div class="tip-item">🛝 Tobogán en la Gran Muralla (Mutianyu)</div>
+            <div class="tip-item">🛗 Ascensor Bailong 326m (Zhangjiajie)</div>
+            <div class="tip-item">🏰 2 días en Shanghai Disneyland</div>
+            <div class="tip-item">⚔️ Guerreros de Terracota</div>
+            <div class="tip-item">🚄 Tren Maglev 430km/h</div>
+            <div class="tip-item">🚲 Muralla de Xi'an en bici</div>
+        </div>
+    </div>
+
+    <!-- CIUDADES PAGE -->
+    <div id="page-ciudades" class="page">
+        <div id="cities-list">
+            <h2 class="section-title">🏙️ Selecciona una ciudad</h2>
+            
+            <div class="card city-card beijing" onclick="showCity('beijing')">
+                <div class="city-header">
+                    <span class="city-emoji">🏯</span>
+                    <div class="city-info">
+                        <h3>Beijing</h3>
+                        <p>Ciudad Prohibida, Gran Muralla, Templo del Cielo</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card city-card xian" onclick="showCity('xian')">
+                <div class="city-header">
+                    <span class="city-emoji">⚔️</span>
+                    <div class="city-info">
+                        <h3>Xi'an</h3>
+                        <p>Guerreros Terracota, Muralla en bici, Barrio Musulmán</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card city-card zhangjiajie" onclick="showCity('zhangjiajie')">
+                <div class="city-header">
+                    <span class="city-emoji">🏔️</span>
+                    <div class="city-info">
+                        <h3>Zhangjiajie</h3>
+                        <p>Montañas Avatar, Ascensor Bailong, Tianmen</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card city-card shanghai" onclick="showCity('shanghai')">
+                <div class="city-header">
+                    <span class="city-emoji">🎡</span>
+                    <div class="city-info">
+                        <h3>Shanghai</h3>
+                        <p>Disneyland, The Bund, Yu Garden, Maglev</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="city-detail" style="display:none;">
+            <button class="back-btn" onclick="hideCityDetail()">← Volver a ciudades</button>
+            <div id="city-detail-content"></div>
+        </div>
+    </div>
+
+    <!-- RESERVAS PAGE -->
+    <div id="page-reservas" class="page">
+        <div class="progress-container">
+            <div class="progress-header">
+                <span>Progreso de reservas</span>
+                <span id="reservas-progress-text">0/9</span>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="reservas-progress-bar" style="width: 0%"></div>
+            </div>
+        </div>
+
+        <h2 class="section-title">⚠️ Reservas Obligatorias</h2>
+        <div id="reservas-obligatorias"></div>
+
+        <h2 class="section-title">📋 Otras Reservas</h2>
+        <div id="reservas-otras"></div>
+    </div>
+
+    <!-- CHECK PAGE -->
+    <div id="page-check" class="page">
+        <div class="progress-container">
+            <div class="progress-header">
+                <span>Preparativos completados</span>
+                <span id="check-progress-text">0/24</span>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="check-progress-bar" style="width: 0%"></div>
+            </div>
+        </div>
+
+        <div id="checklist-container"></div>
+    </div>
+
+    <!-- INFO PAGE -->
+    <div id="page-info" class="page">
+        <div class="info-section">
+            <h3 class="info-title">🗣️ Frases útiles</h3>
+            <div class="phrase-card">
+                <div>
+                    <div class="phrase-chinese">你好</div>
+                    <div class="phrase-pinyin">Nǐ hǎo</div>
+                </div>
+                <div class="phrase-spanish">Hola</div>
+            </div>
+            <div class="phrase-card">
+                <div>
+                    <div class="phrase-chinese">谢谢</div>
+                    <div class="phrase-pinyin">Xiè xiè</div>
+                </div>
+                <div class="phrase-spanish">Gracias</div>
+            </div>
+            <div class="phrase-card">
+                <div>
+                    <div class="phrase-chinese">多少钱</div>
+                    <div class="phrase-pinyin">Duō shǎo qián</div>
+                </div>
+                <div class="phrase-spanish">¿Cuánto cuesta?</div>
+            </div>
+            <div class="phrase-card">
+                <div>
+                    <div class="phrase-chinese">厕所在哪里</div>
+                    <div class="phrase-pinyin">Cè suǒ zài nǎ lǐ</div>
+                </div>
+                <div class="phrase-spanish">¿Dónde está el baño?</div>
+            </div>
+            <div class="phrase-card">
+                <div>
+                    <div class="phrase-chinese">我不吃辣</div>
+                    <div class="phrase-pinyin">Wǒ bù chī là</div>
+                </div>
+                <div class="phrase-spanish">No como picante</div>
+            </div>
+            <div class="phrase-card">
+                <div>
+                    <div class="phrase-chinese">太贵了</div>
+                    <div class="phrase-pinyin">Tài guì le</div>
+                </div>
+                <div class="phrase-spanish">Muy caro</div>
+            </div>
+        </div>
+
+        <div class="info-section">
+            <h3 class="info-title">🚨 Emergencias</h3>
+            <div class="emergency-grid">
+                <div class="emergency-card">
+                    <div class="emergency-number">110</div>
+                    <div class="emergency-name">Policía</div>
+                </div>
+                <div class="emergency-card">
+                    <div class="emergency-number">120</div>
+                    <div class="emergency-name">Ambulancia</div>
+                </div>
+                <div class="emergency-card">
+                    <div class="emergency-number">119</div>
+                    <div class="emergency-name">Bomberos</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="info-section">
+            <h3 class="info-title">🌡️ Clima en Abril</h3>
+            <div class="card">
+                <div class="tip-item">🏯 <strong>Beijing:</strong> 10-22°C, posible lluvia</div>
+                <div class="tip-item">⚔️ <strong>Xi'an:</strong> 12-24°C, soleado</div>
+                <div class="tip-item">🏔️ <strong>Zhangjiajie:</strong> 14-22°C, húmedo, niebla</div>
+                <div class="tip-item">🎡 <strong>Shanghai:</strong> 14-22°C, variable</div>
+            </div>
+        </div>
+
+        <div class="info-section">
+            <h3 class="info-title">💶 Conversor €→¥</h3>
+            <div class="converter">
+                <div class="converter-input">
+                    <input type="number" id="eur-input" placeholder="Euros" oninput="convertCurrency()">
+                    <span>€</span>
+                </div>
+                <div class="converter-result">
+                    <span id="cny-result">0</span> ¥
+                </div>
+                <p class="text-center text-sm text-gray mt-2">Tipo de cambio: 1€ ≈ 7.8¥</p>
+            </div>
+        </div>
+
+        <div class="info-section">
+            <h3 class="info-title">💡 Consejos prácticos</h3>
+            <div class="card">
+                <div class="tip-item">💳 El efectivo casi no se usa - configura Alipay/WeChat Pay</div>
+                <div class="tip-item">🔒 Google/WhatsApp no funcionan sin VPN</div>
+                <div class="tip-item">🚕 Los taxis usan DiDi, no paran en la calle</div>
+                <div class="tip-item">🛒 Regatear es normal en mercados</div>
+                <div class="tip-item">💧 El agua del grifo NO es potable</div>
+                <div class="tip-item">🚇 Metro cierra ~22:30-23:00</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tab Bar -->
+    <nav class="tab-bar">
+        <button class="tab-btn active" onclick="showPage('vuelos')">
+            <span>✈️</span>
+            Vuelos
+        </button>
+        <button class="tab-btn" onclick="showPage('ruta')">
+            <span>📍</span>
+            Ruta
+        </button>
+        <button class="tab-btn" onclick="showPage('ciudades')">
+            <span>🏙️</span>
+            Ciudades
+        </button>
+        <button class="tab-btn" onclick="showPage('reservas')">
+            <span>⚠️</span>
+            Reservas
+        </button>
+        <button class="tab-btn" onclick="showPage('check')">
+            <span>✅</span>
+            Check
+        </button>
+        <button class="tab-btn" onclick="showPage('info')">
+            <span>ℹ️</span>
+            Info
+        </button>
+    </nav>
+
+    <script>
+        // ==================== DATA ====================
+        const tripData = {
+            startDate: new Date('2026-04-01T12:30:00'),
+            
+            cities: {
+                beijing: {
+                    name: 'Beijing',
+                    emoji: '🏯',
+                    color: 'beijing',
+                    days: [
+                        {
+                            day: 2, date: '2 Abril', weekday: 'Jueves',
+                            title: 'Llegada + Jet Lag',
+                            morning: 'Llegada 05:45, check-in temprano, descanso',
+                            afternoon: 'Paseo ligero por el barrio',
+                            evening: 'Wangfujing + Mercado escorpiones 🦂',
+                            notes: 'Día suave para adaptarse'
+                        },
+                        {
+                            day: 3, date: '3 Abril', weekday: 'Viernes',
+                            title: 'Ciudad Prohibida',
+                            morning: 'Plaza Tiananmen + Ciudad Prohibida (4-5h)',
+                            afternoon: 'Parque Jingshan (vistas panorámicas)',
+                            evening: 'Parque Beihai + paseo en barco',
+                            notes: '⭐ RESERVAR 7 días antes'
+                        },
+                        {
+                            day: 4, date: '4 Abril', weekday: 'Sábado',
+                            title: 'Gran Muralla',
+                            morning: 'Salir 07:00 → Gran Muralla Mutianyu',
+                            afternoon: 'Teleférico subida + Tobogán bajada 🛝',
+                            evening: 'Regreso Beijing + Cena Pato Pekín 🦆',
+                            notes: 'Coche privado ~700¥ ida/vuelta'
+                        },
+                        {
+                            day: 5, date: '5 Abril', weekday: 'Domingo',
+                            title: 'Templo del Cielo + Hutongs',
+                            morning: 'Templo del Cielo (ver taichi locales)',
+                            afternoon: 'Tour Hutongs en rickshaw + Shichahai',
+                            evening: 'Lago Houhai - ambiente nocturno',
+                            notes: 'Rickshaw ~150-200¥'
+                        },
+                        {
+                            day: 6, date: '6 Abril', weekday: 'Lunes',
+                            title: 'Palacio de Verano',
+                            morning: 'Palacio de Verano (3-4h)',
+                            afternoon: 'Barco dragón en Lago Kunming 🐉',
+                            evening: 'Zhongguancun tech market 🖥️ o descanso',
+                            notes: 'Metro Línea 4'
+                        },
+                        {
+                            day: 7, date: '7 Abril', weekday: 'Martes',
+                            title: 'Templo Lama + Villa Olímpica',
+                            morning: 'Templo Lama + Templo Confucio',
+                            afternoon: 'Torres Campana y Tambor',
+                            evening: 'Villa Olímpica noche (Nido + Cubo) 🏟️',
+                            notes: 'Luces se encienden ~19:40'
+                        }
+                    ]
+                },
+                xian: {
+                    name: "Xi'an",
+                    emoji: '⚔️',
+                    color: 'xian',
+                    days: [
+                        {
+                            day: 8, date: '8 Abril', weekday: 'Miércoles',
+                            title: 'Llegada Xi\'an',
+                            morning: 'Check-out Beijing + Estación tren 08:00',
+                            afternoon: 'Tren alta velocidad (4h30) → Xi\'an ~14:00',
+                            evening: 'Paseo centro + Barrio Musulmán cena 🍢',
+                            notes: 'Primera noche en Xi\'an'
+                        },
+                        {
+                            day: 9, date: '9 Abril', weekday: 'Jueves',
+                            title: 'Guerreros de Terracota',
+                            morning: 'Salir 08:00 → Guerreros Terracota',
+                            afternoon: 'Taller DIY mini guerrero 🎨 (niño)',
+                            evening: 'Fuentes Gran Pagoda Ganso (show 20:30)',
+                            notes: '⭐ RESERVAR online obligatorio'
+                        },
+                        {
+                            day: 10, date: '10 Abril', weekday: 'Viernes',
+                            title: 'Muralla en bici',
+                            morning: 'Pequeña Pagoda Ganso + museo',
+                            afternoon: 'Muralla de Xi\'an en bici al atardecer 🚲',
+                            evening: 'Última cena Barrio Musulmán',
+                            notes: 'Bicis tandem disponibles'
+                        }
+                    ]
+                },
+                zhangjiajie: {
+                    name: 'Zhangjiajie',
+                    emoji: '🏔️',
+                    color: 'zhangjiajie',
+                    days: [
+                        {
+                            day: 11, date: '11 Abril', weekday: 'Sábado',
+                            title: 'Llegada Zhangjiajie',
+                            morning: 'Check-out Xi\'an + aeropuerto',
+                            afternoon: 'Vuelo Xi\'an → Zhangjiajie (1h45)',
+                            evening: 'Check-in Wulingyuan + paseo pueblo',
+                            notes: 'Hotel cerca entrada parque'
+                        },
+                        {
+                            day: 12, date: '12 Abril', weekday: 'Domingo',
+                            title: 'Parque Nacional - Avatar',
+                            morning: 'Entrada este Parque Nacional',
+                            afternoon: 'Ascensor Bailong 326m 🛗 + Yuanjiajie',
+                            evening: 'Montaña Tianzi (Avatar mountains)',
+                            notes: '⭐ Entrada válida 4 días'
+                        },
+                        {
+                            day: 13, date: '13 Abril', weekday: 'Lunes',
+                            title: 'Tianmen Mountain',
+                            morning: 'Tianmen Mountain (teleférico 30min)',
+                            afternoon: 'Pasarela cristal + Cueva del Cielo',
+                            evening: 'Ten-Mile Gallery trenecito 🚂',
+                            notes: '⭐ RESERVAR Tianmen obligatorio'
+                        }
+                    ]
+                },
+                shanghai: {
+                    name: 'Shanghai',
+                    emoji: '🎡',
+                    color: 'shanghai',
+                    days: [
+                        {
+                            day: 14, date: '14 Abril', weekday: 'Martes',
+                            title: 'Llegada Shanghai',
+                            morning: 'Opción: Puente Cristal Gran Cañón',
+                            afternoon: 'Vuelo Zhangjiajie → Shanghai (2h)',
+                            evening: 'Check-in zona Disney + Disneytown paseo',
+                            notes: 'Primera noche Shanghai'
+                        },
+                        {
+                            day: 15, date: '15 Abril', weekday: 'Miércoles',
+                            title: 'DISNEYLAND DÍA 1 🏰',
+                            morning: 'Apertura parque - TRON + Piratas',
+                            afternoon: 'Zootopia + Seven Dwarfs',
+                            evening: 'ILLUMINATE! fuegos artificiales 🎆',
+                            notes: 'Llegar 1h antes apertura'
+                        },
+                        {
+                            day: 16, date: '16 Abril', weekday: 'Jueves',
+                            title: 'DISNEYLAND DÍA 2 🏰',
+                            morning: 'Repetir favoritos',
+                            afternoon: 'Atracciones pendientes + fotos',
+                            evening: 'Cena temática + fuegos',
+                            notes: 'Día más relajado'
+                        },
+                        {
+                            day: 17, date: '17 Abril', weekday: 'Viernes',
+                            title: 'Yu Garden + Bund',
+                            morning: 'Yu Garden + Bazaar (xiaolongbao)',
+                            afternoon: 'The Bund día + Túnel psicodélico 🌈',
+                            evening: 'Crucero río Huangpu noche 🚢',
+                            notes: 'Crucero ~120-180¥'
+                        },
+                        {
+                            day: 18, date: '18 Abril', weekday: 'Sábado',
+                            title: 'Pudong futurista',
+                            morning: 'Tren Maglev 430km/h 🚄',
+                            afternoon: 'Torre Oriental Pearl (vistas)',
+                            evening: 'Nanjing Road + compras',
+                            notes: 'Maglev ~50¥ ida'
+                        },
+                        {
+                            day: 19, date: '19 Abril', weekday: 'Domingo',
+                            title: 'Zhujiajiao Water Town',
+                            morning: 'Excursión Zhujiajiao 🏘️',
+                            afternoon: 'Paseo barca + pueblo antiguo',
+                            evening: 'Última cena en The Bund',
+                            notes: '~1h transporte cada trayecto'
+                        },
+                        {
+                            day: 20, date: '20 Abril', weekday: 'Lunes',
+                            title: 'Último día + Aeropuerto',
+                            morning: 'Concesión Francesa + Tianzifang',
+                            afternoon: 'Compras + souvenirs',
+                            evening: 'Cena despedida → Aeropuerto 21:30',
+                            notes: '⚠️ Vuelo sale 00:40 del día 21'
+                        }
+                    ]
+                }
+            },
+
+            reservations: [
+                { id: 'r1', name: 'Ciudad Prohibida', city: 'Beijing', visitDate: '3 Abril', bookBefore: '27 Marzo', price: '60¥ (GRATIS <18)', mandatory: true },
+                { id: 'r2', name: 'Guerreros Terracota', city: "Xi'an", visitDate: '9 Abril', bookBefore: '2 Abril', price: '120¥ (GRATIS <14)', mandatory: true },
+                { id: 'r3', name: 'Tianmen Mountain', city: 'Zhangjiajie', visitDate: '13 Abril', bookBefore: '11 Abril', price: '278¥ (GRATIS <14)', mandatory: true },
+                { id: 'r4', name: 'Shanghai Disneyland (2 días)', city: 'Shanghai', visitDate: '15-16 Abril', bookBefore: '10 Abril', price: '475¥/356¥ niño x día', mandatory: true },
+                { id: 'r5', name: 'Tren Beijing-Xi\'an', city: 'Transporte', visitDate: '8 Abril', bookBefore: '25 Marzo', price: '55-80€/persona', mandatory: true },
+                { id: 'r6', name: 'Vuelo Xi\'an-Zhangjiajie', city: 'Transporte', visitDate: '11 Abril', bookBefore: '25 Marzo', price: '50-100€/persona', mandatory: true },
+                { id: 'r7', name: 'Vuelo Zhangjiajie-Shanghai', city: 'Transporte', visitDate: '14 Abril', bookBefore: '25 Marzo', price: '60-120€/persona', mandatory: true },
+                { id: 'r8', name: 'Parque Zhangjiajie', city: 'Zhangjiajie', visitDate: '12 Abril', bookBefore: '9 Abril', price: '225¥ 4 días (GRATIS <14)', mandatory: false },
+                { id: 'r9', name: 'Coche privado Muralla', city: 'Beijing', visitDate: '4 Abril', bookBefore: '2 Abril', price: '~700¥', mandatory: false }
+            ],
+
+            checklist: [
+                {
+                    category: '📄 Documentación',
+                    items: [
+                        { id: 'doc1', text: 'Pasaportes vigentes (mín. 6 meses)' },
+                        { id: 'doc2', text: 'Verificar exención visa 30 días' },
+                        { id: 'doc3', text: 'Copias digitales pasaportes (nube)' },
+                        { id: 'doc4', text: 'Seguro viaje con cobertura médica' },
+                        { id: 'doc5', text: 'Avisar al banco de tarjetas' }
+                    ]
+                },
+                {
+                    category: '📱 Apps necesarias',
+                    items: [
+                        { id: 'app1', text: 'WeChat (crear cuenta + pagos)' },
+                        { id: 'app2', text: 'Alipay (vincular tarjeta)' },
+                        { id: 'app3', text: 'Trip.com (reservas)' },
+                        { id: 'app4', text: 'Google Translate (chino offline)' },
+                        { id: 'app5', text: 'Maps.me (mapas offline)' },
+                        { id: 'app6', text: 'VPN (ExpressVPN/NordVPN)' },
+                        { id: 'app7', text: 'DiDi (taxis)' }
+                    ]
+                },
+                {
+                    category: '👶 Para el niño',
+                    items: [
+                        { id: 'kid1', text: 'Snacks familiares' },
+                        { id: 'kid2', text: 'Medicamentos (Dalsy, termómetro)' },
+                        { id: 'kid3', text: 'Tablet + auriculares + pelis' },
+                        { id: 'kid4', text: 'Libros y cuadernos' },
+                        { id: 'kid5', text: 'Cochecito ligero o mochila porteo' },
+                        { id: 'kid6', text: 'Ropa cómoda + capas' }
+                    ]
+                },
+                {
+                    category: '🧳 Equipaje',
+                    items: [
+                        { id: 'eq1', text: 'Maleta grande (facturar)' },
+                        { id: 'eq2', text: 'Mochila/maleta cabina' },
+                        { id: 'eq3', text: 'Riñonera (documentos + móvil)' },
+                        { id: 'eq4', text: 'Adaptador enchufe China' },
+                        { id: 'eq5', text: 'Power bank cargada' },
+                        { id: 'eq6', text: 'Candado maleta TSA' }
+                    ]
+                }
+            ]
+        };
+
+        // ==================== FUNCTIONS ====================
+        
+        // Show page
+        function showPage(pageName) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            // Show selected page
+            document.getElementById('page-' + pageName).classList.add('active');
+            // Update tabs
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+            // Save state
+            localStorage.setItem('chinaTrip_currentPage', pageName);
+        }
+
+        // Countdown
+        function updateCountdown() {
+            const now = new Date();
+            const diff = tripData.startDate - now;
+            
+            if (diff <= 0) {
+                document.getElementById('countdown-time').textContent = '¡Ya!';
+                document.getElementById('countdown-label').textContent = 'El viaje ha comenzado';
+                return;
+            }
+            
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            
+            if (days > 0) {
+                document.getElementById('countdown-time').textContent = days;
+                document.getElementById('countdown-label').textContent = days === 1 ? 'día' : 'días';
+            } else {
+                document.getElementById('countdown-time').textContent = hours;
+                document.getElementById('countdown-label').textContent = hours === 1 ? 'hora' : 'horas';
+            }
+        }
+
+        // Show city detail
+        function showCity(cityId) {
+            const city = tripData.cities[cityId];
+            if (!city) return;
+            
+            // Switch to ciudades page
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById('page-ciudades').classList.add('active');
+            
+            // Hide cities list, show detail
+            document.getElementById('cities-list').style.display = 'none';
+            document.getElementById('city-detail').style.display = 'block';
+            
+            // Generate content
+            let html = `
+                <div class="card city-card ${city.color}">
+                    <div class="city-header">
+                        <span class="city-emoji">${city.emoji}</span>
+                        <div class="city-info">
+                            <h3>${city.name}</h3>
+                            <p>${city.days.length} días de itinerario</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            city.days.forEach((day, index) => {
+                const isOpen = index === 0 ? 'open' : '';
+                html += `
+                    <div class="card day-card">
+                        <div class="day-header" onclick="toggleDay(this)">
+                            <div class="day-title">
+                                <div class="day-number">${day.day}</div>
+                                <div>
+                                    <div class="font-bold">${day.title}</div>
+                                    <div class="text-sm text-gray">${day.date} • ${day.weekday}</div>
+                                </div>
+                            </div>
+                            <span>▼</span>
+                        </div>
+                        <div class="day-content ${isOpen}">
+                            <div class="day-section">
+                                <div class="day-section-title">🌅 Mañana</div>
+                                <div class="day-section-text">${day.morning}</div>
+                            </div>
+                            <div class="day-section">
+                                <div class="day-section-title">☀️ Tarde</div>
+                                <div class="day-section-text">${day.afternoon}</div>
+                            </div>
+                            <div class="day-section">
+                                <div class="day-section-title">🌙 Noche</div>
+                                <div class="day-section-text">${day.evening}</div>
+                            </div>
+                            ${day.notes ? `<div class="day-section"><div class="day-section-title">📝 Notas</div><div class="day-section-text text-gold">${day.notes}</div></div>` : ''}
+                        </div>
+                    </div>
+                `;
+            });
+            
+            document.getElementById('city-detail-content').innerHTML = html;
+        }
+
+        function hideCityDetail() {
+            document.getElementById('cities-list').style.display = 'block';
+            document.getElementById('city-detail').style.display = 'none';
+        }
+
+        function toggleDay(element) {
+            const content = element.nextElementSibling;
+            content.classList.toggle('open');
+        }
+
+        // Reservations
+        function renderReservations() {
+            const saved = JSON.parse(localStorage.getItem('chinaTrip_reservations') || '{}');
+            const mandatory = tripData.reservations.filter(r => r.mandatory);
+            const other = tripData.reservations.filter(r => !r.mandatory);
+            
+            let html1 = '';
+            mandatory.forEach(r => {
+                const checked = saved[r.id] ? 'checked' : '';
+                html1 += createReservationCard(r, checked, true);
+            });
+            document.getElementById('reservas-obligatorias').innerHTML = html1;
+            
+            let html2 = '';
+            other.forEach(r => {
+                const checked = saved[r.id] ? 'checked' : '';
+                html2 += createReservationCard(r, checked, false);
+            });
+            document.getElementById('reservas-otras').innerHTML = html2;
+            
+            updateReservationsProgress();
+        }
+
+        function createReservationCard(r, checked, mandatory) {
+            return `
+                <div class="card reservation-card ${mandatory ? 'mandatory' : ''}" onclick="toggleReservation('${r.id}')">
+                    <div class="checklist-item ${checked}">
+                        <div class="checkbox">
+                            <span class="checkbox-icon">✓</span>
+                        </div>
+                        <div style="flex:1">
+                            <div class="font-bold">${r.name}</div>
+                            <div class="text-sm text-gray">${r.city}</div>
+                        </div>
+                    </div>
+                    <div class="reservation-dates">
+                        <div class="reservation-date">
+                            <div class="reservation-date-label">📅 Visita</div>
+                            <div class="reservation-date-value">${r.visitDate}</div>
+                        </div>
+                        <div class="reservation-date">
+                            <div class="reservation-date-label">⏰ Reservar antes</div>
+                            <div class="reservation-date-value text-red">${r.bookBefore}</div>
+                        </div>
+                    </div>
+                    <div class="text-sm text-gold">💰 ${r.price}</div>
+                </div>
+            `;
+        }
+
+        function toggleReservation(id) {
+            const saved = JSON.parse(localStorage.getItem('chinaTrip_reservations') || '{}');
+            saved[id] = !saved[id];
+            localStorage.setItem('chinaTrip_reservations', JSON.stringify(saved));
+            renderReservations();
+        }
+
+        function updateReservationsProgress() {
+            const saved = JSON.parse(localStorage.getItem('chinaTrip_reservations') || '{}');
+            const total = tripData.reservations.length;
+            const done = Object.values(saved).filter(v => v).length;
+            const percent = Math.round((done / total) * 100);
+            
+            document.getElementById('reservas-progress-text').textContent = `${done}/${total}`;
+            document.getElementById('reservas-progress-bar').style.width = `${percent}%`;
+        }
+
+        // Checklist
+        function renderChecklist() {
+            const saved = JSON.parse(localStorage.getItem('chinaTrip_checklist') || '{}');
+            let html = '';
+            
+            tripData.checklist.forEach((cat, catIndex) => {
+                const catDone = cat.items.filter(item => saved[item.id]).length;
+                const isOpen = catIndex === 0 ? 'open' : '';
+                
+                html += `
+                    <div class="category">
+                        <div class="category-header" onclick="toggleCategory(this)">
+                            <span class="category-title">${cat.category}</span>
+                            <span class="category-progress">${catDone}/${cat.items.length}</span>
+                        </div>
+                        <div class="category-content ${isOpen}">
+                `;
+                
+                cat.items.forEach(item => {
+                    const checked = saved[item.id] ? 'checked' : '';
+                    html += `
+                        <div class="checklist-item ${checked}" onclick="toggleCheckItem('${item.id}')">
+                            <div class="checkbox">
+                                <span class="checkbox-icon">✓</span>
+                            </div>
+                            <span class="checklist-text">${item.text}</span>
+                        </div>
+                    `;
+                });
+                
+                html += `</div></div>`;
+            });
+            
+            document.getElementById('checklist-container').innerHTML = html;
+            updateChecklistProgress();
+        }
+
+        function toggleCategory(element) {
+            const content = element.nextElementSibling;
+            content.classList.toggle('open');
+        }
+
+        function toggleCheckItem(id) {
+            event.stopPropagation();
+            const saved = JSON.parse(localStorage.getItem('chinaTrip_checklist') || '{}');
+            saved[id] = !saved[id];
+            localStorage.setItem('chinaTrip_checklist', JSON.stringify(saved));
+            renderChecklist();
+        }
+
+        function updateChecklistProgress() {
+            const saved = JSON.parse(localStorage.getItem('chinaTrip_checklist') || '{}');
+            let total = 0;
+            let done = 0;
+            
+            tripData.checklist.forEach(cat => {
+                cat.items.forEach(item => {
+                    total++;
+                    if (saved[item.id]) done++;
+                });
+            });
+            
+            const percent = Math.round((done / total) * 100);
+            document.getElementById('check-progress-text').textContent = `${done}/${total}`;
+            document.getElementById('check-progress-bar').style.width = `${percent}%`;
+        }
+
+        // Currency converter
+        function convertCurrency() {
+            const eur = parseFloat(document.getElementById('eur-input').value) || 0;
+            const cny = (eur * 7.8).toFixed(2);
+            document.getElementById('cny-result').textContent = cny;
+        }
+
+        // ==================== INIT ====================
+        document.addEventListener('DOMContentLoaded', function() {
+            // Update countdown
+            updateCountdown();
+            setInterval(updateCountdown, 60000);
+            
+            // Render components
+            renderReservations();
+            renderChecklist();
+            
+            // Restore last page
+            const lastPage = localStorage.getItem('chinaTrip_currentPage');
+            if (lastPage) {
+                const btn = document.querySelector(`.tab-btn[onclick="showPage('${lastPage}')"]`);
+                if (btn) btn.click();
+            }
+        });
+
+        // Register Service Worker
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js')
+                .then(() => console.log('SW registered'))
+                .catch(err => console.log('SW error:', err));
+        }
+    </script>
+</body>
+</html>
