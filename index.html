@@ -49,6 +49,12 @@
             position: sticky;
             top: 70px;
             z-index: 100;
+            transition: transform 0.3s ease;
+            transform: translateY(0);
+        }
+        
+        .header.hidden {
+            transform: translateY(-100%);
         }
         
         .header h1 {
@@ -78,6 +84,12 @@
             padding-top: max(8px, env(safe-area-inset-top));
             border-bottom: 1px solid #374151;
             z-index: 1000;
+            transition: transform 0.3s ease;
+            transform: translateY(0);
+        }
+        
+        .tab-bar.hidden {
+            transform: translateY(-100%);
         }
         
         .tab-btn {
@@ -92,7 +104,7 @@
             align-items: center;
             gap: 4px;
             transition: all 0.2s;
-            border-radius: 12px;
+            border-radius: 4px;
             min-width: 60px;
         }
         
@@ -1687,6 +1699,31 @@
                     showPage(lastPage, btn);
                 }
             }
+            
+            // ==================== SCROLL HIDE/SHOW ====================
+            let lastScrollTop = 0;
+            const tabBar = document.querySelector('.tab-bar');
+            const header = document.querySelector('.header');
+            
+            function handleScroll() {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                
+                // Si scrolleamos hacia abajo o estamos arriba, mostrar elementos
+                if (scrollTop < lastScrollTop || scrollTop < 10) {
+                    if (tabBar) tabBar.classList.remove('hidden');
+                    if (header) header.classList.remove('hidden');
+                } 
+                // Si scrolleamos hacia arriba, ocultar elementos
+                else if (scrollTop > lastScrollTop && scrollTop > 50) {
+                    if (tabBar) tabBar.classList.add('hidden');
+                    if (header) header.classList.add('hidden');
+                }
+                
+                lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+            }
+            
+            // Setup scroll listener
+            window.addEventListener('scroll', handleScroll, { passive: true });
         });
 
         // Register Service Worker
