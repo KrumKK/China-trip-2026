@@ -24,6 +24,8 @@
             --china-red: #DC2626;
             --china-gold: #F59E0B;
             --china-dark: #1F2937;
+            --celeste: #7DD3FC;
+            --verde-claro: #86EFAC;
             --beijing: #22C55E;
             --xian: #F97316;
             --zhangjiajie: #3B82F6;
@@ -52,6 +54,7 @@
         .header h1 {
             font-size: 1.5rem;
             font-weight: 700;
+            color: var(--celeste);
         }
         
         .header p {
@@ -161,17 +164,23 @@
         .countdown-time {
             font-size: 2.5rem;
             font-weight: 700;
+            color: var(--verde-claro);
         }
         
         .countdown-label {
             font-size: 0.875rem;
             opacity: 0.9;
             margin-top: 4px;
+            color: var(--verde-claro);
         }
         
         /* Flight Card */
         .flight-card {
             border-left: 4px solid var(--china-red);
+        }
+        
+        .flight-card .card-title {
+            font-size: 1.25rem;
         }
         
         .flight-route {
@@ -186,12 +195,12 @@
         }
         
         .flight-code {
-            font-size: 1.25rem;
+            font-size: 1.5rem;
             font-weight: 700;
         }
         
         .flight-name {
-            font-size: 0.75rem;
+            font-size: 0.9rem;
             color: #9CA3AF;
         }
         
@@ -204,7 +213,7 @@
         .flight-details {
             display: flex;
             justify-content: space-between;
-            font-size: 0.875rem;
+            font-size: 1rem;
             color: #9CA3AF;
             margin-top: 12px;
             padding-top: 12px;
