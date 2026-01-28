@@ -1,4 +1,4 @@
-const CACHE_NAME = 'china-trip-2026-v1';
+const CACHE_NAME = 'china-trip-2026-v2';
 const urlsToCache = [
   './',
   './index.html',
@@ -26,7 +26,10 @@ self.addEventListener('activate', event => {
           }
         })
       );
-    }).then(() => self.clients.claim())
+    }).then(() => {
+      // Force update all clients
+      return self.clients.claim();
+    })
   );
 });
 

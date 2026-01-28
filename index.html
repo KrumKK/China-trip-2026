@@ -741,27 +741,27 @@
 <body>
     <!-- Tab Bar -->
     <nav class="tab-bar">
-        <button class="tab-btn active" onclick="showPage('vuelos')">
+        <button class="tab-btn active" onclick="showPage('vuelos', this)">
             <span>✈️</span>
             Vuelos
         </button>
-        <button class="tab-btn" onclick="showPage('ruta')">
+        <button class="tab-btn" onclick="showPage('ruta', this)">
             <span>📍</span>
             Ruta
         </button>
-        <button class="tab-btn" onclick="showPage('ciudades')">
+        <button class="tab-btn" onclick="showPage('ciudades', this)">
             <span>🏙️</span>
             Ciudades
         </button>
-        <button class="tab-btn" onclick="showPage('reservas')">
+        <button class="tab-btn" onclick="showPage('reservas', this)">
             <span>⚠️</span>
             Reservas
         </button>
-        <button class="tab-btn" onclick="showPage('check')">
+        <button class="tab-btn" onclick="showPage('check', this)">
             <span>✅</span>
             Check
         </button>
-        <button class="tab-btn" onclick="showPage('info')">
+        <button class="tab-btn" onclick="showPage('info', this)">
             <span>ℹ️</span>
             Info
         </button>
@@ -1415,14 +1415,20 @@
         // ==================== FUNCTIONS ====================
         
         // Show page
-        function showPage(pageName) {
+        function showPage(pageName, element) {
             // Hide all pages
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
             // Show selected page
             document.getElementById('page-' + pageName).classList.add('active');
             // Update tabs
             document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-            event.currentTarget.classList.add('active');
+            if (element) {
+                element.classList.add('active');
+            } else {
+                // Fallback: find button by onclick attribute
+                const btn = document.querySelector(`.tab-btn[onclick*="showPage('${pageName}')"]`);
+                if (btn) btn.classList.add('active');
+            }
             // Save state
             localStorage.setItem('chinaTrip_currentPage', pageName);
         }
@@ -1676,8 +1682,10 @@
             // Restore last page
             const lastPage = localStorage.getItem('chinaTrip_currentPage');
             if (lastPage) {
-                const btn = document.querySelector(`.tab-btn[onclick="showPage('${lastPage}')"]`);
-                if (btn) btn.click();
+                const btn = document.querySelector(`.tab-btn[onclick*="showPage('${lastPage}'"]`);
+                if (btn) {
+                    showPage(lastPage, btn);
+                }
             }
         });
 
