@@ -586,6 +586,56 @@
             gap: 8px;
         }
         
+        /* Qué ver - resumen por sitio */
+        .que-ver-card {
+            background: rgba(55, 65, 81, 0.5);
+            border-radius: 12px;
+            padding: 14px;
+            margin-bottom: 12px;
+            border-left: 4px solid var(--china-gold);
+        }
+        
+        .que-ver-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        
+        .que-ver-emoji {
+            font-size: 1.5rem;
+        }
+        
+        .que-ver-title {
+            font-weight: 600;
+            font-size: 1rem;
+        }
+        
+        .que-ver-city {
+            font-size: 0.75rem;
+            color: #9CA3AF;
+        }
+        
+        .que-ver-points {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .que-ver-points li {
+            font-size: 0.875rem;
+            color: #D1D5DB;
+            padding: 4px 0 4px 18px;
+            position: relative;
+        }
+        
+        .que-ver-points li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--china-gold);
+        }
+        
         /* Extra sites (del Excel) */
         .extra-site-item {
             display: flex;
@@ -1116,6 +1166,12 @@
     <!-- INFO PAGE -->
     <div id="page-info" class="page">
         <div class="info-section">
+            <h3 class="info-title">📌 Qué ver en cada sitio</h3>
+            <p class="text-sm text-gray mb-2">Resumen de lo más importante en cada punto del itinerario.</p>
+            <div id="que-ver-container"></div>
+        </div>
+
+        <div class="info-section">
             <h3 class="info-title">🗣️ Frases útiles</h3>
             <div class="phrase-card">
                 <div>
@@ -1484,6 +1540,29 @@
                 { id: 'ex17', city: "Xi'an", name: 'The Song of Everlasting Sorrow' },
                 { id: 'ex18', city: 'Zhangjiajie', name: 'Golden Whip Stream' },
                 { id: 'ex19', city: 'Zhangjiajie', name: 'Ancient Town of Fenghuang' }
+            ],
+
+            // Qué ver en cada sitio (resumen de lo más importante)
+            queVer: [
+                { place: 'Ciudad Prohibida', city: 'Beijing', emoji: '🏯', points: ['Los Tres Salones: Suprema Armonía, Armonía Central, Preservación de la Armonía.', 'Los Tres Palacios Traseros: residencia imperial y Jardín Imperial.', 'Recorrido norte-sur desde la Puerta Wumen. Reservar 7 días antes.'] },
+                { place: 'Plaza Tiananmen + Jingshan', city: 'Beijing', emoji: '🇨🇳', points: ['Tiananmen: la plaza más grande del mundo. Foto con Mao.', 'Jingshan: colina artificial con las mejores vistas de la Ciudad Prohibida.'] },
+                { place: 'Gran Muralla Mutianyu', city: 'Beijing', emoji: '🛝', points: ['Una de las secciones mejor conservadas. Teleférico subida, tobogán bajada.', '23 torres de vigilancia. Llegar temprano. Coche privado ~700¥ ida/vuelta.'] },
+                { place: 'Templo del Cielo', city: 'Beijing', emoji: '⛩️', points: ['Salón de Oración por las Buenas Cosechas (edificio circular azul).', 'Muro del Eco y Altar Circular. Ver taichi y vida local por la mañana.'] },
+                { place: 'Hutongs + Shichahai + Houhai', city: 'Beijing', emoji: '🚲', points: ['Tour en rickshaw por callejones tradicionales.', 'Shichahai y Lago Houhai: bares y ambiente nocturno.'] },
+                { place: 'Palacio de Verano', city: 'Beijing', emoji: '🐉', points: ['Lago Kunming: barco dragón y Puente de los 17 Arcos.', 'Gran Corredor (750 m con pinturas), Pagoda del Incienso, Barco de Mármol. Metro L4.'] },
+                { place: 'Templo Lama + Villa Olímpica', city: 'Beijing', emoji: '🏟️', points: ['Templo Lama: mayor templo tibetano en Beijing. Templo Confucio y Torres Campana/Tambor.', 'Nido y Cubo iluminados ~19:40.'] },
+                { place: 'Guerreros de Terracota', city: "Xi'an", emoji: '⚔️', points: ['Fosa 1: la más espectacular, ~6000 guerreros en formación.', 'Fosas 2 y 3: arqueros, carros, generales. Museo de Carros de Bronce. Reserva online obligatoria.'] },
+                { place: 'Muralla de Xi\'an + Pagodas', city: "Xi'an", emoji: '🚲', points: ['Muralla: una de las mejor conservadas. Recorrer en bici al atardecer.', 'Gran Pagoda Ganso: fuentes y show 20:30. Pequeña Pagoda + museo.'] },
+                { place: 'Barrio Musulmán', city: "Xi'an", emoji: '🍢', points: ['Calle de comida y artesanía. Cena de roujiamo, lamb skewers y pasteles.'] },
+                { place: 'Parque Nacional Zhangjiajie (Avatar)', city: 'Zhangjiajie', emoji: '🏔️', points: ['Yuanjiajie: pilares que inspiraron las montañas de Avatar. Ascensor Bailong 326 m.', 'Montaña Tianzi. Entrada válida 4 días.'] },
+                { place: 'Tianmen Mountain', city: 'Zhangjiajie', emoji: '🪟', points: ['Teleférico más largo del mundo. Pasarela de cristal y Cueva del Cielo.', 'Reservar entrada obligatorio.'] },
+                { place: 'Ten-Mile Gallery', city: 'Zhangjiajie', emoji: '🚂', points: ['Trencito panorámico entre pilares. Relajado para cerrar el día.'] },
+                { place: 'Shanghai Disneyland', city: 'Shanghai', emoji: '🏰', points: ['TRON, Piratas, Zootopia, Seven Dwarfs. Show ILLUMINATE! por la noche.', 'Llegar 1 h antes de apertura.'] },
+                { place: 'Yu Garden + Bazaar', city: 'Shanghai', emoji: '🌿', points: ['Jardín clásico Ming: rocallas, estanques, pabellones. Xiaolongbao en el bazar.'] },
+                { place: 'The Bund + Crucero Huangpu', city: 'Shanghai', emoji: '🌃', points: ['Paseo 1,5 km con fachadas coloniales. Contraste con Pudong. Crucero noche ~120-180¥.'] },
+                { place: 'Maglev + Torre Oriental Pearl', city: 'Shanghai', emoji: '🚄', points: ['Tren Maglev 430 km/h hasta aeropuerto Pudong. Torre con vistas.'] },
+                { place: 'Zhujiajiao', city: 'Shanghai', emoji: '🏘️', points: ['Pueblo acuático: Puente Fangsheng, paseo en barca, North Street. ~1 h desde Shanghai.'] },
+                { place: 'Concesión Francesa + Tianzifang', city: 'Shanghai', emoji: '☕', points: ['Calles con árboles, galerías y cafés. Tianzifang: callejones con tiendas y arte.'] }
             ]
         };
 
@@ -1744,6 +1823,26 @@
             document.getElementById('cny-result').textContent = cny;
         }
 
+        // Qué ver - resumen por sitio
+        function renderQueVer() {
+            const container = document.getElementById('que-ver-container');
+            if (!container || !tripData.queVer) return;
+            container.innerHTML = tripData.queVer.map(q => `
+                <div class="que-ver-card">
+                    <div class="que-ver-header">
+                        <span class="que-ver-emoji">${q.emoji}</span>
+                        <div>
+                            <div class="que-ver-title">${q.place}</div>
+                            <div class="que-ver-city">${q.city}</div>
+                        </div>
+                    </div>
+                    <ul class="que-ver-points">
+                        ${(q.points || []).map(p => `<li>${p}</li>`).join('')}
+                    </ul>
+                </div>
+            `).join('');
+        }
+
         // Extra sites (del Excel) - se pueden borrar
         function renderExtraSites() {
             const deleted = JSON.parse(localStorage.getItem('chinaTrip_deletedExtraSites') || '[]');
@@ -1784,6 +1883,7 @@
             renderReservations();
             renderChecklist();
             renderExtraSites();
+            renderQueVer();
             
             // Restore last page
             const lastPage = localStorage.getItem('chinaTrip_currentPage');
