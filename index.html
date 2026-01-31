@@ -1265,6 +1265,18 @@
                 </div>
                 <p class="text-center text-sm text-gray mt-2">Tipo de cambio: 1€ ≈ 7.8¥</p>
             </div>
+
+            <h3 class="info-title">💶 Conversor ¥→€</h3>
+            <div class="converter">
+                <div class="converter-input">
+                    <input type="number" id="cny-input" placeholder="Yuanes" oninput="convertCurrencyCnyToEur()">
+                    <span>¥</span>
+                </div>
+                <div class="converter-result">
+                    <span id="eur-result">0</span> €
+                </div>
+                <p class="text-center text-sm text-gray mt-2">Tipo de cambio: 1¥ ≈ 0.13€</p>
+            </div>
         </div>
 
         <div class="info-section">
@@ -1850,11 +1862,18 @@
             document.getElementById('check-progress-bar').style.width = `${percent}%`;
         }
 
-        // Currency converter
+        // Currency converter € → ¥
         function convertCurrency() {
             const eur = parseFloat(document.getElementById('eur-input').value) || 0;
             const cny = (eur * 7.8).toFixed(2);
             document.getElementById('cny-result').textContent = cny;
+        }
+
+        // Currency converter ¥ → €
+        function convertCurrencyCnyToEur() {
+            const cny = parseFloat(document.getElementById('cny-input').value) || 0;
+            const eur = (cny / 7.8).toFixed(2);
+            document.getElementById('eur-result').textContent = eur;
         }
 
         // Qué ver - resumen por sitio
