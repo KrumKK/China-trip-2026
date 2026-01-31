@@ -636,6 +636,16 @@
             color: var(--china-gold);
         }
         
+        .day-content .day-que-ver {
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid rgba(75, 85, 99, 0.5);
+        }
+        
+        .day-content .day-que-ver .que-ver-points {
+            margin-top: 6px;
+        }
+        
         /* Extra sites (del Excel) */
         .extra-site-item {
             display: flex;
@@ -1072,6 +1082,10 @@
             <div class="tip-item">🚲 Muralla de Xi'an en bici</div>
         </div>
 
+        <h2 class="section-title">📌 Qué ver en cada sitio</h2>
+        <p class="text-sm text-gray mb-2">Resumen de lo más importante en cada punto del itinerario.</p>
+        <div id="que-ver-container"></div>
+
         <h2 class="section-title">📋 Otros sitios (del Excel)</h2>
         <p class="text-sm text-gray mb-2">Puedes borrar los que no quieras visitar.</p>
         <div id="extra-sites-container" class="card"></div>
@@ -1165,12 +1179,6 @@
 
     <!-- INFO PAGE -->
     <div id="page-info" class="page">
-        <div class="info-section">
-            <h3 class="info-title">📌 Qué ver en cada sitio</h3>
-            <p class="text-sm text-gray mb-2">Resumen de lo más importante en cada punto del itinerario.</p>
-            <div id="que-ver-container"></div>
-        </div>
-
         <div class="info-section">
             <h3 class="info-title">🗣️ Frases útiles</h3>
             <div class="phrase-card">
@@ -1297,7 +1305,8 @@
                             morning: 'Plaza Tiananmen + Ciudad Prohibida (4-5h)',
                             afternoon: 'Parque Jingshan (vistas panorámicas)',
                             evening: 'Parque Beihai + paseo en barco',
-                            notes: '⭐ RESERVAR 7 días antes'
+                            notes: '⭐ RESERVAR 7 días antes',
+                            queVerPlace: 'Ciudad Prohibida'
                         },
                         {
                             day: 4, date: '4 Abril', weekday: 'Sábado',
@@ -1305,7 +1314,8 @@
                             morning: 'Salir 07:00 → Gran Muralla Mutianyu',
                             afternoon: 'Teleférico subida + Tobogán bajada 🛝',
                             evening: 'Regreso Beijing + Cena Pato Pekín 🦆',
-                            notes: 'Coche privado ~700¥ ida/vuelta'
+                            notes: 'Coche privado ~700¥ ida/vuelta',
+                            queVerPlace: 'Gran Muralla Mutianyu'
                         },
                         {
                             day: 5, date: '5 Abril', weekday: 'Domingo',
@@ -1313,7 +1323,8 @@
                             morning: 'Templo del Cielo (ver taichi locales)',
                             afternoon: 'Tour Hutongs en rickshaw + Shichahai',
                             evening: 'Lago Houhai - ambiente nocturno',
-                            notes: 'Rickshaw ~150-200¥'
+                            notes: 'Rickshaw ~150-200¥',
+                            queVerPlace: 'Templo del Cielo'
                         },
                         {
                             day: 6, date: '6 Abril', weekday: 'Lunes',
@@ -1321,7 +1332,8 @@
                             morning: 'Palacio de Verano (3-4h)',
                             afternoon: 'Barco dragón en Lago Kunming 🐉',
                             evening: 'Zhongguancun tech market 🖥️ o descanso',
-                            notes: 'Metro Línea 4'
+                            notes: 'Metro Línea 4',
+                            queVerPlace: 'Palacio de Verano'
                         },
                         {
                             day: 7, date: '7 Abril', weekday: 'Martes',
@@ -1329,7 +1341,8 @@
                             morning: 'Templo Lama + Templo Confucio',
                             afternoon: 'Torres Campana y Tambor',
                             evening: 'Villa Olímpica noche (Nido + Cubo) 🏟️',
-                            notes: 'Luces se encienden ~19:40'
+                            notes: 'Luces se encienden ~19:40',
+                            queVerPlace: 'Templo Lama + Villa Olímpica'
                         }
                     ]
                 },
@@ -1344,7 +1357,8 @@
                             morning: 'Check-out Beijing + Estación tren 08:00',
                             afternoon: 'Tren alta velocidad (4h30) → Xi\'an ~14:00',
                             evening: 'Paseo centro + Barrio Musulmán cena 🍢',
-                            notes: 'Primera noche en Xi\'an'
+                            notes: 'Primera noche en Xi\'an',
+                            queVerPlace: 'Barrio Musulmán'
                         },
                         {
                             day: 9, date: '9 Abril', weekday: 'Jueves',
@@ -1352,7 +1366,8 @@
                             morning: 'Salir 08:00 → Guerreros Terracota',
                             afternoon: 'Taller DIY mini guerrero 🎨 (niño)',
                             evening: 'Fuentes Gran Pagoda Ganso (show 20:30)',
-                            notes: '⭐ RESERVAR online obligatorio'
+                            notes: '⭐ RESERVAR online obligatorio',
+                            queVerPlace: 'Guerreros de Terracota'
                         },
                         {
                             day: 10, date: '10 Abril', weekday: 'Viernes',
@@ -1360,7 +1375,8 @@
                             morning: 'Pequeña Pagoda Ganso + museo',
                             afternoon: 'Muralla de Xi\'an en bici al atardecer 🚲',
                             evening: 'Última cena Barrio Musulmán',
-                            notes: 'Bicis tandem disponibles'
+                            notes: 'Bicis tandem disponibles',
+                            queVerPlace: 'Muralla de Xi\'an + Pagodas'
                         }
                     ]
                 },
@@ -1383,7 +1399,8 @@
                             morning: 'Entrada este Parque Nacional',
                             afternoon: 'Ascensor Bailong 326m 🛗 + Yuanjiajie',
                             evening: 'Montaña Tianzi (Avatar mountains)',
-                            notes: '⭐ Entrada válida 4 días'
+                            notes: '⭐ Entrada válida 4 días',
+                            queVerPlace: 'Parque Nacional Zhangjiajie (Avatar)'
                         },
                         {
                             day: 13, date: '13 Abril', weekday: 'Lunes',
@@ -1391,7 +1408,8 @@
                             morning: 'Tianmen Mountain (teleférico 30min)',
                             afternoon: 'Pasarela cristal + Cueva del Cielo',
                             evening: 'Ten-Mile Gallery trenecito 🚂',
-                            notes: '⭐ RESERVAR Tianmen obligatorio'
+                            notes: '⭐ RESERVAR Tianmen obligatorio',
+                            queVerPlace: 'Tianmen Mountain'
                         }
                     ]
                 },
@@ -1411,6 +1429,7 @@
                         {
                             day: 15, date: '15 Abril', weekday: 'Miércoles',
                             title: 'DISNEYLAND DÍA 1 🏰',
+                            queVerPlace: 'Shanghai Disneyland',
                             morning: 'Apertura parque - TRON + Piratas',
                             afternoon: 'Zootopia + Seven Dwarfs',
                             evening: 'ILLUMINATE! fuegos artificiales 🎆',
@@ -1419,6 +1438,7 @@
                         {
                             day: 16, date: '16 Abril', weekday: 'Jueves',
                             title: 'DISNEYLAND DÍA 2 🏰',
+                            queVerPlace: 'Shanghai Disneyland',
                             morning: 'Repetir favoritos',
                             afternoon: 'Atracciones pendientes + fotos',
                             evening: 'Cena temática + fuegos',
@@ -1430,7 +1450,8 @@
                             morning: 'Yu Garden + Bazaar (xiaolongbao)',
                             afternoon: 'The Bund día + Túnel psicodélico 🌈',
                             evening: 'Crucero río Huangpu noche 🚢',
-                            notes: 'Crucero ~120-180¥'
+                            notes: 'Crucero ~120-180¥',
+                            queVerPlace: 'Yu Garden + Bazaar'
                         },
                         {
                             day: 18, date: '18 Abril', weekday: 'Sábado',
@@ -1438,7 +1459,8 @@
                             morning: 'Tren Maglev 430km/h 🚄',
                             afternoon: 'Torre Oriental Pearl (vistas)',
                             evening: 'Nanjing Road + compras',
-                            notes: 'Maglev ~50¥ ida'
+                            notes: 'Maglev ~50¥ ida',
+                            queVerPlace: 'Maglev + Torre Oriental Pearl'
                         },
                         {
                             day: 19, date: '19 Abril', weekday: 'Domingo',
@@ -1446,7 +1468,8 @@
                             morning: 'Excursión Zhujiajiao 🏘️',
                             afternoon: 'Paseo barca + pueblo antiguo',
                             evening: 'Última cena en The Bund',
-                            notes: '~1h transporte cada trayecto'
+                            notes: '~1h transporte cada trayecto',
+                            queVerPlace: 'Zhujiajiao'
                         },
                         {
                             day: 20, date: '20 Abril', weekday: 'Lunes',
@@ -1454,7 +1477,8 @@
                             morning: 'Concesión Francesa + Tianzifang',
                             afternoon: 'Compras + souvenirs',
                             evening: 'Cena despedida → Aeropuerto 21:30',
-                            notes: '⚠️ Vuelo sale 00:40 del día 21'
+                            notes: '⚠️ Vuelo sale 00:40 del día 21',
+                            queVerPlace: 'Concesión Francesa + Tianzifang'
                         }
                     ]
                 }
@@ -1638,6 +1662,15 @@
             
             city.days.forEach((day, index) => {
                 const isOpen = index === 0 ? 'open' : '';
+                const qv = day.queVerPlace && tripData.queVer ? tripData.queVer.find(q => q.place === day.queVerPlace) : null;
+                const queVerHtml = qv ? `
+                    <div class="day-section day-que-ver">
+                        <div class="day-section-title">📌 Qué ver aquí</div>
+                        <ul class="que-ver-points">
+                            ${(qv.points || []).map(p => `<li>${p}</li>`).join('')}
+                        </ul>
+                    </div>
+                ` : '';
                 html += `
                     <div class="card day-card">
                         <div class="day-header" onclick="toggleDay(this)">
@@ -1664,6 +1697,7 @@
                                 <div class="day-section-text">${day.evening}</div>
                             </div>
                             ${day.notes ? `<div class="day-section"><div class="day-section-title">📝 Notas</div><div class="day-section-text text-gold">${day.notes}</div></div>` : ''}
+                            ${queVerHtml}
                         </div>
                     </div>
                 `;
