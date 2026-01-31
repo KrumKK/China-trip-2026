@@ -1263,7 +1263,7 @@
                 <div class="converter-result">
                     <span id="cny-result">0</span> ¥
                 </div>
-                <p class="text-center text-sm text-gray mt-2">Tipo de cambio: 1€ ≈ 7.8¥</p>
+                <p class="text-center text-sm text-gray mt-2">Tipo de cambio: 1€ ≈ 8.27¥ (enero 2025)</p>
             </div>
 
             <h3 class="info-title">💶 Conversor ¥→€</h3>
@@ -1275,7 +1275,7 @@
                 <div class="converter-result">
                     <span id="eur-result">0</span> €
                 </div>
-                <p class="text-center text-sm text-gray mt-2">Tipo de cambio: 1¥ ≈ 0.13€</p>
+                <p class="text-center text-sm text-gray mt-2">Tipo de cambio: 1¥ ≈ 0.12€ (enero 2025)</p>
             </div>
         </div>
 
@@ -1862,17 +1862,18 @@
             document.getElementById('check-progress-bar').style.width = `${percent}%`;
         }
 
-        // Currency converter € → ¥
+        // Currency converter € → ¥ (tipo de cambio aprox. enero 2025)
+        const EUR_TO_CNY = 8.27;
         function convertCurrency() {
             const eur = parseFloat(document.getElementById('eur-input').value) || 0;
-            const cny = (eur * 7.8).toFixed(2);
+            const cny = (eur * EUR_TO_CNY).toFixed(2);
             document.getElementById('cny-result').textContent = cny;
         }
 
         // Currency converter ¥ → €
         function convertCurrencyCnyToEur() {
             const cny = parseFloat(document.getElementById('cny-input').value) || 0;
-            const eur = (cny / 7.8).toFixed(2);
+            const eur = (cny / EUR_TO_CNY).toFixed(2);
             document.getElementById('eur-result').textContent = eur;
         }
 
