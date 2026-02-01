@@ -2393,7 +2393,7 @@
                 <div class="eat-option">
                     <div class="eat-option-name">${o.star ? '<span class="eat-star">⭐</span>' : ''} ${o.name}</div>
                     <div class="eat-option-desc">${o.desc || ''}</div>
-                    ${o.price ? `<div class="eat-option-price">💰 ${o.price}</div>` : ''}
+                    ${o.price ? `<div class="eat-option-price">💰 ${addEurToYuanPrice(o.price)}</div>` : ''}
                     <div class="eat-option-links">${links.join(' · ')}</div>
                 </div>
             `;
