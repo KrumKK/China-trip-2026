@@ -1828,7 +1828,7 @@
                     <div class="day-section day-que-ver">
                         <div class="day-section-title">📌 Qué ver aquí</div>
                         <ul class="que-ver-points">
-                            ${(qv.points || []).map(p => `<li>${p}</li>`).join('')}
+                            ${(qv.points || []).map(p => `<li>${addEurToYuanPrice(p)}</li>`).join('')}
                         </ul>
                     </div>
                 ` : '';
@@ -1857,7 +1857,7 @@
                                 <div class="day-section-title">🌙 Noche</div>
                                 <div class="day-section-text">${day.evening}</div>
                             </div>
-                            ${day.notes ? `<div class="day-section"><div class="day-section-title">📝 Notas</div><div class="day-section-text text-gold">${day.notes}</div></div>` : ''}
+                            ${day.notes ? `<div class="day-section"><div class="day-section-title">📝 Notas</div><div class="day-section-text text-gold">${addEurToYuanPrice(day.notes)}</div></div>` : ''}
                             ${queVerHtml}
                         </div>
                     </div>
@@ -1933,7 +1933,7 @@
                             <div class="reservation-date-value text-red">${r.bookBefore}</div>
                         </div>` : ''}
                     </div>
-                    ${showPrice ? `<div class="text-sm text-gold">💰 ${r.price}</div>` : ''}
+                    ${showPrice ? `<div class="text-sm text-gold">💰 ${addEurToYuanPrice(r.price)}</div>` : ''}
                 </div>
             `;
         }
@@ -2024,6 +2024,19 @@
 
         // Currency converter € → ¥ (tipo de cambio aprox. enero 2025)
         const EUR_TO_CNY = 8.27;
+        // Añade el equivalente en € al lado de cada precio en ¥ (para mostrar en reservas, qué ver, notas)
+        function addEurToYuanPrice(str) {
+            if (!str || typeof str !== 'string' || !str.includes('¥')) return str;
+            const rate = EUR_TO_CNY;
+            return str.replace(/(~?)(\d+(?:\.\d+)?)(?:\s*-\s*(\d+(?:\.\d+)?))?\s*¥/g, (_, tilde, n1, n2) => {
+                const e1 = (parseFloat(n1) / rate).toFixed(2);
+                if (n2) {
+                    const e2 = (parseFloat(n2) / rate).toFixed(2);
+                    return (tilde || '') + n1 + '-' + n2 + '¥ (≈' + e1 + '-' + e2 + '€)';
+                }
+                return (tilde || '') + n1 + '¥ (≈' + e1 + '€)';
+            });
+        }
         function convertCurrency() {
             const eur = parseFloat(document.getElementById('eur-input').value) || 0;
             const cny = (eur * EUR_TO_CNY).toFixed(2);
