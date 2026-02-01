@@ -970,13 +970,13 @@
         <div class="card transport-card">
             <span class="transport-type">✈️ VUELO</span>
             <div class="card-title">Xi'an → Zhangjiajie</div>
-            <p class="text-sm text-gray mt-2">11 Abril • ~1h45 • 50-100€/persona</p>
+            <p class="text-sm text-gray mt-2">11 Abril • 14:35-16:05 • 3U3257 • 50-100€/persona</p>
         </div>
 
         <div class="card transport-card">
             <span class="transport-type">✈️ VUELO</span>
             <div class="card-title">Zhangjiajie → Shanghai</div>
-            <p class="text-sm text-gray mt-2">14 Abril • ~2h • 60-120€/persona</p>
+            <p class="text-sm text-gray mt-2">14 Abril • 14:40-16:50 • H01136 • 60-120€/persona</p>
         </div>
     </div>
 
@@ -1019,13 +1019,13 @@
                 </div>
                 <div class="hotel-name">
                     <span>🏨</span>
-                    <span><strong>Hotel:</strong> Pendiente</span>
+                    <span><strong>Hotel:</strong> Jingli Hotel (Beijing Heshenghui Dajiaoting Subway Station Branch)</span>
                 </div>
                 <div class="hotel-address">
                     <span>📍</span>
-                    <span><strong>Dirección:</strong> Pendiente</span>
+                    <span><strong>Dirección:</strong> 北京市朝阳区东四环中路92号45号楼（大郊亭桥东南角）</span>
                 </div>
-                <span class="hotel-status pending">⏳ Pendiente</span>
+                <span class="hotel-status confirmed">✅ Confirmado</span>
             </div>
         </div>
 
@@ -1034,7 +1034,7 @@
                 <span class="city-emoji">⚔️</span>
                 <div class="city-info">
                     <h3>Xi'an</h3>
-                    <p>8-10 Abril</p>
+                    <p>8-11 Abril</p>
                 </div>
                 <span class="city-nights">3 noches</span>
             </div>
@@ -1045,13 +1045,13 @@
                 </div>
                 <div class="hotel-name">
                     <span>🏨</span>
-                    <span><strong>Hotel:</strong> Pendiente</span>
+                    <span><strong>Hotel:</strong> Yimu Yishu Garden Homestay (Xi'an Big Wild Goose Pagoda Datang Everbright City Branch)</span>
                 </div>
                 <div class="hotel-address">
                     <span>📍</span>
-                    <span><strong>Dirección:</strong> Pendiente</span>
+                    <span><strong>Dirección:</strong> 陕西省西安市雁塔区芙蓉东路99号中海铂悦宫501栋C单元1楼</span>
                 </div>
-                <span class="hotel-status pending">⏳ Pendiente</span>
+                <span class="hotel-status confirmed">✅ Confirmado</span>
             </div>
         </div>
 
@@ -1532,13 +1532,16 @@
             },
 
             reservations: [
+                { id: 'r0a', name: 'Vuelo Barcelona-Pekín', city: 'Transporte', visitDate: '1 Abril', bookBefore: '-', price: '-', mandatory: true, reserved: true },
+                { id: 'r0b', name: 'Vuelo Shanghai-Barcelona', city: 'Transporte', visitDate: '21 Abril', bookBefore: '-', price: '-', mandatory: true, reserved: true },
+                { id: 'r0c', name: 'Hotel Beijing', city: 'Beijing', visitDate: '2-8 Abril', bookBefore: '-', price: '-', mandatory: true, reserved: true },
                 { id: 'r1', name: 'Ciudad Prohibida', city: 'Beijing', visitDate: '3 Abril', bookBefore: '27 Marzo', price: '60¥ (GRATIS <18)', mandatory: true },
                 { id: 'r2', name: 'Guerreros Terracota', city: "Xi'an", visitDate: '9 Abril', bookBefore: '2 Abril', price: '120¥ (GRATIS <14)', mandatory: true },
                 { id: 'r3', name: 'Tianmen Mountain', city: 'Zhangjiajie', visitDate: '13 Abril', bookBefore: '11 Abril', price: '278¥ (GRATIS <14)', mandatory: true },
                 { id: 'r4', name: 'Shanghai Disneyland (2 días)', city: 'Shanghai', visitDate: '15-16 Abril', bookBefore: '10 Abril', price: '475¥/356¥ niño x día', mandatory: true },
                 { id: 'r5', name: 'Tren Beijing-Xi\'an', city: 'Transporte', visitDate: '8 Abril', bookBefore: '25 Marzo', price: '55-80€/persona', mandatory: true },
-                { id: 'r6', name: 'Vuelo Xi\'an-Zhangjiajie', city: 'Transporte', visitDate: '11 Abril', bookBefore: '25 Marzo', price: '50-100€/persona', mandatory: true },
-                { id: 'r7', name: 'Vuelo Zhangjiajie-Shanghai', city: 'Transporte', visitDate: '14 Abril', bookBefore: '25 Marzo', price: '60-120€/persona', mandatory: true },
+                { id: 'r6', name: 'Vuelo Xi\'an-Zhangjiajie', city: 'Transporte', visitDate: '11 Abril', bookBefore: '25 Marzo', price: '50-100€/persona', mandatory: true, reserved: true },
+                { id: 'r7', name: 'Vuelo Zhangjiajie-Shanghai', city: 'Transporte', visitDate: '14 Abril', bookBefore: '25 Marzo', price: '60-120€/persona', mandatory: true, reserved: true },
                 { id: 'r8', name: 'Parque Zhangjiajie', city: 'Zhangjiajie', visitDate: '12 Abril', bookBefore: '9 Abril', price: '225¥ 4 días (GRATIS <14)', mandatory: false },
                 { id: 'r9', name: 'Coche privado Muralla', city: 'Beijing', visitDate: '4 Abril', bookBefore: '2 Abril', price: '~700¥', mandatory: false }
             ],
@@ -1765,20 +1768,25 @@
 
         // Reservations
         function renderReservations() {
-            const saved = JSON.parse(localStorage.getItem('chinaTrip_reservations') || '{}');
+            let saved = JSON.parse(localStorage.getItem('chinaTrip_reservations') || '{}');
+            // Pre-marcar como confirmadas las reservas ya hechas (reserved: true)
+            tripData.reservations.forEach(r => {
+                if (r.reserved) saved[r.id] = true;
+            });
+            localStorage.setItem('chinaTrip_reservations', JSON.stringify(saved));
             const mandatory = tripData.reservations.filter(r => r.mandatory);
             const other = tripData.reservations.filter(r => !r.mandatory);
             
             let html1 = '';
             mandatory.forEach(r => {
-                const checked = saved[r.id] ? 'checked' : '';
+                const checked = (saved[r.id] || r.reserved) ? 'checked' : '';
                 html1 += createReservationCard(r, checked, true);
             });
             document.getElementById('reservas-obligatorias').innerHTML = html1;
             
             let html2 = '';
             other.forEach(r => {
-                const checked = saved[r.id] ? 'checked' : '';
+                const checked = (saved[r.id] || r.reserved) ? 'checked' : '';
                 html2 += createReservationCard(r, checked, false);
             });
             document.getElementById('reservas-otras').innerHTML = html2;
@@ -1787,6 +1795,8 @@
         }
 
         function createReservationCard(r, checked, mandatory) {
+            const showDates = r.bookBefore && r.bookBefore !== '-';
+            const showPrice = r.price && r.price !== '-';
             return `
                 <div class="card reservation-card ${mandatory ? 'mandatory' : ''}" onclick="toggleReservation('${r.id}')">
                     <div class="checklist-item ${checked}">
@@ -1794,7 +1804,7 @@
                             <span class="checkbox-icon">✓</span>
                         </div>
                         <div style="flex:1">
-                            <div class="font-bold">${r.name}</div>
+                            <div class="font-bold">${r.name}${r.reserved ? ' <span class="text-green">✅ Reservado</span>' : ''}</div>
                             <div class="text-sm text-gray">${r.city}</div>
                         </div>
                     </div>
@@ -1803,12 +1813,16 @@
                             <div class="reservation-date-label">📅 Visita</div>
                             <div class="reservation-date-value">${r.visitDate}</div>
                         </div>
-                        <div class="reservation-date">
+                        ${r.flightTime ? `<div class="reservation-date">
+                            <div class="reservation-date-label">🕐 Hora</div>
+                            <div class="reservation-date-value">${r.flightTime}${r.flightNumber ? ' • ' + r.flightNumber : ''}</div>
+                        </div>` : ''}
+                        ${showDates ? `<div class="reservation-date">
                             <div class="reservation-date-label">⏰ Reservar antes</div>
                             <div class="reservation-date-value text-red">${r.bookBefore}</div>
-                        </div>
+                        </div>` : ''}
                     </div>
-                    <div class="text-sm text-gold">💰 ${r.price}</div>
+                    ${showPrice ? `<div class="text-sm text-gold">💰 ${r.price}</div>` : ''}
                 </div>
             `;
         }
