@@ -653,6 +653,13 @@
         .info-section {
             margin-bottom: 20px;
         }
+        .info-section .card a {
+            color: var(--celeste);
+            text-decoration: none;
+        }
+        .info-section .card a:hover {
+            text-decoration: underline;
+        }
         
         .info-title {
             font-size: 1.1rem;
@@ -1475,6 +1482,35 @@
         </div>
 
         <div class="info-section">
+            <h3 class="info-title">🎡 Shanghai: actividades, Disney y reservas</h3>
+            <div class="card">
+                <div class="tip-item" style="margin-bottom:10px;"><strong>Qué hacer y ver (revisado)</strong></div>
+                <div class="tip-item">🏰 <strong>Disneyland (15-16 Abril):</strong> TRON, Zootopia, Piratas, Seven Dwarfs. Show ILLUMINATE! por la noche. Metro L11 Disney Resort.</div>
+                <div class="tip-item">🌿 <strong>Yu Garden:</strong> Jardín Ming (rocallas, puente Jiu Qu, pabellones). ¥40 abr-jun. Abre 9:00, cierra 16:30. Bazar: xiaolongbao. Metro Yuyuan L10.</div>
+                <div class="tip-item">🌃 <strong>The Bund + crucero Huangpu:</strong> Paseo 1,5 km fachadas coloniales. Crucero noche 45-50 min, salidas 18:00-20:30; mejor reservar.</div>
+                <div class="tip-item">🚄 <strong>Maglev + Torre Oriental Pearl:</strong> Maglev 430 km/h ~50¥ ida. Torre: vistas, desde ¥99; reserva online recomendada.</div>
+                <div class="tip-item">🏘️ <strong>Zhujiajiao:</strong> Pueblo acuático, Puente Fangsheng, barca. ~1 h desde Shanghai.</div>
+                <div class="tip-item">☕ <strong>Concesión Francesa + Tianzifang:</strong> Calles con árboles, cafés, galerías. Tianzifang: callejones tiendas y arte.</div>
+            </div>
+            <div class="card" style="margin-top:12px; border-left:4px solid var(--china-gold);">
+                <div class="tip-item" style="margin-bottom:10px;"><strong>🏰 Disney: recomendaciones (abril)</strong></div>
+                <div class="tip-item">• <strong>Abrile es temporada alta;</strong> miércoles y jueves (15-16) suelen tener menos colas que fin de semana.</div>
+                <div class="tip-item">• <strong>FastPass ya no existe.</strong> Ahora hay <strong>Disney Premier Access</strong> (de pago). No es obligatorio: llegando 30 min antes de apertura podéis hacer 1-2 atracciones fuertes (TRON, Zootopia) con poca cola.</div>
+                <div class="tip-item">• <strong>Early Park Entry</strong> (entrar 1 h antes): ¥199/persona, o gratis si os alojáis en hotel Disney. Muy útil si queréis evitar Premier Access.</div>
+                <div class="tip-item">• Atracciones con más cola: Zootopia (90 min fines de semana), Soaring (70 min), TRON (60+ min). Comedores: mejor antes de 11:30 o después de 13:30.</div>
+                <div class="tip-item">• <strong>Reservar entradas Disney con antelación</strong> (antes del 10 Abril). Web oficial o Trip.com.</div>
+            </div>
+            <div class="card" style="margin-top:12px; border-left:4px solid var(--china-red);">
+                <div class="tip-item" style="margin-bottom:10px;"><strong>⚠️ Reservar con antelación</strong></div>
+                <div class="tip-item">• <strong>Shanghai Disneyland:</strong> Entradas online antes del 10 Abril. <a href="https://www.shanghaidisneyresort.com/en/tickets/" target="_blank" rel="noopener">shanghaidisneyresort.com</a></div>
+                <div class="tip-item">• <strong>Crucero río Huangpu (noche):</strong> Recomendable reservar (Trip.com, Klook, GetYourGuide). Salidas 18:00-20:30; canje con pasaporte. ~120-180¥.</div>
+                <div class="tip-item">• <strong>Torre Oriental Pearl / Shanghai Tower:</strong> Entradas 10-20 días antes; llevar pasaporte. Torre Pearl desde ¥99; Shanghai Tower desde ¥90.</div>
+                <div class="tip-item">• <strong>Yu Garden:</strong> Se puede comprar en taquilla; reserva online opcional para evitar colas (Viator, Trip.com).</div>
+                <div class="tip-item">• <strong>Restaurantes:</strong> M on the Bund, Sir Elly's, Hakkasan y alta gama: reserva con días/semana de antelación. Resto de sitios normalmente sin reserva.</div>
+            </div>
+        </div>
+
+        <div class="info-section">
             <h3 class="info-title">💶 Conversor €→¥</h3>
             <div class="converter">
                 <div class="converter-input">
@@ -1817,12 +1853,12 @@
                 { place: 'Parque Nacional Zhangjiajie (Avatar)', city: 'Zhangjiajie', emoji: '🏔️', points: ['Yuanjiajie: pilares que inspiraron las montañas de Avatar. Ascensor Bailong 326 m.', 'Montaña Tianzi. Entrada válida 4 días.'] },
                 { place: 'Tianmen Mountain', city: 'Zhangjiajie', emoji: '🪟', points: ['Teleférico más largo del mundo. Pasarela de cristal y Cueva del Cielo.', 'Reservar entrada obligatorio.'] },
                 { place: 'Ten-Mile Gallery', city: 'Zhangjiajie', emoji: '🚂', points: ['Trencito panorámico entre pilares. Relajado para cerrar el día.'] },
-                { place: 'Shanghai Disneyland', city: 'Shanghai', emoji: '🏰', points: ['TRON, Piratas, Zootopia, Seven Dwarfs. Show ILLUMINATE! por la noche.', 'Llegar 1 h antes de apertura.'] },
-                { place: 'Yu Garden + Bazaar', city: 'Shanghai', emoji: '🌿', points: ['Jardín clásico Ming: rocallas, estanques, pabellones. Xiaolongbao en el bazar.'] },
-                { place: 'The Bund + Crucero Huangpu', city: 'Shanghai', emoji: '🌃', points: ['Paseo 1,5 km con fachadas coloniales. Contraste con Pudong. Crucero noche ~120-180¥.'] },
-                { place: 'Maglev + Torre Oriental Pearl', city: 'Shanghai', emoji: '🚄', points: ['Tren Maglev 430 km/h hasta aeropuerto Pudong. Torre con vistas.'] },
-                { place: 'Zhujiajiao', city: 'Shanghai', emoji: '🏘️', points: ['Pueblo acuático: Puente Fangsheng, paseo en barca, North Street. ~1 h desde Shanghai.'] },
-                { place: 'Concesión Francesa + Tianzifang', city: 'Shanghai', emoji: '☕', points: ['Calles con árboles, galerías y cafés. Tianzifang: callejones con tiendas y arte.'] }
+                { place: 'Shanghai Disneyland', city: 'Shanghai', emoji: '🏰', points: ['TRON, Piratas, Zootopia, Seven Dwarfs. Show ILLUMINATE! por la noche.', 'Llegar 30 min antes de apertura para colas cortas; Early Entry ¥199 o gratis con hotel Disney.', '⭐ Reservar entradas online antes del 10 Abril. Abril = temporada alta; miér/juev menos colas.'] },
+                { place: 'Yu Garden + Bazaar', city: 'Shanghai', emoji: '🌿', points: ['Jardín Ming: rocallas, puente Jiu Qu, pabellones. ¥40 abr-jun. Abre 9:00, última entrada 16:00.', 'Bazar: xiaolongbao, té. Metro Yuyuan L10. Reserva online opcional para saltar cola.'] },
+                { place: 'The Bund + Crucero Huangpu', city: 'Shanghai', emoji: '🌃', points: ['Paseo 1,5 km fachadas coloniales. Contraste con Pudong.', 'Crucero noche 45-50 min, salidas 18:00-20:30. ~120-180¥. ⭐ Reservar con antelación (Trip.com, Klook).'] },
+                { place: 'Maglev + Torre Oriental Pearl', city: 'Shanghai', emoji: '🚄', points: ['Maglev 430 km/h ~50¥ ida. Torre Oriental Pearl desde ¥99; Shanghai Tower desde ¥90.', '⭐ Reserva online recomendada (10-20 días antes); llevar pasaporte.'] },
+                { place: 'Zhujiajiao', city: 'Shanghai', emoji: '🏘️', points: ['Pueblo acuático: Puente Fangsheng, paseo en barca, North Street. ~1 h desde Shanghai.', 'Comida: zongzi, carne estofada. No suele requerir reserva.'] },
+                { place: 'Concesión Francesa + Tianzifang', city: 'Shanghai', emoji: '☕', points: ['Calles con árboles, galerías y cafés. Tianzifang: callejones con tiendas y arte.', 'Restaurantes de barrio normalmente sin reserva; alta gama (M on the Bund, etc.) reservar.'] }
             ],
 
             // EAT: 3 propuestas comida + 3 cena por día. star=true = típico/curioso de la zona
