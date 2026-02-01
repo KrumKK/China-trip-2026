@@ -522,6 +522,13 @@
         }
         
         /* Reservation Cards */
+        .reservation-recommended-time {
+            font-size: 0.8rem;
+            color: var(--china-gold);
+            margin-bottom: 8px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid rgba(75, 85, 99, 0.5);
+        }
         .reservation-card {
             position: relative;
         }
@@ -660,6 +667,17 @@
         .info-section .card a:hover {
             text-decoration: underline;
         }
+        .reservas-table a {
+            color: var(--celeste);
+            text-decoration: none;
+        }
+        .reservas-table a:hover {
+            text-decoration: underline;
+        }
+        @media (max-width: 600px) {
+            .reservas-table { font-size: 0.75rem; }
+            .reservas-table th, .reservas-table td { padding: 6px 4px; }
+        }
         
         .info-title {
             font-size: 1.1rem;
@@ -752,6 +770,11 @@
             font-size: 1.5rem;
         }
         
+        .que-ver-time {
+            font-size: 0.8rem;
+            color: var(--china-gold);
+            margin-bottom: 4px;
+        }
         .que-ver-title {
             font-weight: 600;
             font-size: 1rem;
@@ -1511,6 +1534,40 @@
         </div>
 
         <div class="info-section">
+            <h3 class="info-title">🎫 Reservas por actividad (investigado)</h3>
+            <p class="text-sm text-gray mb-2">Reserva obligatoria = sin reserva no entras. Recomendada = evita colas o agotados.</p>
+            <div class="card" style="overflow-x:auto;">
+                <table class="reservas-table" style="width:100%; border-collapse:collapse; font-size:0.85rem;">
+                    <thead>
+                        <tr style="border-bottom:2px solid #374151;">
+                            <th style="text-align:left; padding:8px;">Actividad</th>
+                            <th style="text-align:left; padding:8px;">¿Reservar?</th>
+                            <th style="text-align:left; padding:8px;">Antelación</th>
+                            <th style="text-align:left; padding:8px;">Precio (¥)</th>
+                            <th style="text-align:left; padding:8px;">Link</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="border-bottom:1px solid #374151;"><td style="padding:8px;">Ciudad Prohibida (Palace Museum)</td><td style="padding:8px;"><strong>Sí</strong></td><td style="padding:8px;">7 días</td><td style="padding:8px;">60 (abr-oct), GRATIS &lt;18</td><td style="padding:8px;"><a href="https://en.dpm.org.cn/" target="_blank" rel="noopener">dpm.org.cn</a> / WeChat</td></tr>
+                        <tr style="border-bottom:1px solid #374151;"><td style="padding:8px;">Guerreros Terracota (Xi'an)</td><td style="padding:8px;"><strong>Sí</strong></td><td style="padding:8px;">7 días, franja horaria</td><td style="padding:8px;">120, GRATIS &lt;14</td><td style="padding:8px;"><a href="https://www.trip.com/things-to-do/detail/emperor-qin-terracotta-warriors-and-horses-museum-50046033" target="_blank" rel="noopener">Trip.com</a></td></tr>
+                        <tr style="border-bottom:1px solid #374151;"><td style="padding:8px;">Gran Muralla Mutianyu</td><td style="padding:8px;"><strong>Sí</strong></td><td style="padding:8px;">7 días, mín. 2h antes</td><td style="padding:8px;">40 ent + 15 bus + 140 teleférico (o combo 220)</td><td style="padding:8px;"><a href="https://www.trip.com/things-to-do/detail/mutianyu-great-wall-50046031" target="_blank" rel="noopener">Trip.com</a></td></tr>
+                        <tr style="border-bottom:1px solid #374151;"><td style="padding:8px;">Tianmen Mountain (Zhangjiajie)</td><td style="padding:8px;"><strong>Sí</strong></td><td style="padding:8px;">5-10 días (10 en temporada alta)</td><td style="padding:8px;">278, GRATIS &lt;14</td><td style="padding:8px;"><a href="https://www.trip.com/things-to-do/detail/zhangjiajie-tianmen-mountain-national-forest-park-50046034" target="_blank" rel="noopener">Trip.com</a></td></tr>
+                        <tr style="border-bottom:1px solid #374151;"><td style="padding:8px;">Parque Zhangjiajie (Avatar)</td><td style="padding:8px;">Recomendado</td><td style="padding:8px;">Online antes del viaje</td><td style="padding:8px;">227 (4 días), GRATIS &lt;14</td><td style="padding:8px;"><a href="https://www.trip.com/things-to-do/detail/zhangjiajie-national-forest-park-50046034" target="_blank" rel="noopener">Trip.com</a></td></tr>
+                        <tr style="border-bottom:1px solid #374151;"><td style="padding:8px;">Shanghai Disneyland (2 días)</td><td style="padding:8px;"><strong>Sí</strong></td><td style="padding:8px;">Early Bird 10-30 días</td><td style="padding:8px;">~475 adulto / 356 niño x día</td><td style="padding:8px;"><a href="https://www.shanghaidisneyresort.com/en/tickets/" target="_blank" rel="noopener">shanghaidisneyresort.com</a></td></tr>
+                        <tr style="border-bottom:1px solid #374151;"><td style="padding:8px;">Tren Beijing–Xi'an</td><td style="padding:8px;"><strong>Sí</strong></td><td style="padding:8px;">15 días (12306)</td><td style="padding:8px;">463-577 2ª clase</td><td style="padding:8px;"><a href="https://www.12306.cn/en/" target="_blank" rel="noopener">12306.cn</a> / <a href="https://www.trip.com/trains/" target="_blank" rel="noopener">Trip.com</a></td></tr>
+                        <tr style="border-bottom:1px solid #374151;"><td style="padding:8px;">Templo del Cielo (Beijing)</td><td style="padding:8px;">Recomendado</td><td style="padding:8px;">1-7 días</td><td style="padding:8px;">34 combo, GRATIS &lt;18</td><td style="padding:8px;"><a href="https://www.trip.com/things-to-do/detail/temple-of-heaven-50046030" target="_blank" rel="noopener">Trip.com</a></td></tr>
+                        <tr style="border-bottom:1px solid #374151;"><td style="padding:8px;">Palacio de Verano (Beijing)</td><td style="padding:8px;">Recomendado</td><td style="padding:8px;">7 días</td><td style="padding:8px;">60 abr-oct, GRATIS &lt;7</td><td style="padding:8px;"><a href="https://www.trip.com/things-to-do/detail/summer-palace-50046029" target="_blank" rel="noopener">Trip.com</a></td></tr>
+                        <tr style="border-bottom:1px solid #374151;"><td style="padding:8px;">Templo Lama (Yonghegong)</td><td style="padding:8px;">Opcional</td><td style="padding:8px;">Hasta 7 días</td><td style="padding:8px;">12</td><td style="padding:8px;"><a href="https://www.klook.com/activity/38523-lama-temple-beijing/" target="_blank" rel="noopener">Klook</a></td></tr>
+                        <tr style="border-bottom:1px solid #374151;"><td style="padding:8px;">Yu Garden (Shanghai)</td><td style="padding:8px;">Opcional</td><td style="padding:8px;">Hasta 14 días</td><td style="padding:8px;">40 abr-jun</td><td style="padding:8px;"><a href="https://www.trip.com/things-to-do/detail/yu-garden-50046035" target="_blank" rel="noopener">Trip.com</a></td></tr>
+                        <tr style="border-bottom:1px solid #374151;"><td style="padding:8px;">Crucero Huangpu (noche)</td><td style="padding:8px;">Recomendado</td><td style="padding:8px;">Online antes</td><td style="padding:8px;">~120-180</td><td style="padding:8px;"><a href="https://www.trip.com/things-to-do/list/shanghai-the-bund" target="_blank" rel="noopener">Trip.com</a> / <a href="https://www.klook.com/activity/3973-hangpu-river-cruise-shanghai/" target="_blank" rel="noopener">Klook</a></td></tr>
+                        <tr style="border-bottom:1px solid #374151;"><td style="padding:8px;">Torre Oriental Pearl / Shanghai Tower</td><td style="padding:8px;">Recomendado</td><td style="padding:8px;">10-20 días, pasaporte</td><td style="padding:8px;">Desde 99 / desde 90</td><td style="padding:8px;"><a href="https://www.trip.com/things-to-do/detail/oriental-pearl-tower-50046036" target="_blank" rel="noopener">Trip.com</a></td></tr>
+                        <tr style="border-bottom:1px solid #374151;"><td style="padding:8px;">Zhujiajiao</td><td style="padding:8px;">No</td><td style="padding:8px;">—</td><td style="padding:8px;">Entrada pueblo ~free/barata</td><td style="padding:8px;">—</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="info-section">
             <h3 class="info-title">💶 Conversor €→¥</h3>
             <div class="converter">
                 <div class="converter-input">
@@ -1757,15 +1814,18 @@
                 { id: 'r0a', name: 'Vuelo Barcelona-Pekín', city: 'Transporte', visitDate: '1 Abril', bookBefore: '-', price: '-', mandatory: true, reserved: true, bookUrl: 'https://www.google.com/flights' },
                 { id: 'r0b', name: 'Vuelo Shanghai-Barcelona', city: 'Transporte', visitDate: '21 Abril', bookBefore: '-', price: '-', mandatory: true, reserved: true, bookUrl: 'https://www.google.com/flights' },
                 { id: 'r0c', name: 'Hotel Beijing', city: 'Beijing', visitDate: '2-8 Abril', bookBefore: '-', price: '-', mandatory: true, reserved: true, bookUrl: 'https://www.trip.com/hotels/beijing' },
-                { id: 'r1', name: 'Ciudad Prohibida', city: 'Beijing', visitDate: '3 Abril', bookBefore: '27 Marzo', price: '60¥ (GRATIS <18)', mandatory: true, bookUrl: 'https://www.trip.com/things-to-do/detail/the-forbidden-city-the-palace-museum-50046032' },
-                { id: 'r2', name: 'Guerreros Terracota', city: "Xi'an", visitDate: '9 Abril', bookBefore: '2 Abril', price: '120¥ (GRATIS <14)', mandatory: true, bookUrl: 'https://www.trip.com/things-to-do/detail/emperor-qin-terracotta-warriors-and-horses-museum-50046033' },
-                { id: 'r3', name: 'Tianmen Mountain', city: 'Zhangjiajie', visitDate: '13 Abril', bookBefore: '11 Abril', price: '278¥ (GRATIS <14)', mandatory: true, bookUrl: 'https://www.trip.com/things-to-do/detail/zhangjiajie-tianmen-mountain-national-forest-park-50046034' },
-                { id: 'r4', name: 'Shanghai Disneyland (2 días)', city: 'Shanghai', visitDate: '15-16 Abril', bookBefore: '10 Abril', price: '475¥/356¥ niño x día', mandatory: true, bookUrl: 'https://www.shanghaidisneyresort.com/en/tickets/' },
-                { id: 'r5', name: 'Tren Beijing-Xi\'an', city: 'Transporte', visitDate: '8 Abril', bookBefore: '25 Marzo', price: '55-80€/persona', mandatory: true, bookUrl: 'https://www.trip.com/trains/' },
+                { id: 'r1', name: 'Ciudad Prohibida', city: 'Beijing', visitDate: '3 Abril', bookBefore: '7 días antes (27 Marzo)', price: '60¥ (GRATIS <18)', mandatory: true, bookUrl: 'https://en.dpm.org.cn/', recommendedTime: '8:30 apertura o después 14:00', crowdNote: 'Abril alta temporada. Evitar 10:00-13:00.' },
+                { id: 'r2', name: 'Guerreros Terracota', city: "Xi'an", visitDate: '9 Abril', bookBefore: '7 días antes, franja horaria', price: '120¥ (GRATIS <14)', mandatory: true, bookUrl: 'https://www.trip.com/things-to-do/detail/emperor-qin-terracotta-warriors-and-horses-museum-50046033' },
+                { id: 'r3', name: 'Tianmen Mountain', city: 'Zhangjiajie', visitDate: '13 Abril', bookBefore: '5-10 días antes', price: '278¥ (GRATIS <14)', mandatory: true, bookUrl: 'https://www.trip.com/things-to-do/detail/zhangjiajie-tianmen-mountain-national-forest-park-50046034', recommendedTime: '7:00-7:30 (antes teleférico 7:30)', crowdNote: 'Abril ideal. Llegar tarde = colas 2h+.' },
+                { id: 'r4', name: 'Shanghai Disneyland (2 días)', city: 'Shanghai', visitDate: '15-16 Abril', bookBefore: '10-30 días (Early Bird)', price: '475¥/356¥ niño x día', mandatory: true, bookUrl: 'https://www.shanghaidisneyresort.com/en/tickets/', recommendedTime: '45 min antes de apertura', crowdNote: 'Miér 15 y Jue 16 = entre semana, menos colas.' },
+                { id: 'r5', name: 'Tren Beijing-Xi\'an', city: 'Transporte', visitDate: '8 Abril', bookBefore: '15 días (12306)', price: '463-577¥ 2ª clase', mandatory: true, bookUrl: 'https://www.12306.cn/en/' },
                 { id: 'r6', name: 'Vuelo Xi\'an-Zhangjiajie', city: 'Transporte', visitDate: '11 Abril', bookBefore: '25 Marzo', price: '50-100€/persona', mandatory: true, reserved: true, flightTime: '14:35-16:05', flightNumber: '3U3257', bookUrl: 'https://www.trip.com/flights/' },
                 { id: 'r7', name: 'Vuelo Zhangjiajie-Shanghai', city: 'Transporte', visitDate: '14 Abril', bookBefore: '25 Marzo', price: '60-120€/persona', mandatory: true, reserved: true, flightTime: '14:40-16:50', flightNumber: 'H01136', bookUrl: 'https://www.trip.com/flights/' },
-                { id: 'r8', name: 'Parque Zhangjiajie', city: 'Zhangjiajie', visitDate: '12 Abril', bookBefore: '9 Abril', price: '225¥ 4 días (GRATIS <14)', mandatory: false, bookUrl: 'https://www.trip.com/things-to-do/detail/zhangjiajie-national-forest-park-50046034' },
-                { id: 'r9', name: 'Coche privado Muralla', city: 'Beijing', visitDate: '4 Abril', bookBefore: '2 Abril', price: '~700¥', mandatory: false, bookUrl: 'https://www.trip.com/things-to-do/list/beijing-mutianyu-great-wall' }
+                { id: 'r8', name: 'Parque Zhangjiajie', city: 'Zhangjiajie', visitDate: '12 Abril', bookBefore: 'Antes del viaje', price: '227¥ 4 días (GRATIS <14)', mandatory: false, bookUrl: 'https://www.trip.com/things-to-do/detail/zhangjiajie-national-forest-park-50046034', recommendedTime: '7:00-7:30 apertura', crowdNote: 'Abril principios: menos gente. Niebla mañana.' },
+                { id: 'r9', name: 'Coche privado Muralla', city: 'Beijing', visitDate: '4 Abril', bookBefore: '2 Abril', price: '~700¥', mandatory: false, bookUrl: 'https://www.trip.com/things-to-do/list/beijing-mutianyu-great-wall', recommendedTime: 'Salir 7:00 (llegar 7:30 apertura)', crowdNote: 'Abril moderado. Entre semana mejor.' },
+                { id: 'r10', name: 'Entrada Gran Muralla Mutianyu', city: 'Beijing', visitDate: '4 Abril', bookBefore: '7 días, mín. 2h antes', price: '40+15 bus+140 teleférico (combo 220¥)', mandatory: true, bookUrl: 'https://www.trip.com/things-to-do/detail/mutianyu-great-wall-50046031', recommendedTime: '7:30 apertura (llegar temprano)', crowdNote: 'Abril moderado. Evitar mediodía.' },
+                { id: 'r11', name: 'Crucero Huangpu (noche)', city: 'Shanghai', visitDate: '17 Abril', bookBefore: 'Recomendado online', price: '~120-180¥', mandatory: false, bookUrl: 'https://www.trip.com/things-to-do/list/shanghai-the-bund', recommendedTime: '18:00-20:30 (luces skyline)', crowdNote: 'Abril bueno. Noche = vistas iluminadas.' },
+                { id: 'r12', name: 'Torre Oriental Pearl / Shanghai Tower', city: 'Shanghai', visitDate: '18 Abril', bookBefore: '10-20 días, pasaporte', price: 'Desde 99¥ / 90¥', mandatory: false, bookUrl: 'https://www.trip.com/things-to-do/detail/oriental-pearl-tower-50046036', recommendedTime: 'Tarde / atardecer (día y luces)', crowdNote: 'Abril bueno.' }
             ],
 
             checklist: [
@@ -1840,25 +1900,25 @@
 
             // Qué ver en cada sitio (resumen de lo más importante)
             queVer: [
-                { place: 'Ciudad Prohibida', city: 'Beijing', emoji: '🏯', points: ['Los Tres Salones: Suprema Armonía, Armonía Central, Preservación de la Armonía.', 'Los Tres Palacios Traseros: residencia imperial y Jardín Imperial.', 'Recorrido norte-sur desde la Puerta Wumen. Reservar 7 días antes.'] },
-                { place: 'Plaza Tiananmen + Jingshan', city: 'Beijing', emoji: '🇨🇳', points: ['Tiananmen: la plaza más grande del mundo. Foto con Mao.', 'Jingshan: colina artificial con las mejores vistas de la Ciudad Prohibida.'] },
-                { place: 'Gran Muralla Mutianyu', city: 'Beijing', emoji: '🛝', points: ['Una de las secciones mejor conservadas. Teleférico subida, tobogán bajada.', '23 torres de vigilancia. Llegar temprano. Coche privado ~700¥ ida/vuelta.'] },
-                { place: 'Templo del Cielo', city: 'Beijing', emoji: '⛩️', points: ['Salón de Oración por las Buenas Cosechas (edificio circular azul).', 'Muro del Eco y Altar Circular. Ver taichi y vida local por la mañana.'] },
-                { place: 'Hutongs + Shichahai + Houhai', city: 'Beijing', emoji: '🚲', points: ['Tour en rickshaw por callejones tradicionales.', 'Shichahai y Lago Houhai: bares y ambiente nocturno.'] },
-                { place: 'Palacio de Verano', city: 'Beijing', emoji: '🐉', points: ['Lago Kunming: barco dragón y Puente de los 17 Arcos.', 'Gran Corredor (750 m con pinturas), Pagoda del Incienso, Barco de Mármol. Metro L4.'] },
-                { place: 'Templo Lama + Villa Olímpica', city: 'Beijing', emoji: '🏟️', points: ['Templo Lama: mayor templo tibetano en Beijing. Templo Confucio y Torres Campana/Tambor.', 'Nido y Cubo iluminados ~19:40.'] },
-                { place: 'Guerreros de Terracota', city: "Xi'an", emoji: '⚔️', points: ['Fosa 1: la más espectacular, ~6000 guerreros en formación.', 'Fosas 2 y 3: arqueros, carros, generales. Museo de Carros de Bronce. Reserva online obligatoria.'] },
-                { place: 'Muralla de Xi\'an + Pagodas', city: "Xi'an", emoji: '🚲', points: ['Muralla: una de las mejor conservadas. Recorrer en bici al atardecer.', 'Gran Pagoda Ganso: fuentes y show 20:30. Pequeña Pagoda + museo.'] },
-                { place: 'Barrio Musulmán', city: "Xi'an", emoji: '🍢', points: ['Calle de comida y artesanía. Cena de roujiamo, lamb skewers y pasteles.'] },
-                { place: 'Parque Nacional Zhangjiajie (Avatar)', city: 'Zhangjiajie', emoji: '🏔️', points: ['Yuanjiajie: pilares que inspiraron las montañas de Avatar. Ascensor Bailong 326 m.', 'Montaña Tianzi. Entrada válida 4 días.'] },
-                { place: 'Tianmen Mountain', city: 'Zhangjiajie', emoji: '🪟', points: ['Teleférico más largo del mundo. Pasarela de cristal y Cueva del Cielo.', 'Reservar entrada obligatorio.'] },
-                { place: 'Ten-Mile Gallery', city: 'Zhangjiajie', emoji: '🚂', points: ['Trencito panorámico entre pilares. Relajado para cerrar el día.'] },
-                { place: 'Shanghai Disneyland', city: 'Shanghai', emoji: '🏰', points: ['TRON, Piratas, Zootopia, Seven Dwarfs. Show ILLUMINATE! por la noche.', 'Llegar 30 min antes de apertura para colas cortas; Early Entry ¥199 o gratis con hotel Disney.', '⭐ Reservar entradas online antes del 10 Abril. Abril = temporada alta; miér/juev menos colas.'] },
-                { place: 'Yu Garden + Bazaar', city: 'Shanghai', emoji: '🌿', points: ['Jardín Ming: rocallas, puente Jiu Qu, pabellones. ¥40 abr-jun. Abre 9:00, última entrada 16:00.', 'Bazar: xiaolongbao, té. Metro Yuyuan L10. Reserva online opcional para saltar cola.'] },
-                { place: 'The Bund + Crucero Huangpu', city: 'Shanghai', emoji: '🌃', points: ['Paseo 1,5 km fachadas coloniales. Contraste con Pudong.', 'Crucero noche 45-50 min, salidas 18:00-20:30. ~120-180¥. ⭐ Reservar con antelación (Trip.com, Klook).'] },
-                { place: 'Maglev + Torre Oriental Pearl', city: 'Shanghai', emoji: '🚄', points: ['Maglev 430 km/h ~50¥ ida. Torre Oriental Pearl desde ¥99; Shanghai Tower desde ¥90.', '⭐ Reserva online recomendada (10-20 días antes); llevar pasaporte.'] },
-                { place: 'Zhujiajiao', city: 'Shanghai', emoji: '🏘️', points: ['Pueblo acuático: Puente Fangsheng, paseo en barca, North Street. ~1 h desde Shanghai.', 'Comida: zongzi, carne estofada. No suele requerir reserva.'] },
-                { place: 'Concesión Francesa + Tianzifang', city: 'Shanghai', emoji: '☕', points: ['Calles con árboles, galerías y cafés. Tianzifang: callejones con tiendas y arte.', 'Restaurantes de barrio normalmente sin reserva; alta gama (M on the Bund, etc.) reservar.'] }
+                { place: 'Ciudad Prohibida', city: 'Beijing', emoji: '🏯', recommendedTime: '8:30 apertura o después 14:00', crowdNote: 'Abril alta temporada (80.000/día). Evitar 10:00-13:00. Entre semana menos gente.', points: ['Los Tres Salones: Suprema Armonía, Armonía Central, Preservación de la Armonía.', 'Los Tres Palacios Traseros: residencia imperial y Jardín Imperial.', 'Recorrido norte-sur desde la Puerta Wumen. Reservar 7 días antes.'] },
+                { place: 'Plaza Tiananmen + Jingshan', city: 'Beijing', emoji: '🇨🇳', recommendedTime: 'Mañana temprano o atardecer', crowdNote: 'Abril agradable. Jingshan al atardecer para vistas.', points: ['Tiananmen: la plaza más grande del mundo. Foto con Mao.', 'Jingshan: colina artificial con las mejores vistas de la Ciudad Prohibida.'] },
+                { place: 'Gran Muralla Mutianyu', city: 'Beijing', emoji: '🛝', recommendedTime: '7:30 apertura (llegar temprano)', crowdNote: 'Abril moderado, entre semana mejor. Evitar mediodía y fines de semana.', points: ['Una de las secciones mejor conservadas. Teleférico subida, tobogán bajada.', '23 torres de vigilancia. Coche privado ~700¥ ida/vuelta.'] },
+                { place: 'Templo del Cielo', city: 'Beijing', emoji: '⛩️', recommendedTime: '7:00-7:30 (taichi y locales)', crowdNote: 'Abril ideal. Edificios abren 8:00. Entre semana menos colas.', points: ['Salón de Oración por las Buenas Cosechas (edificio circular azul).', 'Muro del Eco y Altar Circular. Ver taichi y vida local por la mañana.'] },
+                { place: 'Hutongs + Shichahai + Houhai', city: 'Beijing', emoji: '🚲', recommendedTime: 'Tarde / noche (Houhai con luces)', crowdNote: 'Abril bueno. Noche más ambiente en Houhai.', points: ['Tour en rickshaw por callejones tradicionales.', 'Shichahai y Lago Houhai: bares y ambiente nocturno.'] },
+                { place: 'Palacio de Verano', city: 'Beijing', emoji: '🐉', recommendedTime: '8:00 apertura jardines', crowdNote: 'Abril alta temporada. Entre semana y mañana menos gente.', points: ['Lago Kunming: barco dragón y Puente de los 17 Arcos.', 'Gran Corredor (750 m con pinturas), Pagoda del Incienso, Barco de Mármol. Metro L4.'] },
+                { place: 'Templo Lama + Villa Olímpica', city: 'Beijing', emoji: '🏟️', recommendedTime: 'Mañana templos; 19:40 Villa Olímpica (luces)', crowdNote: 'Abril bueno. Nido y Cubo se encienden ~19:40.', points: ['Templo Lama: mayor templo tibetano en Beijing. Templo Confucio y Torres Campana/Tambor.', 'Nido y Cubo iluminados ~19:40.'] },
+                { place: 'Guerreros de Terracota', city: "Xi'an", emoji: '⚔️', recommendedTime: '8:30 apertura o 15:00-16:00', crowdNote: 'Abril bueno. Jue 9 = entre semana, menos colas. Evitar 10:00-14:00.', points: ['Fosa 1: la más espectacular, ~6000 guerreros en formación.', 'Fosas 2 y 3: arqueros, carros, generales. Museo de Carros de Bronce. Reserva online obligatoria.'] },
+                { place: 'Muralla de Xi\'an + Pagodas', city: "Xi'an", emoji: '🚲', recommendedTime: 'Muralla al atardecer; show fuentes 20:30', crowdNote: 'Abril agradable. Bici al atardecer; Gran Pagoda show 20:30.', points: ['Muralla: una de las mejor conservadas. Recorrer en bici al atardecer.', 'Gran Pagoda Ganso: fuentes y show 20:30. Pequeña Pagoda + museo.'] },
+                { place: 'Barrio Musulmán', city: "Xi'an", emoji: '🍢', recommendedTime: '17:00-18:00 o 21:00 (menos colas)', crowdNote: 'Abril bueno. Evitar fin de semana y 19:00-20:00 pico.', points: ['Calle de comida y artesanía. Cena de roujiamo, lamb skewers y pasteles.'] },
+                { place: 'Parque Nacional Zhangjiajie (Avatar)', city: 'Zhangjiajie', emoji: '🏔️', recommendedTime: '7:00-7:30 apertura (puertas)', crowdNote: 'Abril principios: menos gente. Niebla mañana, se disipa mediodía.', points: ['Yuanjiajie: pilares que inspiraron las montañas de Avatar. Ascensor Bailong 326 m.', 'Montaña Tianzi. Entrada válida 4 días.'] },
+                { place: 'Tianmen Mountain', city: 'Zhangjiajie', emoji: '🪟', recommendedTime: '7:00-7:30 (antes teleférico 7:30)', crowdNote: 'Abril ideal. Llegar 30 min antes o colas 2h+. Evitar mayo.', points: ['Teleférico más largo del mundo. Pasarela de cristal y Cueva del Cielo.', 'Reservar entrada obligatorio.'] },
+                { place: 'Ten-Mile Gallery', city: 'Zhangjiajie', emoji: '🚂', recommendedTime: 'Tarde (tras Yuanjiajie/Tianzi)', crowdNote: 'Abril bueno. Trencito relajado para cerrar el día.', points: ['Trencito panorámico entre pilares. Relajado para cerrar el día.'] },
+                { place: 'Shanghai Disneyland', city: 'Shanghai', emoji: '🏰', recommendedTime: '45 min antes de apertura', crowdNote: 'Abril popular. Miér 15 y Jue 16 = entre semana, menos colas que finde.', points: ['TRON, Piratas, Zootopia, Seven Dwarfs. Show ILLUMINATE! por la noche.', 'Early Entry ¥199 o gratis con hotel Disney.', '⭐ Reservar entradas online antes del 10 Abril.'] },
+                { place: 'Yu Garden + Bazaar', city: 'Shanghai', emoji: '🌿', recommendedTime: 'Antes 9:00 o después 15:00', crowdNote: 'Abril alta temporada. Entre semana y tarde menos colas.', points: ['Jardín Ming: rocallas, puente Jiu Qu, pabellones. ¥40 abr-jun. Abre 9:00, última entrada 16:00.', 'Bazar: xiaolongbao, té. Metro Yuyuan L10.'] },
+                { place: 'The Bund + Crucero Huangpu', city: 'Shanghai', emoji: '🌃', recommendedTime: 'Paseo día; crucero 18:00-20:30 (luces)', crowdNote: 'Abril bueno. Noche = skyline iluminado. Reservar crucero.', points: ['Paseo 1,5 km fachadas coloniales. Contraste con Pudong.', 'Crucero noche 45-50 min, salidas 18:00-20:30. ~120-180¥. ⭐ Reservar con antelación.'] },
+                { place: 'Maglev + Torre Oriental Pearl', city: 'Shanghai', emoji: '🚄', recommendedTime: 'Tarde / atardecer (vistas y luces)', crowdNote: 'Abril bueno. Torre al atardecer para día y noche.', points: ['Maglev 430 km/h ~50¥ ida. Torre Oriental Pearl desde ¥99; Shanghai Tower desde ¥90.', '⭐ Reserva online recomendada (10-20 días antes); llevar pasaporte.'] },
+                { place: 'Zhujiajiao', city: 'Shanghai', emoji: '🏘️', recommendedTime: 'Mañana (día completo)', crowdNote: 'Abril agradable. ~1h transporte; llegar temprano para disfrutar.', points: ['Pueblo acuático: Puente Fangsheng, paseo en barca, North Street. ~1 h desde Shanghai.', 'Comida: zongzi, carne estofada. No suele requerir reserva.'] },
+                { place: 'Concesión Francesa + Tianzifang', city: 'Shanghai', emoji: '☕', recommendedTime: 'Tarde / noche (ambiente)', crowdNote: 'Abril bueno. Tianzifang más animado por la tarde.', points: ['Calles con árboles, galerías y cafés. Tianzifang: callejones con tiendas y arte.', 'Restaurantes de barrio normalmente sin reserva; alta gama reservar.'] }
             ],
 
             // EAT: 3 propuestas comida + 3 cena por día. star=true = típico/curioso de la zona
@@ -2135,7 +2195,8 @@
                 const qv = day.queVerPlace && tripData.queVer ? tripData.queVer.find(q => q.place === day.queVerPlace) : null;
                 const queVerHtml = qv ? `
                     <div class="day-section day-que-ver">
-                        <div class="day-section-title">📌 Qué ver aquí</div>
+                        <div class="day-section-title">📌 Qué ver aquí · ${qv.place}</div>
+                        ${(qv.recommendedTime || qv.crowdNote) ? `<div class="que-ver-time" style="margin-bottom:8px;">🕐 ${qv.recommendedTime || ''}${qv.recommendedTime && qv.crowdNote ? ' · ' : ''}${qv.crowdNote || ''}</div>` : ''}
                         <ul class="que-ver-points">
                             ${(qv.points || []).map(p => `<li>${addEurToYuanPrice(p)}</li>`).join('')}
                         </ul>
@@ -2219,6 +2280,7 @@
             const showPrice = r.price && r.price !== '-';
             return `
                 <div class="card reservation-card ${mandatory ? 'mandatory' : ''}" onclick="toggleReservation('${r.id}')">
+                    ${r.recommendedTime ? `<div class="reservation-recommended-time">🕐 Ir: ${r.recommendedTime}${r.crowdNote ? ' · ' + r.crowdNote : ''}</div>` : ''}
                     <div class="checklist-item ${checked}">
                         <div class="checkbox">
                             <span class="checkbox-icon">✓</span>
@@ -2366,6 +2428,7 @@
             if (!container || !tripData.queVer) return;
             container.innerHTML = tripData.queVer.map(q => `
                 <div class="que-ver-card">
+                    ${(q.recommendedTime || q.crowdNote) ? `<div class="que-ver-time">🕐 ${q.recommendedTime || ''}${q.recommendedTime && q.crowdNote ? ' · ' : ''}${q.crowdNote || ''}</div>` : ''}
                     <div class="que-ver-header">
                         <span class="que-ver-emoji">${q.emoji}</span>
                         <div>
