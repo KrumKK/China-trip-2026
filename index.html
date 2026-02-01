@@ -560,6 +560,22 @@
             font-weight: 600;
             margin-top: 2px;
         }
+        .reservation-book-link {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 8px 14px;
+            background: var(--china-red);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            transition: opacity 0.2s;
+        }
+        .reservation-book-link:hover {
+            opacity: 0.9;
+            color: #fff;
+        }
         
         /* Info Section */
         .info-section {
@@ -1620,18 +1636,18 @@
             },
 
             reservations: [
-                { id: 'r0a', name: 'Vuelo Barcelona-Pekín', city: 'Transporte', visitDate: '1 Abril', bookBefore: '-', price: '-', mandatory: true, reserved: true },
-                { id: 'r0b', name: 'Vuelo Shanghai-Barcelona', city: 'Transporte', visitDate: '21 Abril', bookBefore: '-', price: '-', mandatory: true, reserved: true },
-                { id: 'r0c', name: 'Hotel Beijing', city: 'Beijing', visitDate: '2-8 Abril', bookBefore: '-', price: '-', mandatory: true, reserved: true },
-                { id: 'r1', name: 'Ciudad Prohibida', city: 'Beijing', visitDate: '3 Abril', bookBefore: '27 Marzo', price: '60¥ (GRATIS <18)', mandatory: true },
-                { id: 'r2', name: 'Guerreros Terracota', city: "Xi'an", visitDate: '9 Abril', bookBefore: '2 Abril', price: '120¥ (GRATIS <14)', mandatory: true },
-                { id: 'r3', name: 'Tianmen Mountain', city: 'Zhangjiajie', visitDate: '13 Abril', bookBefore: '11 Abril', price: '278¥ (GRATIS <14)', mandatory: true },
-                { id: 'r4', name: 'Shanghai Disneyland (2 días)', city: 'Shanghai', visitDate: '15-16 Abril', bookBefore: '10 Abril', price: '475¥/356¥ niño x día', mandatory: true },
-                { id: 'r5', name: 'Tren Beijing-Xi\'an', city: 'Transporte', visitDate: '8 Abril', bookBefore: '25 Marzo', price: '55-80€/persona', mandatory: true },
-                { id: 'r6', name: 'Vuelo Xi\'an-Zhangjiajie', city: 'Transporte', visitDate: '11 Abril', bookBefore: '25 Marzo', price: '50-100€/persona', mandatory: true, reserved: true },
-                { id: 'r7', name: 'Vuelo Zhangjiajie-Shanghai', city: 'Transporte', visitDate: '14 Abril', bookBefore: '25 Marzo', price: '60-120€/persona', mandatory: true, reserved: true },
-                { id: 'r8', name: 'Parque Zhangjiajie', city: 'Zhangjiajie', visitDate: '12 Abril', bookBefore: '9 Abril', price: '225¥ 4 días (GRATIS <14)', mandatory: false },
-                { id: 'r9', name: 'Coche privado Muralla', city: 'Beijing', visitDate: '4 Abril', bookBefore: '2 Abril', price: '~700¥', mandatory: false }
+                { id: 'r0a', name: 'Vuelo Barcelona-Pekín', city: 'Transporte', visitDate: '1 Abril', bookBefore: '-', price: '-', mandatory: true, reserved: true, bookUrl: 'https://www.google.com/flights' },
+                { id: 'r0b', name: 'Vuelo Shanghai-Barcelona', city: 'Transporte', visitDate: '21 Abril', bookBefore: '-', price: '-', mandatory: true, reserved: true, bookUrl: 'https://www.google.com/flights' },
+                { id: 'r0c', name: 'Hotel Beijing', city: 'Beijing', visitDate: '2-8 Abril', bookBefore: '-', price: '-', mandatory: true, reserved: true, bookUrl: 'https://www.trip.com/hotels/beijing' },
+                { id: 'r1', name: 'Ciudad Prohibida', city: 'Beijing', visitDate: '3 Abril', bookBefore: '27 Marzo', price: '60¥ (GRATIS <18)', mandatory: true, bookUrl: 'https://www.trip.com/things-to-do/detail/the-forbidden-city-the-palace-museum-50046032' },
+                { id: 'r2', name: 'Guerreros Terracota', city: "Xi'an", visitDate: '9 Abril', bookBefore: '2 Abril', price: '120¥ (GRATIS <14)', mandatory: true, bookUrl: 'https://www.trip.com/things-to-do/detail/emperor-qin-terracotta-warriors-and-horses-museum-50046033' },
+                { id: 'r3', name: 'Tianmen Mountain', city: 'Zhangjiajie', visitDate: '13 Abril', bookBefore: '11 Abril', price: '278¥ (GRATIS <14)', mandatory: true, bookUrl: 'https://www.trip.com/things-to-do/detail/zhangjiajie-tianmen-mountain-national-forest-park-50046034' },
+                { id: 'r4', name: 'Shanghai Disneyland (2 días)', city: 'Shanghai', visitDate: '15-16 Abril', bookBefore: '10 Abril', price: '475¥/356¥ niño x día', mandatory: true, bookUrl: 'https://www.shanghaidisneyresort.com/en/tickets/' },
+                { id: 'r5', name: 'Tren Beijing-Xi\'an', city: 'Transporte', visitDate: '8 Abril', bookBefore: '25 Marzo', price: '55-80€/persona', mandatory: true, bookUrl: 'https://www.trip.com/trains/' },
+                { id: 'r6', name: 'Vuelo Xi\'an-Zhangjiajie', city: 'Transporte', visitDate: '11 Abril', bookBefore: '25 Marzo', price: '50-100€/persona', mandatory: true, reserved: true, flightTime: '14:35-16:05', flightNumber: '3U3257', bookUrl: 'https://www.trip.com/flights/' },
+                { id: 'r7', name: 'Vuelo Zhangjiajie-Shanghai', city: 'Transporte', visitDate: '14 Abril', bookBefore: '25 Marzo', price: '60-120€/persona', mandatory: true, reserved: true, flightTime: '14:40-16:50', flightNumber: 'H01136', bookUrl: 'https://www.trip.com/flights/' },
+                { id: 'r8', name: 'Parque Zhangjiajie', city: 'Zhangjiajie', visitDate: '12 Abril', bookBefore: '9 Abril', price: '225¥ 4 días (GRATIS <14)', mandatory: false, bookUrl: 'https://www.trip.com/things-to-do/detail/zhangjiajie-national-forest-park-50046034' },
+                { id: 'r9', name: 'Coche privado Muralla', city: 'Beijing', visitDate: '4 Abril', bookBefore: '2 Abril', price: '~700¥', mandatory: false, bookUrl: 'https://www.trip.com/things-to-do/list/beijing-mutianyu-great-wall' }
             ],
 
             checklist: [
@@ -1934,6 +1950,7 @@
                         </div>` : ''}
                     </div>
                     ${showPrice ? `<div class="text-sm text-gold">💰 ${addEurToYuanPrice(r.price)}</div>` : ''}
+                    ${r.bookUrl ? `<a href="${r.bookUrl}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" class="reservation-book-link">🔗 Reservar / Ver web</a>` : ''}
                 </div>
             `;
         }
