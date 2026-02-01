@@ -70,6 +70,38 @@
             margin-top: 4px;
         }
         
+        /* Timezone widget - hora Madrid / China y diferencia */
+        .timezone-bar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 16px;
+            margin-top: 12px;
+            padding: 10px 16px;
+            background: rgba(0, 0, 0, 0.12);
+            border-radius: 8px;
+            font-size: 0.85rem;
+            flex-wrap: wrap;
+        }
+        .timezone-bar span {
+            color: #000000;
+            font-weight: 500;
+        }
+        .timezone-bar .tz-label {
+            opacity: 0.85;
+            font-weight: 600;
+        }
+        .timezone-bar .tz-time {
+            font-variant-numeric: tabular-nums;
+        }
+        .timezone-bar .tz-diff {
+            background: rgba(220, 38, 38, 0.2);
+            color: #b91c1c;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+        
         /* Tab Navigation */
         .tab-bar {
             position: fixed;
@@ -898,6 +930,11 @@
     <header class="header">
         <h1>China Trip 2026</h1>
         <p>1-21 Abril • 2 adultos + 1 niño</p>
+        <div class="timezone-bar">
+            <span><span class="tz-label">🇪🇸 Madrid</span> <span class="tz-time" id="tz-madrid">--:--:--</span></span>
+            <span><span class="tz-label">🇨🇳 China</span> <span class="tz-time" id="tz-china">--:--:--</span> <small>(Beijing, Xi'an, Zhangjiajie, Shanghai)</small></span>
+            <span class="tz-diff" id="tz-diff">--</span>
+        </div>
     </header>
 
     <!-- Pages -->
@@ -1712,6 +1749,29 @@
             localStorage.setItem('chinaTrip_currentPage', pageName);
         }
 
+        // Hora Madrid / China y diferencia horaria (visible en todas las pestañas)
+        function updateTimezoneDisplay() {
+            const opts = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
+            try {
+                const madrid = new Date().toLocaleTimeString('es-ES', { ...opts, timeZone: 'Europe/Madrid' });
+                const china = new Date().toLocaleTimeString('es-ES', { ...opts, timeZone: 'Asia/Shanghai' });
+                document.getElementById('tz-madrid').textContent = madrid;
+                document.getElementById('tz-china').textContent = china;
+                const now = new Date();
+                const madridHour = parseInt(now.toLocaleString('en-US', { timeZone: 'Europe/Madrid', hour: 'numeric', hour12: false }), 10);
+                const chinaHour = parseInt(now.toLocaleString('en-US', { timeZone: 'Asia/Shanghai', hour: 'numeric', hour12: false }), 10);
+                let diff = chinaHour - madridHour;
+                if (diff > 12) diff -= 24;
+                if (diff < -12) diff += 24;
+                const diffStr = diff >= 0 ? '+' + diff + 'h' : diff + 'h';
+                document.getElementById('tz-diff').textContent = 'China ' + diffStr + ' vs Madrid';
+            } catch (e) {
+                document.getElementById('tz-madrid').textContent = '--';
+                document.getElementById('tz-china').textContent = '--';
+                document.getElementById('tz-diff').textContent = 'China +6h/+7h vs Madrid';
+            }
+        }
+
         // Countdown
         function updateCountdown() {
             const now = new Date();
@@ -2032,6 +2092,9 @@
             // Update countdown
             updateCountdown();
             setInterval(updateCountdown, 60000);
+            // Hora Madrid / China (visible en todas las pestañas)
+            updateTimezoneDisplay();
+            setInterval(updateTimezoneDisplay, 1000);
             
             // Render components
             renderReservations();
