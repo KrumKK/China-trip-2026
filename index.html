@@ -577,6 +577,78 @@
             color: #fff;
         }
         
+        /* EAT page */
+        .eat-day-card {
+            margin-bottom: 20px;
+            border-left: 4px solid var(--china-gold);
+        }
+        .eat-day-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+        }
+        .eat-day-badge {
+            background: rgba(245, 158, 11, 0.25);
+            color: var(--china-gold);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        .eat-meal-section {
+            margin-bottom: 16px;
+        }
+        .eat-meal-title {
+            font-size: 0.9rem;
+            color: var(--china-gold);
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        .eat-option {
+            background: rgba(0,0,0,0.25);
+            padding: 10px 12px;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            border: 1px solid rgba(75, 85, 99, 0.4);
+        }
+        .eat-option-name {
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .eat-option-desc {
+            font-size: 0.85rem;
+            color: #9CA3AF;
+            margin-top: 4px;
+            margin-left: 0;
+        }
+        .eat-option-price {
+            font-size: 0.8rem;
+            color: var(--china-gold);
+            margin-top: 4px;
+        }
+        .eat-option-links {
+            margin-top: 6px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .eat-option-links a {
+            font-size: 0.75rem;
+            color: var(--celeste);
+            text-decoration: none;
+        }
+        .eat-option-links a:hover {
+            text-decoration: underline;
+        }
+        .eat-star {
+            color: #FBBF24;
+            font-size: 0.9rem;
+        }
+        
         /* Info Section */
         .info-section {
             margin-bottom: 20px;
@@ -935,6 +1007,10 @@
         <button class="tab-btn" onclick="showPage('check', this)">
             <span>✅</span>
             Check
+        </button>
+        <button class="tab-btn" onclick="showPage('eat', this)">
+            <span>🍜</span>
+            EAT
         </button>
         <button class="tab-btn" onclick="showPage('info', this)">
             <span>ℹ️</span>
@@ -1314,6 +1390,12 @@
         </div>
 
         <div id="checklist-container"></div>
+    </div>
+
+    <!-- EAT PAGE -->
+    <div id="page-eat" class="page">
+        <p class="text-sm text-gray mb-3">Tres propuestas de comida y cena por día. ⭐ = típico o curioso de la zona.</p>
+        <div id="eat-container"></div>
     </div>
 
     <!-- INFO PAGE -->
@@ -1741,6 +1823,181 @@
                 { place: 'Maglev + Torre Oriental Pearl', city: 'Shanghai', emoji: '🚄', points: ['Tren Maglev 430 km/h hasta aeropuerto Pudong. Torre con vistas.'] },
                 { place: 'Zhujiajiao', city: 'Shanghai', emoji: '🏘️', points: ['Pueblo acuático: Puente Fangsheng, paseo en barca, North Street. ~1 h desde Shanghai.'] },
                 { place: 'Concesión Francesa + Tianzifang', city: 'Shanghai', emoji: '☕', points: ['Calles con árboles, galerías y cafés. Tianzifang: callejones con tiendas y arte.'] }
+            ],
+
+            // EAT: 3 propuestas comida + 3 cena por día. star=true = típico/curioso de la zona
+            eatByDay: [
+                { day: 2, city: 'Beijing', date: '2 Abril', title: 'Llegada + Jet Lag', lunch: [
+                    { name: 'Wangfujing Snack Street', desc: 'Comida callejera variada; ideal para picar tras llegar. Muchas opciones en un solo paseo.', star: true, price: '~30-80¥/persona', tripUrl: 'https://www.trip.com/restaurants/list/beijing' },
+                    { name: 'Quanjude (Wangfujing)', desc: 'Pato laqueado en el histórico Quanjude; una de las cadenas más famosas de Pekín.', star: true, price: '~150-250¥/persona', tripUrl: 'https://www.trip.com/restaurants/list/beijing' },
+                    { name: 'Din Tai Fung Wangfujing', desc: 'Dumplings y noodles; ambiente tranquilo y bueno para niños.', price: '~80-120¥/persona', tripUrl: 'https://www.trip.com/restaurants/list/beijing' }
+                ], dinner: [
+                    { name: 'Wangfujing Night Market', desc: 'Mercado nocturno: escorpiones, brochetas, fruta. Muy turístico pero divertido.', star: true, price: '~50-150¥/persona', tripUrl: 'https://www.trip.com/restaurants/list/beijing' },
+                    { name: 'Liqun Roast Duck (Beixiangfeng Hutong)', desc: 'Pato en hutong auténtico; local con más de 20 años, piel crujiente.', star: true, price: '~170¥/persona', tripUrl: 'https://www.trip.com/restaurants/list/beijing' },
+                    { name: 'Da Dong (Sanlitun)', desc: 'Pato premium; cocina refinada, buena opción para celebrar la llegada.', price: '~250-400¥/persona', tripUrl: 'https://www.trip.com/restaurants/list/beijing' }
+                ]},
+                { day: 3, city: 'Beijing', date: '3 Abril', title: 'Ciudad Prohibida', lunch: [
+                    { name: 'Comida en Qianmen / Dashilar', desc: 'Zona junto a Tiananmen: fideos con salsa de soja, pastel de soja, calles con sabor local.', star: true, price: '~40-100¥/persona', tripUrl: 'https://www.trip.com/restaurants/list/beijing' },
+                    { name: 'Jingzun Peking Duck (Qianmen)', desc: 'Pato a buen precio (¥138/79 medio/entero); cerca de la Ciudad Prohibida.', star: true, price: '~100-150¥/persona', tripUrl: 'https://www.trip.com/restaurants/list/beijing' },
+                    { name: 'Lao Beijing Zhajiangmian', desc: 'Fideos con salsa de soja (zhajiangmian), plato clásico de Beijing.', price: '~25-50¥/persona', tripUrl: 'https://www.trip.com/restaurants/list/beijing' }
+                ], dinner: [
+                    { name: 'Parque Beihai + restaurantes lago', desc: 'Tras el parque, cenar junto al lago; vistas y ambiente relajado.', star: true, price: '~80-180¥/persona', tripUrl: 'https://www.trip.com/restaurants/list/beijing' },
+                    { name: 'Jing Yaa Tang (Sanlitun)', desc: 'Pato en horno de leña visible; decoración tipo teatro chino.', price: '~280-400¥/persona', tripUrl: 'https://www.trip.com/restaurants/list/beijing' },
+                    { name: 'Zhang Mama (Dongcheng)', desc: 'Cocina sichuanesa económica; muy popular entre locales.', price: '~50-80¥/persona', tripUrl: 'https://www.trip.com/restaurants/list/beijing' }
+                ]},
+                { day: 4, city: 'Beijing', date: '4 Abril', title: 'Gran Muralla', lunch: [
+                    { name: 'Comedor Mutianyu (pie de muralla)', desc: 'Opciones sencillas junto a la entrada; práctico para no perder tiempo.', star: true, price: '~40-80¥/persona', tripUrl: 'https://www.trip.com/things-to-do/detail/mutianyu-great-wall-50046031' },
+                    { name: 'Restaurante en pueblo Mutianyu', desc: 'Tras bajar del tobogán: cocina casera, verduras y arroz.', price: '~60-120¥/persona', tripUrl: 'https://www.trip.com/restaurants/list/beijing' },
+                    { name: 'Picnic en la Muralla', desc: 'Llevar snacks y agua; vistas únicas mientras comes.', price: '~20-50¥ (snacks)' }
+                ], dinner: [
+                    { name: 'Quanjude (Hepingmen)', desc: 'Pato laqueado en sede histórica; clásico post-Muralla.', star: true, price: '~150-250¥/persona', tripUrl: 'https://www.trip.com/restaurants/list/beijing' },
+                    { name: 'Da Dong (Nanchang)', desc: 'Pato de alta gama; piel crujiente sin grasa, porciones generosas.', price: '~250-400¥/persona', tripUrl: 'https://www.trip.com/restaurants/list/beijing' },
+                    { name: 'Crescent Moon Muslim Restaurant', desc: 'Cocina uigur y de la Ruta de la Seda; cordero y pan.', price: '~80-150¥/persona', tripUrl: 'https://www.trip.com/restaurants/list/beijing' }
+                ]},
+                { day: 5, city: 'Beijing', date: '5 Abril', title: 'Templo del Cielo + Hutongs', lunch: [
+                    { name: 'Cerca del Templo del Cielo', desc: 'Puestos y pequeños restaurantes; ver taichi y luego comer local.', star: true, price: '~30-70¥/persona', tripUrl: 'https://www.trip.com/things-to-do/detail/temple-of-heaven-50046030' },
+                    { name: 'Hong Kong Kitchen (Dongcheng)', desc: 'Dim sum y platos cantoneses; opción suave si el picante cansa.', price: '~80-150¥/persona', tripUrl: 'https://www.trip.com/restaurants/list/beijing' },
+                    { name: 'Noodle Bar (Hutongs)', desc: 'Fideos frescos en callejón; experiencia de barrio.', price: '~25-50¥/persona', tripUrl: 'https://www.trip.com/restaurants/list/beijing' }
+                ], dinner: [
+                    { name: 'Cena en Shichahai / Houhai', desc: 'Lago Houhai por la noche: terrazas, luces, ambiente; ideal tras rickshaw.', star: true, price: '~100-250¥/persona', tripUrl: 'https://www.trip.com/restaurants/list/beijing' },
+                    { name: 'TRB Hutong', desc: 'Cocina francesa en templo de 600 años; 1 estrella Michelin (reserva).', price: '~500-800¥/persona', tripUrl: 'https://www.trip.com/restaurants/list/beijing' },
+                    { name: 'Lao She Teahouse', desc: 'Cena con ópera de Pekín y té; experiencia muy turística pero divertida.', star: true, price: '~180-300¥/persona', tripUrl: 'https://www.trip.com/restaurants/list/beijing' }
+                ]},
+                { day: 6, city: 'Beijing', date: '6 Abril', title: 'Palacio de Verano', lunch: [
+                    { name: 'Dentro del Palacio de Verano', desc: 'Kioscos y cafeterías dentro del recinto; vistas al lago Kunming.', star: true, price: '~40-90¥/persona', tripUrl: 'https://www.trip.com/things-to-do/detail/summer-palace-50046029' },
+                    { name: 'Restaurantes calle Suzhou', desc: 'Zona comercial cerca del palacio; noodles y platos rápidos.', price: '~50-100¥/persona', tripUrl: 'https://www.trip.com/restaurants/list/beijing' },
+                    { name: 'Barco-dragón + snack', desc: 'Picar algo antes o después del paseo en barco por el lago.', price: '~30-60¥/persona' }
+                ], dinner: [
+                    { name: 'Zhongguancun / Wudaokou', desc: 'Barrio universitario; restaurantes coreanos, hot pot, ambiente joven.', price: '~60-120¥/persona', tripUrl: 'https://www.trip.com/restaurants/list/beijing' },
+                    { name: 'Da Dong Bei (Qianmen)', desc: 'Cocina del noreste; platos contundentes y buen precio.', price: '~70-130¥/persona', tripUrl: 'https://www.trip.com/restaurants/list/beijing' },
+                    { name: 'Hot pot Haidilao (varias sedes)', desc: 'Cadena de hot pot con buen servicio; niños bienvenidos.', price: '~120-200¥/persona', tripUrl: 'https://www.trip.com/restaurants/list/beijing' }
+                ]},
+                { day: 7, city: 'Beijing', date: '7 Abril', title: 'Templo Lama + Villa Olímpica', lunch: [
+                    { name: 'Calle Guozijian (cerca Templo Lama)', desc: 'Comida callejera y pequeños locales tras visitar templos.', star: true, price: '~35-80¥/persona', tripUrl: 'https://www.trip.com/restaurants/list/beijing' },
+                    { name: 'Yúfúnán (Hunan)', desc: 'Cocina hunan moderna; picante pero equilibrado.', price: '~100-180¥/persona', tripUrl: 'https://www.trip.com/restaurants/list/beijing' },
+                    { name: 'Lunch en Torres Campana y Tambor', desc: 'Zona Dongcheng; puestos y restaurantes tradicionales.', price: '~40-90¥/persona', tripUrl: 'https://www.trip.com/restaurants/list/beijing' }
+                ], dinner: [
+                    { name: 'Villa Olímpica (Nido + Cubo)', desc: 'Cenar con vistas a estadios iluminados; restaurantes en la zona.', star: true, price: '~150-350¥/persona', tripUrl: 'https://www.trip.com/things-to-do/list/beijing-olympic-park' },
+                    { name: 'Quanjude (cualquier sede)', desc: 'Última oportunidad de pato laqueado en Beijing.', star: true, price: '~150-250¥/persona', tripUrl: 'https://www.trip.com/restaurants/list/beijing' },
+                    { name: 'Sanlitun Soho', desc: 'Zona moderna; cocina internacional y ambiente nocturno.', price: '~120-300¥/persona', tripUrl: 'https://www.trip.com/restaurants/list/beijing' }
+                ]},
+                { day: 8, city: "Xi'an", date: '8 Abril', title: 'Llegada Xi\'an', lunch: [
+                    { name: 'Tren Beijing–Xi\'an', desc: 'Comida en el tren (carrito o llevar snacks); llegada ~14:00.', price: '~30-60¥/persona' },
+                    { name: 'Estación Xi\'an North', desc: 'Opciones rápidas en la estación antes de ir al hotel.', price: '~25-50¥/persona', tripUrl: 'https://www.trip.com/restaurants/list/xian' },
+                    { name: 'Llegada al hotel', desc: 'Comida ligera en el barrio del alojamiento si llegáis tarde.', price: '~40-80¥/persona' }
+                ], dinner: [
+                    { name: 'Barrio Musulmán (Beiyuanmen)', desc: 'Roujiamo, yangrou paomo, brochetas de cordero; el corazón de la comida en Xi\'an.', star: true, price: '~80-200¥/persona', tripUrl: 'https://www.trip.com/things-to-do/detail/xian-muslim-quarter-50046033' },
+                    { name: 'Fan Ji Roujiamo (Zhu Ba Shi)', desc: 'Roujiamo histórico; caldo con décadas de historia, frente a Drum Tower.', star: true, price: '~15-25¥/persona', tripUrl: 'https://www.trip.com/restaurants/list/xian' },
+                    { name: 'Lao Sun Jia / Tong Sheng Xiang', desc: 'Yangrou paomo auténtico; rompes el pan tú mismo, luego te lo sirven en caldo.', star: true, price: '~30-50¥/persona', tripUrl: 'https://www.trip.com/restaurants/list/xian' }
+                ]},
+                { day: 9, city: "Xi'an", date: '9 Abril', title: 'Guerreros de Terracota', lunch: [
+                    { name: 'Zona Museo Guerreros', desc: 'Restaurantes y puestos junto al museo; práctico entre visitas.', star: true, price: '~40-80¥/persona', tripUrl: 'https://www.trip.com/things-to-do/detail/emperor-qin-terracotta-warriors-and-horses-museum-50046033' },
+                    { name: 'Comida campestre (camino de vuelta)', desc: 'Pueblos cerca del sitio; cocina shaanxi de verdad.', price: '~50-100¥/persona', tripUrl: 'https://www.trip.com/restaurants/list/xian' },
+                    { name: 'Picnic en jardines del museo', desc: 'Comprar pan y cosas en Xi\'an y comer en la zona verde.', price: '~20-40¥/persona' }
+                ], dinner: [
+                    { name: 'Fuentes Gran Pagoda Ganso + cena', desc: 'Cenar cerca del show de fuentes (20:30); ambiente y luces.', star: true, price: '~80-180¥/persona', tripUrl: 'https://www.trip.com/things-to-do/list/xian' },
+                    { name: 'Barrio Musulmán – Biangbiang mian', desc: 'Fideos anchos “biangbiang”; nombre con el carácter más complejo de China.', star: true, price: '~20-40¥/persona', tripUrl: 'https://www.trip.com/restaurants/list/xian' },
+                    { name: 'Liangpi + brochetas', desc: 'Liangpi (frios), brochetas de cordero y pasteles; calle Beiguangji.', price: '~50-100¥/persona', tripUrl: 'https://www.trip.com/restaurants/list/xian' }
+                ]},
+                { day: 10, city: "Xi'an", date: '10 Abril', title: 'Muralla en bici', lunch: [
+                    { name: 'Cerca Pequeña Pagoda', desc: 'Restaurantes locales tras la visita al museo y pagoda.', star: true, price: '~40-80¥/persona', tripUrl: 'https://www.trip.com/restaurants/list/xian' },
+                    { name: 'Xiyangshi / Dapiyuan', desc: 'Calles del Barrio Musulmán menos turísticas; comida auténtica.', star: true, price: '~60-120¥/persona', tripUrl: 'https://www.trip.com/restaurants/list/xian' },
+                    { name: 'Suantang shuijiao', desc: 'Dumplings en sopa agridulce; especialidad de Xi\'an.', price: '~25-45¥/persona', tripUrl: 'https://www.trip.com/restaurants/list/xian' }
+                ], dinner: [
+                    { name: 'Última cena Barrio Musulmán', desc: 'Repetir roujiamo, yangrou paomo o probar fenzhengrou (ternera al vapor).', star: true, price: '~80-200¥/persona', tripUrl: 'https://www.trip.com/restaurants/list/xian' },
+                    { name: 'Fan Ji (otra sede)', desc: 'Keji Road o Dianzicheng; mismo roujiamo, menos colas.', star: true, price: '~15-25¥/persona', tripUrl: 'https://www.trip.com/restaurants/list/xian' },
+                    { name: 'Drum Tower area', desc: 'Vistas a la torre de noche; restaurantes con terraza.', price: '~100-200¥/persona', tripUrl: 'https://www.trip.com/restaurants/list/xian' }
+                ]},
+                { day: 11, city: 'Zhangjiajie', date: '11 Abril', title: 'Llegada Zhangjiajie', lunch: [
+                    { name: 'Aeropuerto / vuelo', desc: 'Comida en vuelo Xi\'an–Zhangjiajie o en aeropuerto.' },
+                    { name: 'Estación / traslado', desc: 'Snacks para el trayecto hasta Wulingyuan.' },
+                    { name: 'Wulingyuan (llegada)', desc: 'Comida ligera al llegar al pueblo.' }
+                ], dinner: [
+                    { name: 'Sanxiaguo (三下锅)', desc: 'Plato típico: panceta, tripas y tocino ahumado en wok; imprescindible aquí.', star: true },
+                    { name: 'Impression Lao Zao Sanxia Guo', desc: 'Sanxiaguo cerca del teleférico Tianmen; ¥60-80/persona.', star: true },
+                    { name: 'Zui Xiangqin Private Kitchen', desc: 'Cocina tujia; Wuling Road, frente Tianzi Hotel; pedir “xiao la” si no queréis mucho picante.', star: true }
+                ]},
+                { day: 12, city: 'Zhangjiajie', date: '12 Abril', title: 'Parque Nacional Avatar', lunch: [
+                    { name: 'Dentro del parque (Yuanjiajie)', desc: 'Kioscos y comedores; vistas a los pilares de Avatar.', star: true, price: '~50-100¥/persona', tripUrl: 'https://www.trip.com/things-to-do/detail/zhangjiajie-national-forest-park-50046034' },
+                    { name: 'Área Ascensor Bailong', desc: 'Opciones básicas cerca del ascensor; práctico.', price: '~40-80¥/persona' },
+                    { name: 'Comida para llevar', desc: 'Llevar snacks y agua; el parque es grande.', price: '~25-50¥' }
+                ], dinner: [
+                    { name: 'Tujia Bacon + She Rice', desc: 'Tocino tujia ahumado y arroz con carne y verduras de monte.', star: true, price: '~70-120¥/persona', tripUrl: 'https://www.trip.com/restaurants/list/zhangjiajie' },
+                    { name: 'Dagupi Beef', desc: 'Ternera frita picante; otra especialidad de Zhangjiajie.', price: '~60-100¥/persona', tripUrl: 'https://www.trip.com/restaurants/list/zhangjiajie' },
+                    { name: 'Wulingyuan calle principal', desc: 'Restaurantes locales; sopas y platos de wok.', price: '~50-90¥/persona', tripUrl: 'https://www.trip.com/restaurants/list/zhangjiajie' }
+                ]},
+                { day: 13, city: 'Zhangjiajie', date: '13 Abril', title: 'Tianmen Mountain', lunch: [
+                    { name: 'Cerca Tianmen (teleférico)', desc: 'Comedores antes o después de subir; vistas a la montaña.', star: true, price: '~50-90¥/persona', tripUrl: 'https://www.trip.com/things-to-do/detail/zhangjiajie-tianmen-mountain-national-forest-park-50046034' },
+                    { name: 'Pig Blood Curd + verduras', desc: 'Curiosidad local: tofu de sangre con especias.', star: true, price: '~40-70¥/persona', tripUrl: 'https://www.trip.com/restaurants/list/zhangjiajie' },
+                    { name: 'Snack en Ten-Mile Gallery', desc: 'Algo ligero si hacéis el trenecito por la tarde.', price: '~20-40¥' }
+                ], dinner: [
+                    { name: 'Despedida Zhangjiajie – Sanxiaguo', desc: 'Repetir sanxiaguo o probar Tujia Steamed Pork con verduras encurtidas.', star: true, price: '~60-100¥/persona', tripUrl: 'https://www.trip.com/restaurants/list/zhangjiajie' },
+                    { name: 'Hot pot Hunan', desc: 'Hot pot al estilo Hunan; picante y ácido.', price: '~80-150¥/persona', tripUrl: 'https://www.trip.com/restaurants/list/zhangjiajie' },
+                    { name: 'Cena tranquila Wulingyuan', desc: 'Última noche; restaurante con terraza si hace buen tiempo.', price: '~70-120¥/persona', tripUrl: 'https://www.trip.com/restaurants/list/zhangjiajie' }
+                ]},
+                { day: 14, city: 'Shanghai', date: '14 Abril', title: 'Llegada Shanghai', lunch: [
+                    { name: 'Vuelo Zhangjiajie–Shanghai', desc: 'Comida en vuelo o aeropuerto PVG.', price: '~30-60¥/persona' },
+                    { name: 'Disneytown (llegada)', desc: 'Al llegar: Kwei Mun Lung, Xin Wang o YAKEE YAKEE; cocina china en Disneytown.', price: '~60-120¥/persona', tripUrl: 'https://www.shanghaidisneyresort.com/en/experience/disneytown/' },
+                    { name: 'Hotel zona Disney', desc: 'Comida ligera cerca del hotel si llegáis tarde.', price: '~50-100¥/persona' }
+                ], dinner: [
+                    { name: 'Disneytown – Chua Lam\'s Dim Sum', desc: 'Dim sum de calidad; buena opción sin entrar al parque.', star: true, price: '~100-200¥/persona', tripUrl: 'https://www.shanghaidisneyresort.com/en/experience/disneytown/' },
+                    { name: 'Donald\'s Dine \'n Delights', desc: 'Pizza y occidental; los niños suelen encajar bien.', price: '~80-150¥/persona', tripUrl: 'https://www.shanghaidisneyresort.com/en/experience/disneytown/' },
+                    { name: 'blue frog / The Cheesecake Factory', desc: 'Hamburguesas o cheesecake; ambiente relajado.', price: '~150-300¥/persona', tripUrl: 'https://www.shanghaidisneyresort.com/en/experience/disneytown/' }
+                ]},
+                { day: 15, city: 'Shanghai', date: '15 Abril', title: 'Disneyland Día 1', lunch: [
+                    { name: 'Dentro del parque', desc: 'Restaurantes temáticos; comer antes de 11:30 o después de 13:30 para evitar colas.', price: '~80-150¥/persona', tripUrl: 'https://www.shanghaidisneyresort.com/en/information/about-dining' },
+                    { name: 'Disneytown (salir y volver)', desc: 'Si tenéis park hopper: más variedad y a veces mejor precio.', price: '~60-120¥/persona', tripUrl: 'https://www.shanghaidisneyresort.com/en/experience/disneytown/' },
+                    { name: 'Kwei Mun Lung · Jiangnan Market', desc: 'Cocina Jiangnan en Disneytown; opción china auténtica.', star: true, price: '~70-120¥/persona', tripUrl: 'https://www.shanghaidisneyresort.com/en/experience/disneytown/' }
+                ], dinner: [
+                    { name: 'Cena en parque + ILLUMINATE!', desc: 'Cenar dentro y quedarse para el espectáculo de fuegos.', star: true, price: '~100-180¥/persona', tripUrl: 'https://www.shanghaidisneyresort.com/en/information/about-dining' },
+                    { name: 'IPPUDO / DONDONYA Disneytown', desc: 'Ramen y cocina japonesa; rápido y llenador.', price: '~80-140¥/persona', tripUrl: 'https://www.trip.com/restaurants/list/shanghai' },
+                    { name: 'Menguli Barbecue Buffet', desc: 'Buffet de barbacoa; buena relación cantidad/precio.', price: '~150-250¥/persona', tripUrl: 'https://www.trip.com/restaurants/list/shanghai' }
+                ]},
+                { day: 16, city: 'Shanghai', date: '16 Abril', title: 'Disneyland Día 2', lunch: [
+                    { name: 'Repetir favoritos del parque', desc: 'Segundo día: probar otro restaurante temático.', price: '~80-150¥/persona', tripUrl: 'https://www.shanghaidisneyresort.com/en/information/about-dining' },
+                    { name: 'AH MA HANDMADE', desc: 'Snacks y dulces en Disneytown; bueno para niños.', price: '~40-80¥/persona', tripUrl: 'https://www.shanghaidisneyresort.com/en/experience/disneytown/' },
+                    { name: 'NINO MATCHA', desc: 'Matcha y postres; pausa dulce.', price: '~35-70¥/persona', tripUrl: 'https://www.trip.com/restaurants/list/shanghai' }
+                ], dinner: [
+                    { name: 'Cena temática Disney + fuegos', desc: 'Última noche en el parque; cena y espectáculo.', star: true, price: '~100-180¥/persona', tripUrl: 'https://www.shanghaidisneyresort.com/en/information/about-dining' },
+                    { name: 'LIAN · Vietnamese & Thai', desc: 'Cambio de registro: vietnamita y tailandés en Disneytown.', price: '~120-200¥/persona', tripUrl: 'https://www.trip.com/restaurants/list/shanghai' },
+                    { name: 'Disneytown por la noche', desc: 'Pasear y cenar a la carta según apetito.', price: '~80-180¥/persona', tripUrl: 'https://www.trip.com/restaurants/list/shanghai' }
+                ]},
+                { day: 17, city: 'Shanghai', date: '17 Abril', title: 'Yu Garden + Bund', lunch: [
+                    { name: 'Nanxiang Steamed Bun (Yuyuan Road)', desc: 'Xiaolongbao desde 1900; piel fina y caldo; cola habitual.', star: true, price: '~50-100¥/persona', tripUrl: 'https://www.trip.com/things-to-do/detail/yu-garden-50046035' },
+                    { name: 'Jia Jia Tang Bao', desc: 'Xiaolongbao económicos y buenos; cerca de People\'s Square.', price: '~40-80¥/persona', tripUrl: 'https://www.trip.com/restaurants/list/shanghai' },
+                    { name: 'Fuchun / Lai Lai Xiao Long', desc: 'Clásicos de xiaolongbao en la zona del Bazar.', price: '~45-90¥/persona', tripUrl: 'https://www.trip.com/restaurants/list/shanghai' }
+                ], dinner: [
+                    { name: 'Crucero Huangpu + cena', desc: 'Crucero nocturno con cena o cenar en el Bund después.', star: true, price: '~120-250¥/persona', tripUrl: 'https://www.trip.com/things-to-do/list/shanghai-the-bund' },
+                    { name: 'The Bund restaurantes', desc: 'Vistas a Pudong; cocina internacional y china de gama alta.', price: '~200-500¥/persona', tripUrl: 'https://www.trip.com/restaurants/list/shanghai' },
+                    { name: 'Qiao Ai Lai Lai Xiao Long (Tianjin Road)', desc: 'Xiaolongbao de cangrejo; muy concurrido en temporada.', star: true, price: '~60-120¥/persona', tripUrl: 'https://www.trip.com/restaurants/list/shanghai' }
+                ]},
+                { day: 18, city: 'Shanghai', date: '18 Abril', title: 'Pudong + Maglev', lunch: [
+                    { name: 'Torre Oriental Pearl / Lujiazui', desc: 'Restaurantes con vistas en la torre o en Lujiazui.', star: true, price: '~150-400¥/persona', tripUrl: 'https://www.trip.com/things-to-do/detail/oriental-pearl-tower-50046036' },
+                    { name: 'Nanjing Road (este)', desc: 'Comida rápida y centros comerciales; muchas opciones.', price: '~60-150¥/persona', tripUrl: 'https://www.trip.com/restaurants/list/shanghai' },
+                    { name: 'Din Tai Fung (Pudong)', desc: 'Dumplings de calidad; varias sedes en Pudong.', price: '~90-150¥/persona', tripUrl: 'https://www.trip.com/restaurants/list/shanghai' }
+                ], dinner: [
+                    { name: 'Nanjing Road por la noche', desc: 'Compras y cena; ambiente de calle comercial.', price: '~80-200¥/persona', tripUrl: 'https://www.trip.com/restaurants/list/shanghai' },
+                    { name: 'Vista Pudong desde Puxi', desc: 'Cenar en el Bund o en Puxi mirando a Pudong iluminado.', star: true, price: '~150-400¥/persona', tripUrl: 'https://www.trip.com/restaurants/list/shanghai' },
+                    { name: 'Hot pot Haidilao (Shanghai)', desc: 'Experiencia de hot pot; servicio y ambiente para familias.', price: '~120-200¥/persona', tripUrl: 'https://www.trip.com/restaurants/list/shanghai' }
+                ]},
+                { day: 19, city: 'Shanghai', date: '19 Abril', title: 'Zhujiajiao', lunch: [
+                    { name: 'Zhujiajiao – North Street', desc: 'Comida en el pueblo: zongzi, carne estofada, tofu.', star: true, price: '~50-120¥/persona', tripUrl: 'https://www.trip.com/things-to-do/detail/zhujiajiao-ancient-town-50046037' },
+                    { name: 'Puesto de zongzi', desc: 'Arroz glutinoso en hoja de bambú; típico de la zona.', price: '~15-30¥/persona', tripUrl: 'https://www.trip.com/restaurants/list/shanghai' },
+                    { name: 'Restaurante junto al canal', desc: 'Pescado y verduras con vistas al agua.', price: '~80-150¥/persona', tripUrl: 'https://www.trip.com/restaurants/list/shanghai' }
+                ], dinner: [
+                    { name: 'Última cena en The Bund', desc: 'Cena de despedida con vistas al skyline.', star: true, price: '~250-600¥/persona', tripUrl: 'https://www.trip.com/restaurants/list/shanghai' },
+                    { name: 'M on the Bund / Sir Elly\'s', desc: 'Alta cocina con vistas; reserva recomendada.', price: '~400-800¥/persona', tripUrl: 'https://www.trip.com/restaurants/list/shanghai' },
+                    { name: 'Restaurante en Concesión Francesa', desc: 'Cena en zona colonial; ambiente y buena cocina.', price: '~150-350¥/persona', tripUrl: 'https://www.trip.com/restaurants/list/shanghai' }
+                ]},
+                { day: 20, city: 'Shanghai', date: '20 Abril', title: 'Último día + Aeropuerto', lunch: [
+                    { name: 'Concesión Francesa', desc: 'Brunch o comida en cafés y restaurantes con terraza.', star: true, price: '~100-250¥/persona', tripUrl: 'https://www.trip.com/restaurants/list/shanghai' },
+                    { name: 'Tianzifang', desc: 'Callejones con tiendas y restaurantes; última compra y comida.', star: true, price: '~80-180¥/persona', tripUrl: 'https://www.trip.com/things-to-do/list/shanghai-tianzifang' },
+                    { name: 'Jia Jia Tang Bao (otra vez)', desc: 'Últimos xiaolongbao antes de volar.', price: '~40-80¥/persona', tripUrl: 'https://www.trip.com/restaurants/list/shanghai' }
+                ], dinner: [
+                    { name: 'Cena despedida cerca aeropuerto', desc: 'PVG tiene buenos restaurantes; cenar antes del vuelo 00:40.', price: '~100-250¥/persona', tripUrl: 'https://www.trip.com/restaurants/list/shanghai' },
+                    { name: 'Comida ligera + snacks', desc: 'Si preferís no cenar fuerte antes del vuelo nocturno.', price: '~30-80¥' },
+                    { name: 'Restaurante en Pudong (camino a PVG)', desc: 'Cena en Lujiazui o en ruta al aeropuerto.', price: '~120-300¥/persona', tripUrl: 'https://www.trip.com/restaurants/list/shanghai' }
+                ]}
             ]
         };
 
@@ -2087,6 +2344,43 @@
             `).join('');
         }
 
+        // EAT - propuestas comida y cena por día (precio + enlaces Trip.com / Google)
+        function renderEat() {
+            const container = document.getElementById('eat-container');
+            if (!container || !tripData.eatByDay) return;
+            const googleUrl = (name, city) => 'https://www.google.com/search?q=' + encodeURIComponent(name + ' ' + city + ' restaurant');
+            const formatOptions = (arr, city) => (arr || []).map(o => {
+                const links = [];
+                if (o.tripUrl) links.push(`<a href="${o.tripUrl}" target="_blank" rel="noopener noreferrer">Trip.com</a>`);
+                links.push(`<a href="${googleUrl(o.name, city)}" target="_blank" rel="noopener noreferrer">Google</a>`);
+                return `
+                <div class="eat-option">
+                    <div class="eat-option-name">${o.star ? '<span class="eat-star">⭐</span>' : ''} ${o.name}</div>
+                    <div class="eat-option-desc">${o.desc || ''}</div>
+                    ${o.price ? `<div class="eat-option-price">💰 ${o.price}</div>` : ''}
+                    <div class="eat-option-links">${links.join(' · ')}</div>
+                </div>
+            `;
+            }).join('');
+            container.innerHTML = tripData.eatByDay.map(d => `
+                <div class="card eat-day-card">
+                    <div class="eat-day-header">
+                        <span class="eat-day-badge">${d.city}</span>
+                        <span class="text-sm text-gray">Día ${d.day} · ${d.date}</span>
+                        <span class="text-sm" style="color: var(--china-gold);">${d.title}</span>
+                    </div>
+                    <div class="eat-meal-section">
+                        <div class="eat-meal-title">☀️ Comida (3 propuestas)</div>
+                        ${formatOptions(d.lunch, d.city)}
+                    </div>
+                    <div class="eat-meal-section">
+                        <div class="eat-meal-title">🌙 Cena (3 propuestas)</div>
+                        ${formatOptions(d.dinner, d.city)}
+                    </div>
+                </div>
+            `).join('');
+        }
+
         // Extra sites (del Excel) - se pueden borrar
         function renderExtraSites() {
             const deleted = JSON.parse(localStorage.getItem('chinaTrip_deletedExtraSites') || '[]');
@@ -2131,6 +2425,7 @@
             renderChecklist();
             renderExtraSites();
             renderQueVer();
+            renderEat();
             
             // Restore last page
             const lastPage = localStorage.getItem('chinaTrip_currentPage');
