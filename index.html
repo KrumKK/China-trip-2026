@@ -820,6 +820,21 @@
             margin-top: 6px;
         }
         
+        .que-ver-cost, .que-ver-opening {
+            font-size: 0.8rem;
+            margin-bottom: 4px;
+        }
+        .que-ver-cost { color: var(--verde-claro); }
+        .que-ver-opening { color: var(--celeste); }
+        .dest-info {
+            font-size: 0.8rem;
+            color: var(--china-gold);
+            margin-top: 6px;
+            padding: 6px 8px;
+            background: rgba(0,0,0,0.2);
+            border-radius: 6px;
+        }
+        
         /* Extra sites (del Excel) */
         .extra-site-item {
             display: flex;
@@ -1637,7 +1652,9 @@
                             afternoon: 'Parque Jingshan (vistas panorámicas)',
                             evening: 'Parque Beihai + paseo en barco',
                             notes: '⭐ RESERVAR 7 días antes',
-                            queVerPlace: 'Ciudad Prohibida'
+                            queVerPlace: 'Ciudad Prohibida',
+                            afternoonDestInfo: 'Llegar: 0¥ · ~0,5 km, 5 min andar (salida norte Ciudad Prohibida)',
+                            eveningDestInfo: 'Llegar: 0¥ · ~0,5 km, 3 min andar (puerta oeste Jingshan)'
                         },
                         {
                             day: 4, date: '4 Abril', weekday: 'Sábado',
@@ -1646,7 +1663,9 @@
                             afternoon: 'Teleférico subida + Tobogán bajada 🛝',
                             evening: 'Regreso Beijing + Cena Pato Pekín 🦆',
                             notes: 'Coche privado ~700¥ ida/vuelta',
-                            queVerPlace: 'Gran Muralla Mutianyu'
+                            queVerPlace: 'Gran Muralla Mutianyu',
+                            afternoonDestInfo: 'Mismo recinto (teleférico en Mutianyu)',
+                            eveningDestInfo: 'Regreso: ~700¥ coche · ~70 km, 1h15'
                         },
                         {
                             day: 5, date: '5 Abril', weekday: 'Domingo',
@@ -1655,7 +1674,9 @@
                             afternoon: 'Tour Hutongs en rickshaw + Shichahai',
                             evening: 'Lago Houhai - ambiente nocturno',
                             notes: 'Rickshaw ~150-200¥',
-                            queVerPlace: 'Templo del Cielo'
+                            queVerPlace: 'Templo del Cielo',
+                            afternoonDestInfo: 'Llegar: ~15-25¥ taxi · ~4 km, 15 min',
+                            eveningDestInfo: 'Misma zona (Houhai), andando desde Shichahai'
                         },
                         {
                             day: 6, date: '6 Abril', weekday: 'Lunes',
@@ -1664,7 +1685,9 @@
                             afternoon: 'Barco dragón en Lago Kunming 🐉',
                             evening: 'Zhongguancun tech market 🖥️ o descanso',
                             notes: 'Metro Línea 4',
-                            queVerPlace: 'Palacio de Verano'
+                            queVerPlace: 'Palacio de Verano',
+                            afternoonDestInfo: 'Mismo recinto (barco en el lago)',
+                            eveningDestInfo: 'Llegar: ~5¥ metro · ~15 km, 40 min L4'
                         },
                         {
                             day: 7, date: '7 Abril', weekday: 'Martes',
@@ -1673,7 +1696,9 @@
                             afternoon: 'Torres Campana y Tambor',
                             evening: 'Villa Olímpica noche (Nido + Cubo) 🏟️',
                             notes: 'Luces se encienden ~19:40',
-                            queVerPlace: 'Templo Lama + Villa Olímpica'
+                            queVerPlace: 'Templo Lama + Villa Olímpica',
+                            afternoonDestInfo: 'Llegar: ~10-15¥ taxi · ~3 km, 10 min (Dongcheng)',
+                            eveningDestInfo: 'Llegar: ~25-35¥ taxi · ~10 km, 25 min metro L8'
                         }
                     ]
                 },
@@ -1731,7 +1756,9 @@
                             afternoon: 'Ascensor Bailong 326m 🛗 + Yuanjiajie',
                             evening: 'Montaña Tianzi (Avatar mountains)',
                             notes: '⭐ Entrada válida 4 días',
-                            queVerPlace: 'Parque Nacional Zhangjiajie (Avatar)'
+                            queVerPlace: 'Parque Nacional Zhangjiajie (Avatar)',
+                            afternoonDestInfo: 'Dentro del parque (bus interno + ascensor)',
+                            eveningDestInfo: 'Dentro del parque (bus a Tianzi)'
                         },
                         {
                             day: 13, date: '13 Abril', weekday: 'Lunes',
@@ -1740,7 +1767,9 @@
                             afternoon: 'Pasarela cristal + Cueva del Cielo',
                             evening: 'Ten-Mile Gallery trenecito 🚂',
                             notes: '⭐ RESERVAR Tianmen obligatorio',
-                            queVerPlace: 'Tianmen Mountain'
+                            queVerPlace: 'Tianmen Mountain',
+                            afternoonDestInfo: 'Mismo recinto (cima Tianmen)',
+                            eveningDestInfo: 'Llegar: ~5-10¥ bus · ~8 km, 20 min (Wulingyuan) o trenecito en parque'
                         }
                     ]
                 },
@@ -1782,7 +1811,9 @@
                             afternoon: 'The Bund día + Túnel psicodélico 🌈',
                             evening: 'Crucero río Huangpu noche 🚢',
                             notes: 'Crucero ~120-180¥',
-                            queVerPlace: 'Yu Garden + Bazaar'
+                            queVerPlace: 'Yu Garden + Bazaar',
+                            afternoonDestInfo: 'Llegar: 0¥ · ~1,5 km, 20 min andar',
+                            eveningDestInfo: 'Mismo paseo (embarcadero Bund); crucero ~120-180¥'
                         },
                         {
                             day: 18, date: '18 Abril', weekday: 'Sábado',
@@ -1791,7 +1822,9 @@
                             afternoon: 'Torre Oriental Pearl (vistas)',
                             evening: 'Nanjing Road + compras',
                             notes: 'Maglev ~50¥ ida',
-                            queVerPlace: 'Maglev + Torre Oriental Pearl'
+                            queVerPlace: 'Maglev + Torre Oriental Pearl',
+                            afternoonDestInfo: 'Metro L2 desde Maglev; ~15 min',
+                            eveningDestInfo: 'Llegar: ~4¥ metro · ~2 km, 10 min'
                         },
                         {
                             day: 19, date: '19 Abril', weekday: 'Domingo',
@@ -1800,7 +1833,9 @@
                             afternoon: 'Paseo barca + pueblo antiguo',
                             evening: 'Última cena en The Bund',
                             notes: '~1h transporte cada trayecto',
-                            queVerPlace: 'Zhujiajiao'
+                            queVerPlace: 'Zhujiajiao',
+                            afternoonDestInfo: 'Mismo pueblo (barca dentro Zhujiajiao)',
+                            eveningDestInfo: 'Regreso: ~10¥ bus/metro · ~50 km, 1h'
                         },
                         {
                             day: 20, date: '20 Abril', weekday: 'Lunes',
@@ -1809,7 +1844,9 @@
                             afternoon: 'Compras + souvenirs',
                             evening: 'Cena despedida → Aeropuerto 21:30',
                             notes: '⚠️ Vuelo sale 00:40 del día 21',
-                            queVerPlace: 'Concesión Francesa + Tianzifang'
+                            queVerPlace: 'Concesión Francesa + Tianzifang',
+                            afternoonDestInfo: 'Zona centro / Nanjing Road según plan',
+                            eveningDestInfo: 'Aeropuerto: metro/taxi ~30-60 min'
                         }
                     ]
                 }
@@ -1905,25 +1942,25 @@
 
             // Qué ver en cada sitio (resumen de lo más importante)
             queVer: [
-                { place: 'Ciudad Prohibida', city: 'Beijing', emoji: '🏯', recommendedTime: '8:30 apertura o después 14:00', crowdNote: 'Abril alta temporada (80.000/día). Evitar 10:00-13:00. Entre semana menos gente.', visitDuration: '4-5h con calma', toNext: 'Jingshan: ~0,5 km, 5 min andar (salida norte)', points: ['Los Tres Salones: Suprema Armonía, Armonía Central, Preservación de la Armonía.', 'Los Tres Palacios Traseros: residencia imperial y Jardín Imperial.', 'Recorrido norte-sur desde la Puerta Wumen. Reservar 7 días antes.'] },
-                { place: 'Plaza Tiananmen + Jingshan', city: 'Beijing', emoji: '🇨🇳', recommendedTime: 'Mañana temprano o atardecer', crowdNote: 'Abril agradable. Jingshan al atardecer para vistas.', visitDuration: 'Tiananmen 1h + Jingshan 1h', toNext: 'Beihai: ~0,5 km, 3 min andar (puerta oeste Jingshan)', points: ['Tiananmen: la plaza más grande del mundo. Foto con Mao.', 'Jingshan: colina artificial con las mejores vistas de la Ciudad Prohibida.'] },
-                { place: 'Gran Muralla Mutianyu', city: 'Beijing', emoji: '🛝', recommendedTime: '7:30 apertura (llegar temprano)', crowdNote: 'Abril moderado, entre semana mejor. Evitar mediodía y fines de semana.', visitDuration: '3-4h con calma (teleférico + paseo + tobogán)', toNext: 'Beijing centro: ~70 km, 1h15 coche (vuelta)', points: ['Una de las secciones mejor conservadas. Teleférico subida, tobogán bajada.', '23 torres de vigilancia. Coche privado ~700¥ ida/vuelta.'] },
-                { place: 'Templo del Cielo', city: 'Beijing', emoji: '⛩️', recommendedTime: '7:00-7:30 (taichi y locales)', crowdNote: 'Abril ideal. Edificios abren 8:00. Entre semana menos colas.', visitDuration: '2-3h con calma (parque + salones)', toNext: 'Hutongs: ~4 km, 15 min taxi', points: ['Salón de Oración por las Buenas Cosechas (edificio circular azul).', 'Muro del Eco y Altar Circular. Ver taichi y vida local por la mañana.'] },
-                { place: 'Hutongs + Shichahai + Houhai', city: 'Beijing', emoji: '🚲', recommendedTime: 'Tarde / noche (Houhai con luces)', crowdNote: 'Abril bueno. Noche más ambiente en Houhai.', visitDuration: '2-3h (rickshaw 1h + paseo Houhai)', toNext: '—', points: ['Tour en rickshaw por callejones tradicionales.', 'Shichahai y Lago Houhai: bares y ambiente nocturno.'] },
-                { place: 'Palacio de Verano', city: 'Beijing', emoji: '🐉', recommendedTime: '8:00 apertura jardines', crowdNote: 'Abril alta temporada. Entre semana y mañana menos gente.', visitDuration: '3-4h con calma (lago + corredor + barco)', toNext: 'Centro: ~15 km, 40 min metro L4', points: ['Lago Kunming: barco dragón y Puente de los 17 Arcos.', 'Gran Corredor (750 m con pinturas), Pagoda del Incienso, Barco de Mármol. Metro L4.'] },
-                { place: 'Templo Lama + Villa Olímpica', city: 'Beijing', emoji: '🏟️', recommendedTime: 'Mañana templos; 19:40 Villa Olímpica (luces)', crowdNote: 'Abril bueno. Nido y Cubo se encienden ~19:40.', visitDuration: 'Templo Lama 1-2h + Torres 30 min + Villa Olímpica 1h', toNext: '—', points: ['Templo Lama: mayor templo tibetano en Beijing. Templo Confucio y Torres Campana/Tambor.', 'Nido y Cubo iluminados ~19:40.'] },
-                { place: 'Guerreros de Terracota', city: "Xi'an", emoji: '⚔️', recommendedTime: '8:30 apertura o 15:00-16:00', crowdNote: 'Abril bueno. Jue 9 = entre semana, menos colas. Evitar 10:00-14:00.', visitDuration: '4-5h con calma (3 fosas + museo carros + jardín)', toNext: 'Xi\'an centro: ~40 km, 1h bus/ taxi', points: ['Fosa 1: la más espectacular, ~6000 guerreros en formación.', 'Fosas 2 y 3: arqueros, carros, generales. Museo de Carros de Bronce. Reserva online obligatoria.'] },
-                { place: 'Muralla de Xi\'an + Pagodas', city: "Xi'an", emoji: '🚲', recommendedTime: 'Muralla al atardecer; show fuentes 20:30', crowdNote: 'Abril agradable. Bici al atardecer; Gran Pagoda show 20:30.', visitDuration: 'Muralla 2-3h bici + Pequeña Pagoda 1h + Gran Pagoda show 20:30 1h', toNext: 'Barrio Musulmán: ~3 km, 10 min taxi', points: ['Muralla: una de las mejor conservadas. Recorrer en bici al atardecer.', 'Gran Pagoda Ganso: fuentes y show 20:30. Pequeña Pagoda + museo.'] },
-                { place: 'Barrio Musulmán', city: "Xi'an", emoji: '🍢', recommendedTime: '17:00-18:00 o 21:00 (menos colas)', crowdNote: 'Abril bueno. Evitar fin de semana y 19:00-20:00 pico.', visitDuration: '2-3h (pasear + cenar)', toNext: '—', points: ['Calle de comida y artesanía. Cena de roujiamo, lamb skewers y pasteles.'] },
-                { place: 'Parque Nacional Zhangjiajie (Avatar)', city: 'Zhangjiajie', emoji: '🏔️', recommendedTime: '7:00-7:30 apertura (puertas)', crowdNote: 'Abril principios: menos gente. Niebla mañana, se disipa mediodía.', visitDuration: 'Día completo 6-8h (Yuanjiajie + Tianzi + ascensor)', toNext: 'Wulingyuan pueblo: dentro del parque; Ten-Mile Gallery ~20 min trenecito', points: ['Yuanjiajie: pilares que inspiraron las montañas de Avatar. Ascensor Bailong 326 m.', 'Montaña Tianzi. Entrada válida 4 días.'] },
-                { place: 'Tianmen Mountain', city: 'Zhangjiajie', emoji: '🪟', recommendedTime: '7:00-7:30 (antes teleférico 7:30)', crowdNote: 'Abril ideal. Llegar 30 min antes o colas 2h+. Evitar mayo.', visitDuration: '5-6h con calma (teleférico + cima + Cueva del Cielo)', toNext: 'Wulingyuan: ~8 km, 20 min bus', points: ['Teleférico más largo del mundo. Pasarela de cristal y Cueva del Cielo.', 'Reservar entrada obligatorio.'] },
-                { place: 'Ten-Mile Gallery', city: 'Zhangjiajie', emoji: '🚂', recommendedTime: 'Tarde (tras Yuanjiajie/Tianzi)', crowdNote: 'Abril bueno. Trencito relajado para cerrar el día.', visitDuration: '1-1,5h (trencito ida y vuelta)', toNext: '—', points: ['Trencito panorámico entre pilares. Relajado para cerrar el día.'] },
-                { place: 'Shanghai Disneyland', city: 'Shanghai', emoji: '🏰', recommendedTime: '45 min antes de apertura', crowdNote: 'Abril popular. Miér 15 y Jue 16 = entre semana, menos colas que finde.', visitDuration: 'Día completo 8-10h (parque + show noche)', toNext: 'Disneytown: 0 km, 5 min andar (fuera parque)', points: ['TRON, Piratas, Zootopia, Seven Dwarfs. Show ILLUMINATE! por la noche.', 'Early Entry ¥199 o gratis con hotel Disney.', '⭐ Reservar entradas online antes del 10 Abril.'] },
-                { place: 'Yu Garden + Bazaar', city: 'Shanghai', emoji: '🌿', recommendedTime: 'Antes 9:00 o después 15:00', crowdNote: 'Abril alta temporada. Entre semana y tarde menos colas.', visitDuration: 'Jardín 1-2h + Bazar 1h', toNext: 'The Bund: ~1,5 km, 20 min andar', points: ['Jardín Ming: rocallas, puente Jiu Qu, pabellones. ¥40 abr-jun. Abre 9:00, última entrada 16:00.', 'Bazar: xiaolongbao, té. Metro Yuyuan L10.'] },
-                { place: 'The Bund + Crucero Huangpu', city: 'Shanghai', emoji: '🌃', recommendedTime: 'Paseo día; crucero 18:00-20:30 (luces)', crowdNote: 'Abril bueno. Noche = skyline iluminado. Reservar crucero.', visitDuration: 'Paseo 1-2h + crucero 50 min', toNext: 'Pudong (Torre Pearl): crucero o metro L2, ~15 min', points: ['Paseo 1,5 km fachadas coloniales. Contraste con Pudong.', 'Crucero noche 45-50 min, salidas 18:00-20:30. ~120-180¥. ⭐ Reservar con antelación.'] },
-                { place: 'Maglev + Torre Oriental Pearl', city: 'Shanghai', emoji: '🚄', recommendedTime: 'Tarde / atardecer (vistas y luces)', crowdNote: 'Abril bueno. Torre al atardecer para día y noche.', visitDuration: 'Maglev 30 min + Torre 1-2h', toNext: 'Nanjing Road: ~2 km, 10 min metro', points: ['Maglev 430 km/h ~50¥ ida. Torre Oriental Pearl desde ¥99; Shanghai Tower desde ¥90.', '⭐ Reserva online recomendada (10-20 días antes); llevar pasaporte.'] },
-                { place: 'Zhujiajiao', city: 'Shanghai', emoji: '🏘️', recommendedTime: 'Mañana (día completo)', crowdNote: 'Abril agradable. ~1h transporte; llegar temprano para disfrutar.', visitDuration: '4-5h (transporte 1h ida + pueblo + barca)', toNext: 'Shanghai centro: ~50 km, 1h bus/metro', points: ['Pueblo acuático: Puente Fangsheng, paseo en barca, North Street. ~1 h desde Shanghai.', 'Comida: zongzi, carne estofada. No suele requerir reserva.'] },
-                { place: 'Concesión Francesa + Tianzifang', city: 'Shanghai', emoji: '☕', recommendedTime: 'Tarde / noche (ambiente)', crowdNote: 'Abril bueno. Tianzifang más animado por la tarde.', visitDuration: '3-4h (pasear + cafés + Tianzifang)', toNext: '—', points: ['Calles con árboles, galerías y cafés. Tianzifang: callejones con tiendas y arte.', 'Restaurantes de barrio normalmente sin reserva; alta gama reservar.'] }
+                { place: 'Ciudad Prohibida', city: 'Beijing', emoji: '🏯', cost: '60¥ entrada (gratis <18)', openingHours: '8:30-17:00 (última entrada 16:10)', recommendedTime: '8:30 apertura o después 14:00', crowdNote: 'Abril alta temporada (80.000/día). Evitar 10:00-13:00. Entre semana menos gente.', visitDuration: '4-5h con calma', toNext: 'Jingshan: ~0,5 km, 5 min andar (salida norte)', toNextCost: '0¥ andando', points: ['Los Tres Salones: Suprema Armonía, Armonía Central, Preservación de la Armonía.', 'Los Tres Palacios Traseros: residencia imperial y Jardín Imperial.', 'Recorrido norte-sur desde la Puerta Wumen. Reservar 7 días antes.'] },
+                { place: 'Plaza Tiananmen + Jingshan', city: 'Beijing', emoji: '🇨🇳', cost: 'Gratis (Jingshan ~2¥)', openingHours: 'Tiananmen 24h; Jingshan 6:30-21:00', recommendedTime: 'Mañana temprano o atardecer', crowdNote: 'Abril agradable. Jingshan al atardecer para vistas.', visitDuration: 'Tiananmen 1h + Jingshan 1h', toNext: 'Beihai: ~0,5 km, 3 min andar (puerta oeste Jingshan)', toNextCost: '0¥ andando', points: ['Tiananmen: la plaza más grande del mundo. Foto con Mao.', 'Jingshan: colina artificial con las mejores vistas de la Ciudad Prohibida.'] },
+                { place: 'Gran Muralla Mutianyu', city: 'Beijing', emoji: '🛝', cost: 'Entrada ~40¥ + bus 15¥ + teleférico ~140¥ (combo ~220¥); coche ~700¥ ida/vuelta', openingHours: '7:30-18:00 (abril)', recommendedTime: '7:30 apertura (llegar temprano)', crowdNote: 'Abril moderado, entre semana mejor. Evitar mediodía y fines de semana.', visitDuration: '3-4h con calma (teleférico + paseo + tobogán)', toNext: 'Beijing centro: ~70 km, 1h15 coche (vuelta)', toNextCost: '~700¥ coche ida/vuelta', points: ['Una de las secciones mejor conservadas. Teleférico subida, tobogán bajada.', '23 torres de vigilancia. Coche privado ~700¥ ida/vuelta.'] },
+                { place: 'Templo del Cielo', city: 'Beijing', emoji: '⛩️', cost: '~35¥ (parque + salones)', openingHours: 'Parque 6:00-22:00; edificios 8:00-17:30', recommendedTime: '7:00-7:30 (taichi y locales)', crowdNote: 'Abril ideal. Edificios abren 8:00. Entre semana menos colas.', visitDuration: '2-3h con calma (parque + salones)', toNext: 'Hutongs: ~4 km, 15 min taxi', toNextCost: '~15-25¥ taxi', points: ['Salón de Oración por las Buenas Cosechas (edificio circular azul).', 'Muro del Eco y Altar Circular. Ver taichi y vida local por la mañana.'] },
+                { place: 'Hutongs + Shichahai + Houhai', city: 'Beijing', emoji: '🚲', cost: 'Rickshaw ~150-200¥/grupo; paseo gratis', openingHours: 'Calle / zona siempre accesible', recommendedTime: 'Tarde / noche (Houhai con luces)', crowdNote: 'Abril bueno. Noche más ambiente en Houhai.', visitDuration: '2-3h (rickshaw 1h + paseo Houhai)', toNext: '—', toNextCost: '', points: ['Tour en rickshaw por callejones tradicionales.', 'Shichahai y Lago Houhai: bares y ambiente nocturno.'] },
+                { place: 'Palacio de Verano', city: 'Beijing', emoji: '🐉', cost: '~30¥ entrada; barco ~20¥', openingHours: '8:00-18:00 (abril)', recommendedTime: '8:00 apertura jardines', crowdNote: 'Abril alta temporada. Entre semana y mañana menos gente.', visitDuration: '3-4h con calma (lago + corredor + barco)', toNext: 'Centro: ~15 km, 40 min metro L4', toNextCost: '~5¥ metro', points: ['Lago Kunming: barco dragón y Puente de los 17 Arcos.', 'Gran Corredor (750 m con pinturas), Pagoda del Incienso, Barco de Mármol. Metro L4.'] },
+                { place: 'Templo Lama + Villa Olímpica', city: 'Beijing', emoji: '🏟️', cost: 'Templo Lama ~25¥; Villa Olímpica gratis (exterior)', openingHours: 'Templo 9:00-16:30; Nido/Cubo luces ~19:40', recommendedTime: 'Mañana templos; 19:40 Villa Olímpica (luces)', crowdNote: 'Abril bueno. Nido y Cubo se encienden ~19:40.', visitDuration: 'Templo Lama 1-2h + Torres 30 min + Villa Olímpica 1h', toNext: '—', toNextCost: '', points: ['Templo Lama: mayor templo tibetano en Beijing. Templo Confucio y Torres Campana/Tambor.', 'Nido y Cubo iluminados ~19:40.'] },
+                { place: 'Guerreros de Terracota', city: "Xi'an", emoji: '⚔️', cost: '120¥ (gratis <14); bus ~10¥ ida', openingHours: '8:30-18:00', recommendedTime: '8:30 apertura o 15:00-16:00', crowdNote: 'Abril bueno. Jue 9 = entre semana, menos colas. Evitar 10:00-14:00.', visitDuration: '4-5h con calma (3 fosas + museo carros + jardín)', toNext: 'Xi\'an centro: ~40 km, 1h bus/ taxi', toNextCost: '~10¥ bus o ~80-100¥ taxi', points: ['Fosa 1: la más espectacular, ~6000 guerreros en formación.', 'Fosas 2 y 3: arqueros, carros, generales. Museo de Carros de Bronce. Reserva online obligatoria.'] },
+                { place: 'Muralla de Xi\'an + Pagodas', city: "Xi'an", emoji: '🚲', cost: 'Muralla ~54¥; Pequeña Pagoda ~50¥; Gran Pagoda ~50¥', openingHours: 'Muralla 8:00-20:00; show fuentes 20:30', recommendedTime: 'Muralla al atardecer; show fuentes 20:30', crowdNote: 'Abril agradable. Bici al atardecer; Gran Pagoda show 20:30.', visitDuration: 'Muralla 2-3h bici + Pequeña Pagoda 1h + Gran Pagoda show 20:30 1h', toNext: 'Barrio Musulmán: ~3 km, 10 min taxi', toNextCost: '~15-20¥ taxi', points: ['Muralla: una de las mejor conservadas. Recorrer en bici al atardecer.', 'Gran Pagoda Ganso: fuentes y show 20:30. Pequeña Pagoda + museo.'] },
+                { place: 'Barrio Musulmán', city: "Xi'an", emoji: '🍢', cost: 'Gratis (comida ~50-150¥/persona)', openingHours: 'Calle / puestos 10:00-22:00', recommendedTime: '17:00-18:00 o 21:00 (menos colas)', crowdNote: 'Abril bueno. Evitar fin de semana y 19:00-20:00 pico.', visitDuration: '2-3h (pasear + cenar)', toNext: '—', toNextCost: '', points: ['Calle de comida y artesanía. Cena de roujiamo, lamb skewers y pasteles.'] },
+                { place: 'Parque Nacional Zhangjiajie (Avatar)', city: 'Zhangjiajie', emoji: '🏔️', cost: '227¥ 4 días (gratis <14); ascensor Bailong ~72¥', openingHours: '7:00-18:00', recommendedTime: '7:00-7:30 apertura (puertas)', crowdNote: 'Abril principios: menos gente. Niebla mañana, se disipa mediodía.', visitDuration: 'Día completo 6-8h (Yuanjiajie + Tianzi + ascensor)', toNext: 'Wulingyuan pueblo: dentro del parque; Ten-Mile Gallery ~20 min trenecito', toNextCost: 'Incluido / trenecito ~38¥', points: ['Yuanjiajie: pilares que inspiraron las montañas de Avatar. Ascensor Bailong 326 m.', 'Montaña Tianzi. Entrada válida 4 días.'] },
+                { place: 'Tianmen Mountain', city: 'Zhangjiajie', emoji: '🪟', cost: '278¥ (gratis <14); incluye teleférico', openingHours: '7:30-16:00 (teleférico 7:30)', recommendedTime: '7:00-7:30 (antes teleférico 7:30)', crowdNote: 'Abril ideal. Llegar 30 min antes o colas 2h+. Evitar mayo.', visitDuration: '5-6h con calma (teleférico + cima + Cueva del Cielo)', toNext: 'Wulingyuan: ~8 km, 20 min bus', toNextCost: '~5-10¥ bus', points: ['Teleférico más largo del mundo. Pasarela de cristal y Cueva del Cielo.', 'Reservar entrada obligatorio.'] },
+                { place: 'Ten-Mile Gallery', city: 'Zhangjiajie', emoji: '🚂', cost: 'Trencito ~38¥ (ida/vuelta)', openingHours: '7:00-18:00', recommendedTime: 'Tarde (tras Yuanjiajie/Tianzi)', crowdNote: 'Abril bueno. Trencito relajado para cerrar el día.', visitDuration: '1-1,5h (trencito ida y vuelta)', toNext: '—', toNextCost: '', points: ['Trencito panorámico entre pilares. Relajado para cerrar el día.'] },
+                { place: 'Shanghai Disneyland', city: 'Shanghai', emoji: '🏰', cost: '~475¥/día adulto, ~356¥ niño (Early Entry +199¥ opcional)', openingHours: '8:00-21:00 (varía por día)', recommendedTime: '45 min antes de apertura', crowdNote: 'Abril popular. Miér 15 y Jue 16 = entre semana, menos colas que finde.', visitDuration: 'Día completo 8-10h (parque + show noche)', toNext: 'Disneytown: 0 km, 5 min andar (fuera parque)', toNextCost: '0¥ andando', points: ['TRON, Piratas, Zootopia, Seven Dwarfs. Show ILLUMINATE! por la noche.', 'Early Entry ¥199 o gratis con hotel Disney.', '⭐ Reservar entradas online antes del 10 Abril.'] },
+                { place: 'Yu Garden + Bazaar', city: 'Shanghai', emoji: '🌿', cost: 'Jardín ¥40 (abr-jun); Bazar gratis', openingHours: 'Jardín 9:00-16:00 (última entrada 16:00)', recommendedTime: 'Antes 9:00 o después 15:00', crowdNote: 'Abril alta temporada. Entre semana y tarde menos colas.', visitDuration: 'Jardín 1-2h + Bazar 1h', toNext: 'The Bund: ~1,5 km, 20 min andar', toNextCost: '0¥ andando', points: ['Jardín Ming: rocallas, puente Jiu Qu, pabellones. ¥40 abr-jun. Abre 9:00, última entrada 16:00.', 'Bazar: xiaolongbao, té. Metro Yuyuan L10.'] },
+                { place: 'The Bund + Crucero Huangpu', city: 'Shanghai', emoji: '🌃', cost: 'Paseo gratis; crucero ~120-180¥', openingHours: 'Paseo 24h; cruceros 18:00-20:30', recommendedTime: 'Paseo día; crucero 18:00-20:30 (luces)', crowdNote: 'Abril bueno. Noche = skyline iluminado. Reservar crucero.', visitDuration: 'Paseo 1-2h + crucero 50 min', toNext: 'Pudong (Torre Pearl): crucero o metro L2, ~15 min', toNextCost: 'Metro ~4¥ o crucero ya pagado', points: ['Paseo 1,5 km fachadas coloniales. Contraste con Pudong.', 'Crucero noche 45-50 min, salidas 18:00-20:30. ~120-180¥. ⭐ Reservar con antelación.'] },
+                { place: 'Maglev + Torre Oriental Pearl', city: 'Shanghai', emoji: '🚄', cost: 'Maglev ~50¥ ida; Torre Pearl desde ¥99, Shanghai Tower desde ¥90', openingHours: 'Maglev 7:02-21:42; Torres 8:00-22:00', recommendedTime: 'Tarde / atardecer (vistas y luces)', crowdNote: 'Abril bueno. Torre al atardecer para día y noche.', visitDuration: 'Maglev 30 min + Torre 1-2h', toNext: 'Nanjing Road: ~2 km, 10 min metro', toNextCost: '~4¥ metro', points: ['Maglev 430 km/h ~50¥ ida. Torre Oriental Pearl desde ¥99; Shanghai Tower desde ¥90.', '⭐ Reserva online recomendada (10-20 días antes); llevar pasaporte.'] },
+                { place: 'Zhujiajiao', city: 'Shanghai', emoji: '🏘️', cost: 'Entrada pueblo ~20¥; barca ~30-50¥', openingHours: '8:00-16:30 (atracciones)', recommendedTime: 'Mañana (día completo)', crowdNote: 'Abril agradable. ~1h transporte; llegar temprano para disfrutar.', visitDuration: '4-5h (transporte 1h ida + pueblo + barca)', toNext: 'Shanghai centro: ~50 km, 1h bus/metro', toNextCost: '~10¥ bus o metro', points: ['Pueblo acuático: Puente Fangsheng, paseo en barca, North Street. ~1 h desde Shanghai.', 'Comida: zongzi, carne estofada. No suele requerir reserva.'] },
+                { place: 'Concesión Francesa + Tianzifang', city: 'Shanghai', emoji: '☕', cost: 'Gratis (cafés/restaurantes según consumo)', openingHours: 'Calles / Tianzifang 10:00-22:00', recommendedTime: 'Tarde / noche (ambiente)', crowdNote: 'Abril bueno. Tianzifang más animado por la tarde.', visitDuration: '3-4h (pasear + cafés + Tianzifang)', toNext: '—', toNextCost: '', points: ['Calles con árboles, galerías y cafés. Tianzifang: callejones con tiendas y arte.', 'Restaurantes de barrio normalmente sin reserva; alta gama reservar.'] }
             ],
 
             // EAT: 3 propuestas comida + 3 cena por día. star=true = típico/curioso de la zona
@@ -2201,7 +2238,10 @@
                 const queVerHtml = qv ? `
                     <div class="day-section day-que-ver">
                         <div class="day-section-title">📌 Qué ver aquí · ${qv.place}</div>
-                        ${(qv.recommendedTime || qv.crowdNote) ? `<div class="que-ver-time" style="margin-bottom:8px;">🕐 ${qv.recommendedTime || ''}${qv.recommendedTime && qv.crowdNote ? ' · ' : ''}${qv.crowdNote || ''}</div>` : ''}
+                        ${qv.cost ? `<div class="que-ver-cost">💰 Cuanto cuesta (con calma): ${addEurToYuanPrice(qv.cost)}</div>` : ''}
+                        ${qv.openingHours ? `<div class="que-ver-opening">🕒 Horario apertura: ${qv.openingHours}</div>` : ''}
+                        ${qv.recommendedTime ? `<div class="que-ver-time">🕐 Hora recomendada: ${qv.recommendedTime}</div>` : ''}
+                        ${qv.crowdNote ? `<div class="que-ver-time">💡 Tips: ${qv.crowdNote}</div>` : ''}
                         ${(qv.visitDuration || qv.toNext) ? `<div class="que-ver-duration" style="margin-bottom:8px;">${qv.visitDuration ? `(Visita con calma: ${qv.visitDuration})` : ''}${qv.visitDuration && qv.toNext ? ' ' : ''}${qv.toNext ? `(Al siguiente: ${qv.toNext})` : ''}</div>` : ''}
                         <ul class="que-ver-points">
                             ${(qv.points || []).map(p => `<li>${addEurToYuanPrice(p)}</li>`).join('')}
@@ -2228,10 +2268,12 @@
                             <div class="day-section">
                                 <div class="day-section-title">☀️ Tarde</div>
                                 <div class="day-section-text">${day.afternoon}</div>
+                                ${day.afternoonDestInfo ? `<div class="dest-info">🚶 ${day.afternoonDestInfo}</div>` : ''}
                             </div>
                             <div class="day-section">
                                 <div class="day-section-title">🌙 Noche</div>
                                 <div class="day-section-text">${day.evening}</div>
+                                ${day.eveningDestInfo ? `<div class="dest-info">🚶 ${day.eveningDestInfo}</div>` : ''}
                             </div>
                             ${day.notes ? `<div class="day-section"><div class="day-section-title">📝 Notas</div><div class="day-section-text text-gold">${addEurToYuanPrice(day.notes)}</div></div>` : ''}
                             ${queVerHtml}
@@ -2434,8 +2476,11 @@
             if (!container || !tripData.queVer) return;
             container.innerHTML = tripData.queVer.map(q => `
                 <div class="que-ver-card">
-                    ${(q.recommendedTime || q.crowdNote) ? `<div class="que-ver-time">🕐 ${q.recommendedTime || ''}${q.recommendedTime && q.crowdNote ? ' · ' : ''}${q.crowdNote || ''}</div>` : ''}
-                    ${(q.visitDuration || q.toNext) ? `<div class="que-ver-duration">${q.visitDuration ? `(Visita con calma: ${q.visitDuration})` : ''}${q.visitDuration && q.toNext ? ' ' : ''}${q.toNext ? `(Al siguiente: ${q.toNext})` : ''}</div>` : ''}
+                    ${q.cost ? `<div class="que-ver-cost">💰 Cuanto cuesta (con calma): ${addEurToYuanPrice(q.cost)}</div>` : ''}
+                    ${q.openingHours ? `<div class="que-ver-opening">🕒 Horario apertura: ${q.openingHours}</div>` : ''}
+                    ${q.recommendedTime ? `<div class="que-ver-time">🕐 Hora recomendada: ${q.recommendedTime}</div>` : ''}
+                    ${q.crowdNote ? `<div class="que-ver-time">💡 Tips: ${q.crowdNote}</div>` : ''}
+                    ${(q.visitDuration || q.toNext) ? `<div class="que-ver-duration">${q.visitDuration ? `(Visita con calma: ${q.visitDuration})` : ''}${q.visitDuration && q.toNext ? ' ' : ''}${q.toNext ? `(Al siguiente: ${q.toNext})${q.toNextCost ? ' · ' + q.toNextCost : ''}` : ''}</div>` : ''}
                     <div class="que-ver-header">
                         <span class="que-ver-emoji">${q.emoji}</span>
                         <div>
