@@ -714,6 +714,14 @@
             text-align: right;
         }
         
+        .phrase-card--highlight {
+            padding: 16px;
+            border-left: 4px solid var(--china-red);
+        }
+        .phrase-card--highlight .phrase-chinese { font-size: 1.6rem; }
+        .phrase-card--highlight .phrase-pinyin { font-size: 1rem; }
+        .phrase-card--highlight .phrase-spanish { font-size: 1.1rem; font-weight: 600; color: #F3F4F6; }
+        
         .emergency-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -1452,6 +1460,34 @@
     <div id="page-info" class="page">
         <div class="info-section">
             <h3 class="info-title">🗣️ Frases útiles</h3>
+            <div class="phrase-card phrase-card--highlight">
+                <div>
+                    <div class="phrase-chinese">我不吃辣</div>
+                    <div class="phrase-pinyin">Wǒ bù chī là</div>
+                </div>
+                <div class="phrase-spanish">No como picante</div>
+            </div>
+            <div class="phrase-card">
+                <div>
+                    <div class="phrase-chinese">是</div>
+                    <div class="phrase-pinyin">Shì</div>
+                </div>
+                <div class="phrase-spanish">Sí</div>
+            </div>
+            <div class="phrase-card">
+                <div>
+                    <div class="phrase-chinese">不 / 不是</div>
+                    <div class="phrase-pinyin">Bù / Bù shì</div>
+                </div>
+                <div class="phrase-spanish">No</div>
+            </div>
+            <div class="phrase-card">
+                <div>
+                    <div class="phrase-chinese">我不要香菜</div>
+                    <div class="phrase-pinyin">Wǒ bù yào xiāng cài</div>
+                </div>
+                <div class="phrase-spanish">No quiero cilantro</div>
+            </div>
             <div class="phrase-card">
                 <div>
                     <div class="phrase-chinese">你好</div>
@@ -1479,13 +1515,6 @@
                     <div class="phrase-pinyin">Cè suǒ zài nǎ lǐ</div>
                 </div>
                 <div class="phrase-spanish">¿Dónde está el baño?</div>
-            </div>
-            <div class="phrase-card">
-                <div>
-                    <div class="phrase-chinese">我不吃辣</div>
-                    <div class="phrase-pinyin">Wǒ bù chī là</div>
-                </div>
-                <div class="phrase-spanish">No como picante</div>
             </div>
             <div class="phrase-card">
                 <div>
@@ -1871,6 +1900,12 @@
             ],
 
             checklist: [
+                {
+                    category: '📶 Conectividad',
+                    items: [
+                        { id: 'sim1', text: 'Tarjeta E-sim Holafly x 2, comprada', checked: true }
+                    ]
+                },
                 {
                     category: '📄 Documentación',
                     items: [
@@ -2378,10 +2413,16 @@
         // Checklist
         function renderChecklist() {
             const saved = JSON.parse(localStorage.getItem('chinaTrip_checklist') || '{}');
+            tripData.checklist.forEach(cat => {
+                cat.items.forEach(item => {
+                    if (item.checked && saved[item.id] === undefined) saved[item.id] = true;
+                });
+            });
+            localStorage.setItem('chinaTrip_checklist', JSON.stringify(saved));
             let html = '';
             
             tripData.checklist.forEach((cat, catIndex) => {
-                const catDone = cat.items.filter(item => saved[item.id]).length;
+                const catDone = cat.items.filter(item => saved[item.id] !== undefined ? saved[item.id] : item.checked).length;
                 const isOpen = catIndex === 0 ? 'open' : '';
                 
                 html += `
@@ -2394,7 +2435,8 @@
                 `;
                 
                 cat.items.forEach(item => {
-                    const checked = saved[item.id] ? 'checked' : '';
+                    const isChecked = saved[item.id] !== undefined ? saved[item.id] : !!item.checked;
+                    const checked = isChecked ? 'checked' : '';
                     html += `
                         <div class="checklist-item ${checked}" onclick="toggleCheckItem('${item.id}')">
                             <div class="checkbox">
@@ -2433,7 +2475,8 @@
             tripData.checklist.forEach(cat => {
                 cat.items.forEach(item => {
                     total++;
-                    if (saved[item.id]) done++;
+                    const isChecked = saved[item.id] !== undefined ? saved[item.id] : !!item.checked;
+                    if (isChecked) done++;
                 });
             });
             
