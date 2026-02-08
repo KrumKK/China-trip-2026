@@ -297,6 +297,26 @@
             color: #86EFAC;
         }
         
+        .cache-refresh-wrap {
+            margin-top: 24px;
+            padding: 16px 0;
+            text-align: center;
+        }
+        .btn-cache-refresh {
+            padding: 10px 16px;
+            font-size: 0.85rem;
+            color: #9CA3AF;
+            background: rgba(55, 65, 81, 0.6);
+            border: 1px solid #4B5563;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+        }
+        .btn-cache-refresh:hover {
+            background: rgba(75, 85, 99, 0.8);
+            color: #F3F4F6;
+        }
+        
         /* City Cards */
         .city-card {
             cursor: pointer;
@@ -1256,6 +1276,10 @@
             </div>
             <div class="arrival-antelacion">🔴 Llegar al aeropuerto: <strong>12:40</strong> (2 h antes — vuelo doméstico China)</div>
             <div class="taxi-time-line">🚕 Taxi desde Avatar Mountain Resort (Wulingyuan/Zimugang) → Aeropuerto Zhangjiajie (DYG): <strong>~50-60 min</strong> (~35 km)</div>
+        </div>
+
+        <div class="cache-refresh-wrap">
+            <button type="button" class="btn-cache-refresh" onclick="clearAppCache()" title="Ver cambios sin reinstalar">🔄 Actualizar app (borrar caché)</button>
         </div>
     </div>
 
@@ -2720,6 +2744,30 @@
             navigator.serviceWorker.register('sw.js')
                 .then(() => console.log('SW registered'))
                 .catch(err => console.log('SW error:', err));
+        }
+
+        // Borrar caché y actualizar app (sin perder localStorage)
+        function clearAppCache() {
+            const doReload = () => {
+                window.location.reload(true);
+            };
+            if ('caches' in window) {
+                caches.keys().then(names => {
+                    Promise.all(names.map(name => caches.delete(name)))
+                        .then(() => {
+                            if ('serviceWorker' in navigator) {
+                                navigator.serviceWorker.getRegistrations().then(regs => {
+                                    Promise.all(regs.map(r => r.unregister())).then(doReload);
+                                }).catch(doReload);
+                            } else doReload();
+                        })
+                        .catch(doReload);
+                }).catch(doReload);
+            } else if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.getRegistrations().then(regs => {
+                    Promise.all(regs.map(r => r.unregister())).then(doReload);
+                }).catch(doReload);
+            } else doReload();
         }
     </script>
 </body>
