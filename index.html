@@ -2305,27 +2305,26 @@
             }
         }
 
-        // Countdown
+        // Countdown (días desde 00:00 de hoy hasta 00:00 del día de salida)
         function updateCountdown() {
             const now = new Date();
-            const diff = tripData.startDate - now;
-            
-            if (diff <= 0) {
+            const today00 = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+            const tripStart00 = new Date(tripData.startDate.getFullYear(), tripData.startDate.getMonth(), tripData.startDate.getDate());
+            const diffMs = tripStart00 - today00;
+            const days = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+
+            if (days < 0) {
                 document.getElementById('countdown-time').textContent = '¡Ya!';
                 document.getElementById('countdown-label').textContent = 'El viaje ha comenzado';
                 return;
             }
-            
-            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            
-            if (days > 0) {
-                document.getElementById('countdown-time').textContent = days;
-                document.getElementById('countdown-label').textContent = days === 1 ? 'día' : 'días';
-            } else {
-                document.getElementById('countdown-time').textContent = hours;
-                document.getElementById('countdown-label').textContent = hours === 1 ? 'hora' : 'horas';
+            if (days === 0) {
+                document.getElementById('countdown-time').textContent = '¡Hoy!';
+                document.getElementById('countdown-label').textContent = 'Empieza el viaje';
+                return;
             }
+            document.getElementById('countdown-time').textContent = days;
+            document.getElementById('countdown-label').textContent = days === 1 ? 'día' : 'días';
         }
 
         // Show city detail
