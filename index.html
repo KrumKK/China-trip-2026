@@ -793,6 +793,77 @@
         .phrase-card--highlight .phrase-chinese { font-size: 1.6rem; }
         .phrase-card--highlight .phrase-pinyin { font-size: 1rem; }
         .phrase-card--highlight .phrase-spanish { font-size: 1.1rem; font-weight: 600; color: #F3F4F6; }
+
+        /* Voice translator + DiDi */
+        .translator-card {
+            background: rgba(0,0,0,0.2);
+            border-radius: 12px;
+            padding: 14px;
+            border-left: 4px solid var(--china-gold);
+        }
+        .translator-modes {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 10px;
+        }
+        .voice-action-btn {
+            padding: 10px 14px;
+            border-radius: 10px;
+            border: 1px solid rgba(75, 85, 99, 0.7);
+            background: rgba(55, 65, 81, 0.6);
+            color: #F3F4F6;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: background 0.2s, transform 0.1s;
+        }
+        .voice-action-btn:hover {
+            background: rgba(55, 65, 81, 0.85);
+        }
+        .voice-mic-btn {
+            padding: 10px 14px;
+            border-radius: 10px;
+            border: 1px solid rgba(220, 38, 38, 0.35);
+            background: rgba(220, 38, 38, 0.12);
+            color: var(--china-red);
+            cursor: pointer;
+            font-size: 0.95rem;
+            font-weight: 800;
+            transition: background 0.2s, transform 0.1s;
+        }
+        .voice-mic-btn:hover {
+            background: rgba(220, 38, 38, 0.18);
+        }
+        .voice-stop-btn {
+            border-color: rgba(245, 158, 11, 0.45);
+            background: rgba(245, 158, 11, 0.14);
+            color: #FBBF24;
+        }
+        .translator-result {
+            margin-top: 10px;
+            padding: 10px 12px;
+            background: rgba(0,0,0,0.15);
+            border-radius: 10px;
+            border-left: 3px solid rgba(125, 211, 252, 0.55);
+        }
+        .translator-line {
+            margin-bottom: 8px;
+            color: #D1D5DB;
+            font-size: 0.9rem;
+        }
+        .translator-line strong {
+            color: #F3F4F6;
+        }
+        .translator-input-row input {
+            width: 100%;
+            background: #374151;
+            border: none;
+            padding: 12px;
+            border-radius: 10px;
+            color: white;
+            font-size: 0.95rem;
+        }
         
         .emergency-grid {
             display: grid;
@@ -1625,6 +1696,51 @@
                     <button class="speak-btn" type="button" onclick="speakChinese('太贵了')" aria-label="Reproducir: 太贵了">🔊</button>
                 </div>
                 <div class="phrase-spanish">Muy caro</div>
+            </div>
+        </div>
+
+        <div class="info-section">
+            <h3 class="info-title">🎙️ Traductor de voz</h3>
+            <div class="translator-card">
+                <div class="tip-item" style="margin-bottom:10px;">
+                    Pulsa <strong>Hablar</strong> y la app reconocerá tu voz. Luego intentará traducir en pantalla.
+                    Si la traducción no funciona por permisos, abrirá Google Translate.
+                </div>
+
+                <div class="translator-modes">
+                    <button class="voice-action-btn" type="button" onclick="setVoiceTranslatorMode('es-to-zh')">Español → Chino</button>
+                    <button class="voice-action-btn" type="button" onclick="setVoiceTranslatorMode('zh-to-es')">Chino → Español</button>
+                </div>
+
+                <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:8px; margin-bottom:8px;">
+                    <button class="voice-mic-btn" type="button" onclick="startVoiceTranslate()">🎤 Hablar</button>
+                    <button class="voice-action-btn voice-stop-btn" type="button" onclick="stopVoiceTranslate()">⏹️ Parar</button>
+                </div>
+
+                <div class="translator-result">
+                    <div class="translator-line"><strong>Texto reconocido:</strong> <span id="vd-recognized">—</span></div>
+                    <div class="translator-line"><strong>Traducción:</strong> <span id="vd-translated">—</span></div>
+                </div>
+
+                <div style="text-align:center; margin-top:10px;">
+                    <button class="voice-action-btn" type="button" onclick="speakVoiceTranslation()">🔊 Escuchar traducción</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="info-section">
+            <h3 class="info-title">🚕 DiDi</h3>
+            <div class="translator-card" style="border-left-color: var(--china-red);">
+                <div class="tip-item" style="margin-bottom:10px;">
+                    Escribe el destino (dirección o hotel). El botón lo copia y abre DiDi para que completes la solicitud.
+                </div>
+                <div class="translator-input-row">
+                    <input type="text" id="didi-dest" placeholder="Destino (ej. Central Hotel Shanghai / Aeropuerto PVG / Ciudad Prohibida)" onkeydown="if(event.key==='Enter') openDiDi()" />
+                </div>
+                <div style="text-align:center; margin-top:10px;">
+                    <button class="voice-mic-btn" type="button" onclick="openDiDi()">🚕 Pedir DiDi</button>
+                </div>
+                <div id="didi-status" class="text-sm text-gray mt-2" style="text-align:center;">—</div>
             </div>
         </div>
 
@@ -2805,6 +2921,128 @@
             } catch (e) {
                 console.log('TTS error:', e);
             }
+        }
+
+        // ==================== VOICE TRANSLATOR + DIDi ====================
+        let voiceTranslatorMode = 'es-to-zh'; // default: español -> chino
+        let voiceRecognition = null;
+        let lastVoiceTranslation = '';
+        let lastVoiceTranslationLang = 'zh-CN';
+
+        function setVoiceTranslatorMode(mode) {
+            voiceTranslatorMode = mode;
+            document.getElementById('vd-recognized').textContent = '—';
+            document.getElementById('vd-translated').textContent = '—';
+            lastVoiceTranslation = '';
+            lastVoiceTranslationLang = mode === 'es-to-zh' ? 'zh-CN' : 'es-ES';
+        }
+
+        async function translateText(text, fromLang, toLang) {
+            // Intento usando Google Translate web endpoint (puede fallar por CORS; en ese caso abrimos Google Translate).
+            const url =
+                'https://translate.googleapis.com/translate_a/single?client=gtx' +
+                '&sl=' + encodeURIComponent(fromLang) +
+                '&tl=' + encodeURIComponent(toLang) +
+                '&dt=t' +
+                '&q=' + encodeURIComponent(text);
+            const res = await fetch(url);
+            const data = await res.json();
+            return data?.[0]?.[0]?.[0] || '';
+        }
+
+        function startVoiceTranslate() {
+            try {
+                const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+                if (!SpeechRecognition) {
+                    alert('Tu navegador no soporta reconocimiento de voz (Web Speech API).');
+                    return;
+                }
+
+                const fromLang = voiceTranslatorMode === 'es-to-zh' ? 'es-ES' : 'zh-CN';
+                const toLang = voiceTranslatorMode === 'es-to-zh' ? 'zh-CN' : 'es';
+
+                if (!voiceRecognition) {
+                    voiceRecognition = new SpeechRecognition();
+                    voiceRecognition.continuous = false;
+                    voiceRecognition.interimResults = false;
+                    voiceRecognition.maxAlternatives = 1;
+                }
+
+                voiceRecognition.lang = fromLang;
+
+                voiceRecognition.onresult = async (event) => {
+                    const transcript = event?.results?.[0]?.[0]?.transcript ? event.results[0][0].transcript.trim() : '';
+                    if (!transcript) return;
+
+                    document.getElementById('vd-recognized').textContent = transcript;
+
+                    try {
+                        const translated = await translateText(transcript, fromLang, toLang);
+                        if (!translated) throw new Error('empty translation');
+                        document.getElementById('vd-translated').textContent = translated;
+                        lastVoiceTranslation = translated;
+                        lastVoiceTranslationLang = toLang === 'zh-CN' ? 'zh-CN' : 'es-ES';
+                    } catch (e) {
+                        // Fallback: abrir Google Translate para la traducción.
+                        const gUrl = 'https://translate.google.com/?sl=' + encodeURIComponent(fromLang) + '&tl=' + encodeURIComponent(toLang) + '&text=' + encodeURIComponent(transcript);
+                        document.getElementById('vd-translated').textContent = 'Traducción no disponible aquí (abre Google Translate).';
+                        window.open(gUrl, '_blank', 'noopener noreferrer');
+                    }
+                };
+
+                voiceRecognition.onerror = (err) => {
+                    console.log('voiceRecognition error', err);
+                    document.getElementById('vd-translated').textContent = 'Error de reconocimiento de voz.';
+                };
+
+                voiceRecognition.start();
+            } catch (e) {
+                console.log('startVoiceTranslate error', e);
+            }
+        }
+
+        function stopVoiceTranslate() {
+            try {
+                if (voiceRecognition) voiceRecognition.stop();
+            } catch (e) {
+                // ignore
+            }
+        }
+
+        function speakVoiceTranslation() {
+            try {
+                if (!lastVoiceTranslation) {
+                    alert('Primero haz una traducción para poder escucharla.');
+                    return;
+                }
+                if (!('speechSynthesis' in window) || !('SpeechSynthesisUtterance' in window)) return;
+                window.speechSynthesis.cancel();
+                const u = new SpeechSynthesisUtterance(lastVoiceTranslation);
+                u.lang = lastVoiceTranslationLang;
+                u.rate = 0.95;
+                window.speechSynthesis.speak(u);
+            } catch (e) {
+                console.log('speakVoiceTranslation error', e);
+            }
+        }
+
+        async function openDiDi() {
+            const destInput = document.getElementById('didi-dest');
+            const dest = destInput?.value ? destInput.value.trim() : '';
+            const status = document.getElementById('didi-status');
+            if (!dest) {
+                alert('Escribe un destino para abrir DiDi.');
+                return;
+            }
+            try {
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    await navigator.clipboard.writeText(dest);
+                }
+                status.textContent = 'Destino copiado. Abriendo DiDi... (pega el destino si te lo pide)';
+            } catch (e) {
+                status.textContent = 'No se pudo copiar, pero abriremos DiDi...';
+            }
+            window.open('https://www.didiglobal.com/', '_blank', 'noopener noreferrer');
         }
         
         // Register Service Worker
