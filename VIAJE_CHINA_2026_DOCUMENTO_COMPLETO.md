@@ -151,13 +151,13 @@
 - Tren Beijing–Xi'an G365, 8 Abril, 09:55–14:05, 1.ª clase.
 - Vuelo Xi'an–Zhangjiajie 3U3257, 11 Abril, 08:50–10:20.
 - Vuelo Zhangjiajie–Shanghai H01136, 14 Abril, 14:40–16:50.
-- E-sim Holafly x 2 (comprada).
+- E-sim Holafly x 2 (comprada e instalada).
 
 ### Obligatorias por hacer / verificar
 - **Ciudad Prohibida** (3 Abril): reservar 7 días antes (27 Marzo). 60¥ (gratis <18). https://en.dpm.org.cn/
 - **Guerreros Terracota** (9 Abril): 7 días antes, franja horaria. 120¥ (gratis <14).
 - **Tianmen Mountain** (13 Abril): 5-10 días antes. 278¥ (gratis <14). Llegar 7:00-7:30.
-- **Shanghai Disneyland** (15-16 Abril): 10-30 días (Early Bird). 475¥/356¥ niño por día. Llegar 45 min antes apertura.
+- **Shanghai Disneyland** (15-16 Abril): hemos reservado las entradas para los días **15 y 16 Abril**. 10-30 días (Early Bird). 475¥/356¥ niño por día. Llegar 45 min antes apertura.
 - **Entrada Gran Muralla Mutianyu** (6 Abril): 7 días, mín. 2h antes. 40+15 bus+140 teleférico (combo 220¥).
 
 ### Otras reservas recomendadas
@@ -229,7 +229,7 @@ Por cada día hay 3 opciones de comida y 3 de cena (en la app con precios en ¥ 
 
 ## 11. Preparativos (Checklist)
 
-- **Conectividad:** Tarjeta E-sim Holafly x 2 – comprada.
+- **Conectividad:** Tarjeta E-sim Holafly x 2 – comprada e instalada.
 - **Documentación:** Pasaportes vigentes (mín. 6 meses), exención visa 30 días, copias digitales, seguro viaje, avisar al banco.
 - **Apps:** WeChat, Alipay, Trip.com, Google Translate (chino offline), Maps.me, VPN, DiDi.
 - **Para el niño:** Snacks, medicamentos (Dalsy, termómetro), tablet + auriculares + pelis, libros, cochecito o mochila porteo, ropa cómoda + capas.
@@ -251,7 +251,7 @@ Por cada día hay 3 opciones de comida y 3 de cena (en la app con precios en ¥ 
 - **Vuelo Xi'an–Zhangjiajie:** Modificado por aerolínea de 14:35-16:05 a **08:50-10:20** (3U3257). Llegar al aeropuerto 06:50; taxi desde hotel Gran Pagoda ~45-60 min.
 - **Itinerario Beijing:** Gran Muralla pasada al **lunes 6 Abril**; Palacio de Verano al **sábado 4 Abril**. Reservas y EAT actualizados a esas fechas.
 - **Antelación y taxi:** En cada vuelo/tren en la app: línea roja “Hora de llegada al aeropuerto/estación” (3h/2h/1h) y línea verde con tiempo en taxi desde el hotel correspondiente.
-- **Info y Check:** Añadidas frases chino (Sí, No, no cilantro, no picante en grande); sección antelación en Info con resumen de horas de llegada; en Check, E-sim Holafly x 2 comprada.
+- **Info y Check:** Añadidas frases chino (Sí, No, no cilantro, no picante en grande); sección antelación en Info con resumen de horas de llegada; en Check, E-sim Holafly x 2 comprada e instalada.
 - **Botón “Actualizar app (borrar caché)”** en pestaña Vuelos para ver cambios sin reinstalar (borra caché del Service Worker y recarga).
 
 ---
