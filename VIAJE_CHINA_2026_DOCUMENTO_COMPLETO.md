@@ -229,6 +229,18 @@ Por cada día hay 3 opciones de comida y 3 de cena (en la app con precios en ¥ 
 
 ## 11. Preparativos (Checklist)
 
+- **Botiquín:**
+  - Bentolín Foster pastillas para la alergia
+  - Antibiótico enzo apiletal
+  - Jeringuilla lavado
+  - Mascarilla
+  - Bentolín
+  - Gotas de ojo
+  - Paracetamol
+  - Ibuprofeno
+  - Cristalmina
+  - Daltxii
+  - Rosa
 - **Conectividad:** Tarjeta E-sim Holafly x 2 – comprada e instalada.
 - **Documentación:** Pasaportes vigentes (mín. 6 meses), exención visa 30 días, copias digitales, seguro viaje, avisar al banco.
 - **Apps:** WeChat, Alipay, Trip.com, Google Translate (chino offline), Maps.me, VPN, DiDi.
