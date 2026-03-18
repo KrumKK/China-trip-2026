@@ -764,6 +764,27 @@
             color: #9CA3AF;
             text-align: right;
         }
+
+        .speak-btn {
+            margin-top: 8px;
+            padding: 8px 10px;
+            border-radius: 10px;
+            border: 1px solid rgba(220, 38, 38, 0.35);
+            background: rgba(220, 38, 38, 0.12);
+            color: var(--china-red);
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s, transform 0.1s;
+            user-select: none;
+        }
+
+        .speak-btn:hover {
+            background: rgba(220, 38, 38, 0.18);
+        }
         
         .phrase-card--highlight {
             padding: 16px;
@@ -1537,6 +1558,7 @@
                 <div>
                     <div class="phrase-chinese">我不吃辣</div>
                     <div class="phrase-pinyin">Wǒ bù chī là</div>
+                    <button class="speak-btn" type="button" onclick="speakChinese('我不吃辣')" aria-label="Reproducir: 我不吃辣">🔊</button>
                 </div>
                 <div class="phrase-spanish">No como picante</div>
             </div>
@@ -1544,6 +1566,7 @@
                 <div>
                     <div class="phrase-chinese">是</div>
                     <div class="phrase-pinyin">Shì</div>
+                    <button class="speak-btn" type="button" onclick="speakChinese('是')" aria-label="Reproducir: 是">🔊</button>
                 </div>
                 <div class="phrase-spanish">Sí</div>
             </div>
@@ -1551,6 +1574,7 @@
                 <div>
                     <div class="phrase-chinese">不 / 不是</div>
                     <div class="phrase-pinyin">Bù / Bù shì</div>
+                    <button class="speak-btn" type="button" onclick="speakChinese('不 不是')" aria-label="Reproducir: 不 / 不是">🔊</button>
                 </div>
                 <div class="phrase-spanish">No</div>
             </div>
@@ -1558,6 +1582,7 @@
                 <div>
                     <div class="phrase-chinese">我不要香菜</div>
                     <div class="phrase-pinyin">Wǒ bù yào xiāng cài</div>
+                    <button class="speak-btn" type="button" onclick="speakChinese('我不要香菜')" aria-label="Reproducir: 我不要香菜">🔊</button>
                 </div>
                 <div class="phrase-spanish">No quiero cilantro</div>
             </div>
@@ -1565,6 +1590,7 @@
                 <div>
                     <div class="phrase-chinese">你好</div>
                     <div class="phrase-pinyin">Nǐ hǎo</div>
+                    <button class="speak-btn" type="button" onclick="speakChinese('你好')" aria-label="Reproducir: 你好">🔊</button>
                 </div>
                 <div class="phrase-spanish">Hola</div>
             </div>
@@ -1572,6 +1598,7 @@
                 <div>
                     <div class="phrase-chinese">谢谢</div>
                     <div class="phrase-pinyin">Xiè xiè</div>
+                    <button class="speak-btn" type="button" onclick="speakChinese('谢谢')" aria-label="Reproducir: 谢谢">🔊</button>
                 </div>
                 <div class="phrase-spanish">Gracias</div>
             </div>
@@ -1579,6 +1606,7 @@
                 <div>
                     <div class="phrase-chinese">多少钱</div>
                     <div class="phrase-pinyin">Duō shǎo qián</div>
+                    <button class="speak-btn" type="button" onclick="speakChinese('多少钱')" aria-label="Reproducir: 多少钱">🔊</button>
                 </div>
                 <div class="phrase-spanish">¿Cuánto cuesta?</div>
             </div>
@@ -1586,6 +1614,7 @@
                 <div>
                     <div class="phrase-chinese">厕所在哪里</div>
                     <div class="phrase-pinyin">Cè suǒ zài nǎ lǐ</div>
+                    <button class="speak-btn" type="button" onclick="speakChinese('厕所在哪里')" aria-label="Reproducir: 厕所在哪里">🔊</button>
                 </div>
                 <div class="phrase-spanish">¿Dónde está el baño?</div>
             </div>
@@ -1593,6 +1622,7 @@
                 <div>
                     <div class="phrase-chinese">太贵了</div>
                     <div class="phrase-pinyin">Tài guì le</div>
+                    <button class="speak-btn" type="button" onclick="speakChinese('太贵了')" aria-label="Reproducir: 太贵了">🔊</button>
                 </div>
                 <div class="phrase-spanish">Muy caro</div>
             </div>
@@ -2759,6 +2789,24 @@
             window.addEventListener('scroll', handleScroll, { passive: true });
         });
 
+        // Text-to-Speech (chino) para las frases
+        function speakChinese(text) {
+            try {
+                if (!('speechSynthesis' in window) || !('SpeechSynthesisUtterance' in window)) {
+                    alert('Tu navegador no soporta lectura en voz alta (speechSynthesis).');
+                    return;
+                }
+                window.speechSynthesis.cancel();
+                const u = new SpeechSynthesisUtterance(text);
+                u.lang = 'zh-CN';
+                u.rate = 0.95; // más natural para frases cortas
+                u.pitch = 1;
+                window.speechSynthesis.speak(u);
+            } catch (e) {
+                console.log('TTS error:', e);
+            }
+        }
+        
         // Register Service Worker
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('sw.js')
