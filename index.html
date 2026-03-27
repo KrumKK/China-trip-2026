@@ -2127,7 +2127,7 @@
                 { id: 'r7', name: 'Vuelo Zhangjiajie-Shanghai', city: 'Transporte', visitDate: '14 Abril', bookBefore: '25 Marzo', price: '60-120€/persona', mandatory: true, reserved: true, flightTime: '14:40-16:50', flightNumber: 'H01136', bookUrl: 'https://www.trip.com/flights/' },
                 { id: 'r8', name: 'Parque Zhangjiajie', city: 'Zhangjiajie', visitDate: '12 Abril', bookBefore: 'Antes del viaje', price: '227¥ 4 días (GRATIS <14)', mandatory: false, bookUrl: 'https://www.trip.com/things-to-do/detail/zhangjiajie-national-forest-park-50046034', recommendedTime: '7:00-7:30 apertura', crowdNote: 'Abril principios: menos gente. Niebla mañana.' },
                 { id: 'r9', name: 'Coche privado Muralla', city: 'Beijing', visitDate: '6 Abril', bookBefore: '2 Abril', price: '~700¥', mandatory: false, bookUrl: 'https://www.trip.com/things-to-do/list/beijing-mutianyu-great-wall', recommendedTime: 'Salir 7:00 (llegar 7:30 apertura)', crowdNote: 'Abril moderado. Entre semana mejor.' },
-                { id: 'r10', name: 'Entrada Gran Muralla Mutianyu', city: 'Beijing', visitDate: '6 Abril', bookBefore: '7 días, mín. 2h antes', price: '40+15 bus+140 teleférico (combo 220¥)', mandatory: true, bookUrl: 'https://www.trip.com/things-to-do/detail/mutianyu-great-wall-50046031', recommendedTime: '7:30 apertura (llegar temprano)', crowdNote: 'Abril moderado. Evitar mediodía.' },
+                { id: 'r10', name: 'Entrada Gran Muralla Mutianyu', city: 'Beijing', visitDate: '6 Abril', bookBefore: '7 días, mín. 2h antes', price: '40+15 bus+140 teleférico (combo 220¥)', mandatory: true, reserved: true, reservedLines: ['✅ He reservado la entrada', '✅ Autobús lanzadera', '✅ Teleférico'], bookUrl: 'https://www.trip.com/things-to-do/detail/mutianyu-great-wall-50046031', recommendedTime: '7:30 apertura (llegar temprano)', crowdNote: 'Abril moderado. Evitar mediodía.' },
                 { id: 'r11', name: 'Crucero Huangpu (noche)', city: 'Shanghai', visitDate: '17 Abril', bookBefore: 'Recomendado online', price: '~120-180¥', mandatory: false, bookUrl: 'https://www.trip.com/things-to-do/list/shanghai-the-bund', recommendedTime: '18:00-20:30 (luces skyline)', crowdNote: 'Abril bueno. Noche = vistas iluminadas.' },
                 { id: 'r12', name: 'Torre Oriental Pearl / Shanghai Tower', city: 'Shanghai', visitDate: '18 Abril', bookBefore: '10-20 días, pasaporte', price: 'Desde 99¥ / 90¥', mandatory: false, bookUrl: 'https://www.trip.com/things-to-do/detail/oriental-pearl-tower-50046036', recommendedTime: 'Tarde / atardecer (día y luces)', crowdNote: 'Abril bueno.' }
             ],
@@ -2637,6 +2637,7 @@
                         </div>` : ''}
                     </div>
                     ${showPrice ? `<div class="text-sm text-gold">💰 ${addEurToYuanPrice(r.price)}</div>` : ''}
+                    ${r.reservedLines && r.reservedLines.length ? `<div class="text-sm" style="margin-top:8px; color:#86EFAC;">${r.reservedLines.map(line => `<div>${line}</div>`).join('')}</div>` : ''}
                     ${r.bookUrl ? `<a href="${r.bookUrl}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" class="reservation-book-link">🔗 Reservar / Ver web</a>` : ''}
                 </div>
             `;
