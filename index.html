@@ -971,6 +971,59 @@
             margin-top: 6px;
         }
         
+        .que-ver-hotel-didi {
+            font-size: 0.9rem;
+            line-height: 1.45;
+            color: #E0E7FF;
+            background: rgba(79, 70, 229, 0.15);
+            border: 1px solid rgba(129, 140, 248, 0.35);
+            border-radius: 8px;
+            padding: 10px 12px;
+            margin-bottom: 10px;
+        }
+        .que-ver-hotel-didi-meta {
+            color: #A5B4FC;
+            font-size: 0.85rem;
+        }
+        .que-ver-hotel-didi-note {
+            display: block;
+            margin-top: 6px;
+            font-size: 0.8rem;
+            color: #9CA3AF;
+        }
+        .hotel-didi-day {
+            font-size: 0.88rem;
+            line-height: 1.45;
+            color: #E0E7FF;
+            background: rgba(79, 70, 229, 0.12);
+            border-left: 3px solid #818CF8;
+            padding: 10px 12px;
+            margin-bottom: 12px;
+            border-radius: 0 8px 8px 0;
+        }
+        .hotel-didi-day .hotel-didi-day-meta {
+            color: #A5B4FC;
+            font-size: 0.82rem;
+            margin-top: 4px;
+        }
+        .city-detail-hotel {
+            margin-bottom: 16px;
+            padding: 12px 14px;
+            background: rgba(0, 0, 0, 0.25);
+            border-radius: 8px;
+            border: 1px solid rgba(75, 85, 99, 0.5);
+        }
+        .city-detail-hotel-title {
+            font-weight: 600;
+            color: #F3F4F6;
+            margin-bottom: 6px;
+        }
+        .city-detail-hotel-addr {
+            font-size: 0.85rem;
+            color: #9CA3AF;
+            line-height: 1.4;
+        }
+
         .que-ver-cost, .que-ver-opening {
             font-size: 0.8rem;
             margin-bottom: 4px;
@@ -1521,7 +1574,7 @@
         </div>
 
         <h2 class="section-title">📌 Qué ver en cada sitio</h2>
-        <p class="text-sm text-gray mb-2">Resumen de lo más importante en cada punto del itinerario.</p>
+        <p class="text-sm text-gray mb-2">Resumen de lo más importante en cada punto. En cada tarjeta: <strong>desde tu hotel de esa ciudad</strong> al <strong>primer sitio del día</strong> del itinerario (Didi/taxi: km, tiempo y precio orientativo).</p>
         <div id="que-ver-container"></div>
 
         <h2 class="section-title">📋 Otros sitios (del Excel)</h2>
@@ -1892,6 +1945,30 @@
         // ==================== DATA ====================
         const tripData = {
             startDate: new Date('2026-04-01T12:30:00'),
+
+            /** Por ciudad: hotel base para estimaciones Didi/taxi → primer sitio del día */
+            hotels: {
+                beijing: {
+                    name: 'Jingli Hotel (Heshenghui Dajiaoting Subway)',
+                    shortLabel: 'Hotel Jingli · Chaoyang',
+                    address: '北京市朝阳区东四环中路92号45号楼（大郊亭桥东南角）'
+                },
+                xian: {
+                    name: 'Yimu Yishu Garden Homestay (Gran Pagoda / Datang)',
+                    shortLabel: 'Hotel Yimu Yishu · Yanta',
+                    address: '陕西省西安市雁塔区芙蓉东路99号中海铂悦宫501栋C单元1楼'
+                },
+                zhangjiajie: {
+                    name: 'Avatar Mountain Resort (Zimugang)',
+                    shortLabel: 'Hotel Avatar · entrada Zimugang',
+                    address: 'Wulingyuan · cerca puerta Zimugang del parque'
+                },
+                shanghai: {
+                    name: 'Central Hotel Shanghai',
+                    shortLabel: 'Central Hotel · Huangpu (Jiujiang Rd)',
+                    address: '上海市黄浦区九江路555号'
+                }
+            },
             
             cities: {
                 beijing: {
@@ -1915,6 +1992,7 @@
                             evening: 'Parque Beihai + paseo en barco',
                             notes: '⭐ RESERVAR 7 días antes',
                             queVerPlace: 'Ciudad Prohibida',
+                            hotelToFirstSite: { to: 'Plaza Tiananmen / entrada Ciudad Prohibida (Wumen)', km: '~12-15 km', time: '25-45 min en coche', didi: '~35-60¥', note: 'Estimación Didi/taxi desde Jingli; tráfico matinal muy variable. Metro + bus/taxi posible ~45-60 min.' },
                             afternoonDestInfo: 'Llegar: 0¥ · ~0,5 km, 5 min andar (salida norte Ciudad Prohibida)',
                             eveningDestInfo: 'Llegar: 0¥ · ~0,5 km, 3 min andar (puerta oeste Jingshan)'
                         },
@@ -1926,6 +2004,7 @@
                             evening: 'Zhongguancun tech market 🖥️ o descanso',
                             notes: 'Metro Línea 4',
                             queVerPlace: 'Palacio de Verano',
+                            hotelToFirstSite: { to: 'Palacio de Verano (entrada principal norte/Ronda Suzhou)', km: '~22-28 km', time: '45-70 min en coche', didi: '~70-110¥', note: 'Largo trayecto al noroeste; metro L4 suele ser buena alternativa (~1h).' },
                             afternoonDestInfo: 'Mismo recinto (barco en el lago)',
                             eveningDestInfo: 'Llegar: ~5¥ metro · ~15 km, 40 min L4'
                         },
@@ -1937,6 +2016,7 @@
                             evening: 'Lago Houhai - ambiente nocturno',
                             notes: 'Rickshaw ~150-200¥',
                             queVerPlace: 'Templo del Cielo',
+                            hotelToFirstSite: { to: 'Templo del Cielo (puerta sur / este)', km: '~8-12 km', time: '22-38 min en coche', didi: '~28-45¥', note: 'Distancia media; suele haber bastante tráfico en hora punta.' },
                             afternoonDestInfo: 'Llegar: ~15-25¥ taxi · ~4 km, 15 min',
                             eveningDestInfo: 'Misma zona (Houhai), andando desde Shichahai'
                         },
@@ -1948,6 +2028,7 @@
                             evening: 'Regreso Beijing + Cena Pato Pekín 🦆',
                             notes: 'Coche privado ~700¥ ida/vuelta',
                             queVerPlace: 'Gran Muralla Mutianyu',
+                            hotelToFirstSite: { to: 'Mutianyu (zona entrada / teleférico)', km: '~65-75 km', time: '1h 10 min – 1h 30 min en coche', didi: '~280-400¥ solo ida', note: 'Tenéis coche privado ~700¥ ida/vuelta reservado: es la opción más cómoda. Didi solo ida sale caro; peajes y retorno aparte.' },
                             afternoonDestInfo: 'Mismo recinto (teleférico en Mutianyu)',
                             eveningDestInfo: 'Regreso: ~700¥ coche · ~70 km, 1h15'
                         },
@@ -1959,6 +2040,7 @@
                             evening: 'Villa Olímpica noche (Nido + Cubo) 🏟️',
                             notes: 'Luces se encienden ~19:40',
                             queVerPlace: 'Templo Lama + Villa Olímpica',
+                            hotelToFirstSite: { to: 'Templo Lama (Yonghegong)', km: '~11-14 km', time: '28-48 min en coche', didi: '~32-55¥', note: 'Primera parada mañana; luego Torres y Villa Olímpica en la misma zona general.' },
                             afternoonDestInfo: 'Llegar: ~10-15¥ taxi · ~3 km, 10 min (Dongcheng)',
                             eveningDestInfo: 'Llegar: ~25-35¥ taxi · ~10 km, 25 min metro L8'
                         }
@@ -1976,7 +2058,8 @@
                             afternoon: 'Tren G365 09:55 Beijingxi → 14:05 Xianbei (4h10, 1.ª clase)',
                             evening: 'Paseo centro + Barrio Musulmán cena 🍢',
                             notes: 'Primera noche en Xi\'an',
-                            queVerPlace: 'Barrio Musulmán'
+                            queVerPlace: 'Barrio Musulmán',
+                            hotelToFirstSite: { to: 'Barrio Musulmán (Huimin)', km: '~4-6 km', time: '12-22 min en coche', didi: '~15-28¥', note: 'Primer “sitio” del día según plan: cena/paseo noche tras llegar del tren. Día largo de viaje.' }
                         },
                         {
                             day: 9, date: '9 Abril', weekday: 'Jueves',
@@ -1985,7 +2068,8 @@
                             afternoon: 'Taller DIY mini guerrero 🎨 (niño)',
                             evening: 'Fuentes Gran Pagoda Ganso (show 20:30)',
                             notes: '⭐ RESERVAR online obligatorio',
-                            queVerPlace: 'Guerreros de Terracota'
+                            queVerPlace: 'Guerreros de Terracota',
+                            hotelToFirstSite: { to: 'Museo Guerreros de Terracota (Lintong)', km: '~38-42 km', time: '45-65 min en coche', didi: '~85-130¥', note: 'Bus turístico ~10¥ tarda más; taxi/Didi es más directo por la mañana.' }
                         },
                         {
                             day: 10, date: '10 Abril', weekday: 'Viernes',
@@ -1994,7 +2078,8 @@
                             afternoon: 'Muralla de Xi\'an en bici al atardecer 🚲',
                             evening: 'Última cena Barrio Musulmán',
                             notes: 'Bicis tandem disponibles',
-                            queVerPlace: 'Muralla de Xi\'an + Pagodas'
+                            queVerPlace: 'Muralla de Xi\'an + Pagodas',
+                            hotelToFirstSite: { to: 'Pequeña Pagoda Ganso + museo (primera parada mañana)', km: '~2-4 km', time: '8-15 min en coche', didi: '~12-22¥', note: 'Muy cerca del hotel Yimu Yishu; luego muralla al atardecer en otro tramo.' }
                         }
                     ]
                 },
@@ -2019,6 +2104,7 @@
                             evening: 'Montaña Tianzi (Avatar mountains)',
                             notes: '⭐ Entrada válida 4 días',
                             queVerPlace: 'Parque Nacional Zhangjiajie (Avatar)',
+                            hotelToFirstSite: { to: 'Puerta/entrada este del parque (Zimugang)', km: '~0,3-1 km', time: '5-12 min andando', didi: '~10-15¥', note: 'El hotel está junto a la entrada; no hace falta Didi salvo traslado muy corto con carga.' },
                             afternoonDestInfo: 'Dentro del parque (bus interno + ascensor)',
                             eveningDestInfo: 'Dentro del parque (bus a Tianzi)'
                         },
@@ -2030,6 +2116,7 @@
                             evening: 'Ten-Mile Gallery trenecito 🚂',
                             notes: '⭐ RESERVAR Tianmen obligatorio',
                             queVerPlace: 'Tianmen Mountain',
+                            hotelToFirstSite: { to: 'Estación teleférico Tianmen (centro Zhangjiajie)', km: '~32-40 km', time: '40-55 min en coche', didi: '~90-130¥', note: 'Desde Wulingyuan hasta la ciudad; muchos turistas comparten taxi o van en bus ~1h.' },
                             afternoonDestInfo: 'Mismo recinto (cima Tianmen)',
                             eveningDestInfo: 'Llegar: ~5-10¥ bus · ~8 km, 20 min (Wulingyuan) o trenecito en parque'
                         }
@@ -2052,6 +2139,7 @@
                             day: 15, date: '15 Abril', weekday: 'Miércoles',
                             title: 'DISNEYLAND DÍA 1 🏰',
                             queVerPlace: 'Shanghai Disneyland',
+                            hotelToFirstSite: { to: 'Shanghai Disneyland (entrada principal)', km: '~35-42 km', time: '50-75 min en coche', didi: '~130-200¥', note: 'Desde Central Hotel (Huangpu). Si esas noches dormís en hotel zona Disney, ~15-40 min y ~45-100¥.' },
                             morning: 'Apertura parque - TRON + Piratas',
                             afternoon: 'Zootopia + Seven Dwarfs',
                             evening: 'ILLUMINATE! fuegos artificiales 🎆',
@@ -2061,6 +2149,7 @@
                             day: 16, date: '16 Abril', weekday: 'Jueves',
                             title: 'DISNEYLAND DÍA 2 🏰',
                             queVerPlace: 'Shanghai Disneyland',
+                            hotelToFirstSite: { to: 'Shanghai Disneyland (entrada principal)', km: '~35-42 km', time: '50-75 min en coche', didi: '~130-200¥', note: 'Misma estimación que el día 15 (mismo hotel base en la app: Central Hotel).' },
                             morning: 'Repetir favoritos',
                             afternoon: 'Atracciones pendientes + fotos',
                             evening: 'Cena temática + fuegos',
@@ -2074,6 +2163,7 @@
                             evening: 'Crucero río Huangpu noche 🚢',
                             notes: 'Crucero ~120-180¥',
                             queVerPlace: 'Yu Garden + Bazaar',
+                            hotelToFirstSite: { to: 'Yu Garden / metro Yuyuan', km: '~3-5 km', time: '12-22 min en coche', didi: '~18-32¥', note: 'Trayecto corto por el centro; metro también cómodo (L10/L14).' },
                             afternoonDestInfo: 'Llegar: 0¥ · ~1,5 km, 20 min andar',
                             eveningDestInfo: 'Mismo paseo (embarcadero Bund); crucero ~120-180¥'
                         },
@@ -2085,6 +2175,7 @@
                             evening: 'Nanjing Road + compras',
                             notes: 'Maglev ~50¥ ida',
                             queVerPlace: 'Maglev + Torre Oriental Pearl',
+                            hotelToFirstSite: { to: 'Estación Maglev Longyang Road (Línea 2 / Maglev)', km: '~8-11 km', time: '22-38 min en coche', didi: '~35-60¥', note: 'Primera parada del plan: Maglev; luego Lujiazui / Torre Pearl. Metro suele ser rápido desde Huangpu.' },
                             afternoonDestInfo: 'Metro L2 desde Maglev; ~15 min',
                             eveningDestInfo: 'Llegar: ~4¥ metro · ~2 km, 10 min'
                         },
@@ -2096,6 +2187,7 @@
                             evening: 'Última cena en The Bund',
                             notes: '~1h transporte cada trayecto',
                             queVerPlace: 'Zhujiajiao',
+                            hotelToFirstSite: { to: 'Zhujiajiao water town (entrada norte / estación bus)', km: '~48-55 km', time: '55-85 min en coche', didi: '~170-240¥', note: 'Largo trayecto al oeste; metro+bus tarda ~1h15-1h30 pero más barato.' },
                             afternoonDestInfo: 'Mismo pueblo (barca dentro Zhujiajiao)',
                             eveningDestInfo: 'Regreso: ~10¥ bus/metro · ~50 km, 1h'
                         },
@@ -2107,6 +2199,7 @@
                             evening: 'Cena despedida → Aeropuerto 21:30',
                             notes: '⚠️ Vuelo sale 00:40 del día 21',
                             queVerPlace: 'Concesión Francesa + Tianzifang',
+                            hotelToFirstSite: { to: 'Concesión Francesa / Tianzifang (sur de Huangpu)', km: '~4-7 km', time: '15-28 min en coche', didi: '~22-40¥', note: 'Último día en ciudad; luego compras y cena antes del vuelo nocturno.' },
                             afternoonDestInfo: 'Zona centro / Nanjing Road según plan',
                             eveningDestInfo: 'Aeropuerto: metro/taxi ~30-60 min'
                         }
@@ -2515,6 +2608,10 @@
                     </div>
                 </div>
             `;
+            const hotelInfo = tripData.hotels[cityId];
+            if (hotelInfo) {
+                html += `<div class="city-detail-hotel"><div class="city-detail-hotel-title">🏨 Alojamiento en ${city.name}</div><div class="city-detail-hotel-addr"><strong>${hotelInfo.name}</strong><br>${hotelInfo.address}</div></div>`;
+            }
             
             city.days.forEach((day, index) => {
                 const isOpen = index === 0 ? 'open' : '';
@@ -2545,6 +2642,7 @@
                             <span>▼</span>
                         </div>
                         <div class="day-content ${isOpen}">
+                            ${day.hotelToFirstSite && tripData.hotels[cityId] ? formatHotelDidiDayBlock(day.hotelToFirstSite, tripData.hotels[cityId]) : ''}
                             <div class="day-section">
                                 <div class="day-section-title">🌅 Mañana</div>
                                 <div class="day-section-text">${day.morning}</div>
@@ -2763,17 +2861,37 @@
             document.getElementById('eur-result').textContent = eur;
         }
 
+        const CITY_ID_BY_NAME = { 'Beijing': 'beijing', "Xi'an": 'xian', 'Zhangjiajie': 'zhangjiajie', 'Shanghai': 'shanghai' };
+
+        function getHotelToFirstSiteForQueVerPlace(placeName, cityName) {
+            const cid = CITY_ID_BY_NAME[cityName];
+            if (!cid || !tripData.hotels || !tripData.cities[cid]) return null;
+            const day = tripData.cities[cid].days.find(d => d.queVerPlace === placeName && d.hotelToFirstSite);
+            if (!day) return null;
+            return { ht: day.hotelToFirstSite, hotel: tripData.hotels[cid] };
+        }
+
+        function formatHotelDidiQueVerCard(ht, hotel) {
+            if (!ht || !hotel) return '';
+            const didiStr = addEurToYuanPrice(ht.didi);
+            return `<div class="que-ver-hotel-didi">🚕 <strong>Desde ${hotel.shortLabel}</strong> → ${ht.to}<br><span class="que-ver-hotel-didi-meta">${ht.km} · ${ht.time} · ${didiStr}</span>${ht.note ? '<span class="que-ver-hotel-didi-note">' + ht.note + '</span>' : ''}</div>`;
+        }
+
+        function formatHotelDidiDayBlock(ht, hotel) {
+            if (!ht || !hotel) return '';
+            const didiStr = addEurToYuanPrice(ht.didi);
+            return `<div class="hotel-didi-day"><strong>🚕 Primer sitio del día (desde ${hotel.shortLabel})</strong><br>→ ${ht.to}<div class="hotel-didi-day-meta">${ht.km} · ${ht.time} · ${didiStr}</div>${ht.note ? '<div class="que-ver-hotel-didi-note">' + ht.note + '</div>' : ''}</div>`;
+        }
+
         // Qué ver - resumen por sitio
         function renderQueVer() {
             const container = document.getElementById('que-ver-container');
             if (!container || !tripData.queVer) return;
-            container.innerHTML = tripData.queVer.map(q => `
+            container.innerHTML = tripData.queVer.map(q => {
+                const hPack = getHotelToFirstSiteForQueVerPlace(q.place, q.city);
+                const hotelDidiHtml = hPack ? formatHotelDidiQueVerCard(hPack.ht, hPack.hotel) : '';
+                return `
                 <div class="que-ver-card">
-                    ${q.cost ? `<div class="que-ver-cost">💰 Cuanto cuesta (con calma): ${addEurToYuanPrice(q.cost)}</div>` : ''}
-                    ${q.openingHours ? `<div class="que-ver-opening">🕒 Horario apertura: ${q.openingHours}</div>` : ''}
-                    ${q.recommendedTime ? `<div class="que-ver-time">🕐 Hora recomendada: ${q.recommendedTime}</div>` : ''}
-                    ${q.crowdNote ? `<div class="que-ver-time">💡 Tips: ${q.crowdNote}</div>` : ''}
-                    ${(q.visitDuration || q.toNext) ? `<div class="que-ver-duration">${q.visitDuration ? `(Visita con calma: ${q.visitDuration})` : ''}${q.visitDuration && q.toNext ? ' ' : ''}${q.toNext ? `(Al siguiente: ${q.toNext})${q.toNextCost ? ' · ' + q.toNextCost : ''}` : ''}</div>` : ''}
                     <div class="que-ver-header">
                         <span class="que-ver-emoji">${q.emoji}</span>
                         <div>
@@ -2781,11 +2899,18 @@
                             <div class="que-ver-city">${q.city}</div>
                         </div>
                     </div>
+                    ${hotelDidiHtml}
+                    ${q.cost ? `<div class="que-ver-cost">💰 Cuanto cuesta (con calma): ${addEurToYuanPrice(q.cost)}</div>` : ''}
+                    ${q.openingHours ? `<div class="que-ver-opening">🕒 Horario apertura: ${q.openingHours}</div>` : ''}
+                    ${q.recommendedTime ? `<div class="que-ver-time">🕐 Hora recomendada: ${q.recommendedTime}</div>` : ''}
+                    ${q.crowdNote ? `<div class="que-ver-time">💡 Tips: ${q.crowdNote}</div>` : ''}
+                    ${(q.visitDuration || q.toNext) ? `<div class="que-ver-duration">${q.visitDuration ? `(Visita con calma: ${q.visitDuration})` : ''}${q.visitDuration && q.toNext ? ' ' : ''}${q.toNext ? `(Al siguiente: ${q.toNext})${q.toNextCost ? ' · ' + q.toNextCost : ''}` : ''}</div>` : ''}
                     <ul class="que-ver-points">
-                        ${(q.points || []).map(p => `<li>${p}</li>`).join('')}
+                        ${(q.points || []).map(p => `<li>${addEurToYuanPrice(p)}</li>`).join('')}
                     </ul>
                 </div>
-            `).join('');
+            `;
+            }).join('');
         }
 
         // EAT - propuestas comida y cena por día (precio + enlaces Trip.com / Google)
