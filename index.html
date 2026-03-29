@@ -228,6 +228,15 @@
             font-weight: 600;
             margin-top: 8px;
         }
+
+        .countdown-sub {
+            font-size: 0.95rem;
+            color: #1f2937;
+            font-weight: 500;
+            margin-top: 14px;
+            line-height: 1.35;
+            letter-spacing: 0.02em;
+        }
         
         /* Flight Card */
         .flight-card {
@@ -1288,9 +1297,10 @@
     <!-- VUELOS PAGE -->
     <div id="page-vuelos" class="page active">
         <div class="countdown" id="countdown">
-            <div class="countdown-title">⏱️ Horas hasta llegar al aeropuerto</div>
-            <div class="countdown-time" id="countdown-time">--:--</div>
-            <div class="countdown-label" id="countdown-label">horas · min (1 Abril · 08:00)</div>
+            <div class="countdown-title">⏱️ Cuenta atrás</div>
+            <div class="countdown-time" id="countdown-days">--</div>
+            <div class="countdown-label" id="countdown-days-label">días</div>
+            <div class="countdown-sub" id="countdown-airport">—</div>
         </div>
 
         <h2 class="section-title">✈️ Vuelos Internacionales</h2>
@@ -2592,25 +2602,47 @@
             }
         }
 
-        // Cuenta atrás en horas y minutos hasta la llegada al aeropuerto (tripData.startDate)
+        // Días completos en grande (hasta el 1 Abr 00:00); debajo, horas · min hasta aeropuerto (tripData.startDate)
         function updateCountdown() {
             const now = new Date();
             const target = tripData.startDate;
             const diffMs = target - now;
-            const elTime = document.getElementById('countdown-time');
-            const elLabel = document.getElementById('countdown-label');
-            if (!elTime || !elLabel) return;
+            const elDays = document.getElementById('countdown-days');
+            const elDaysLabel = document.getElementById('countdown-days-label');
+            const elAirport = document.getElementById('countdown-airport');
+            if (!elDays || !elDaysLabel || !elAirport) return;
+
+            const today00 = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+            const tripDay00 = new Date(target.getFullYear(), target.getMonth(), target.getDate());
+            const diffDaysMs = tripDay00 - today00;
+            const calendarDays = Math.floor(diffDaysMs / (1000 * 60 * 60 * 24));
 
             if (diffMs <= 0) {
-                elTime.textContent = '¡Ya!';
-                elLabel.textContent = 'Hora de estar en el aeropuerto';
+                elDays.textContent = '¡Ya!';
+                elDaysLabel.textContent = 'El viaje ha comenzado';
+                elAirport.textContent = '';
                 return;
             }
+
+            if (calendarDays < 0) {
+                elDays.textContent = '¡Ya!';
+                elDaysLabel.textContent = 'El viaje ha comenzado';
+                elAirport.textContent = '';
+                return;
+            }
+
+            if (calendarDays === 0) {
+                elDays.textContent = 'Hoy';
+                elDaysLabel.textContent = 'día de vuelo';
+            } else {
+                elDays.textContent = String(calendarDays);
+                elDaysLabel.textContent = calendarDays === 1 ? 'día' : 'días';
+            }
+
             const totalMinutes = Math.floor(diffMs / 60000);
             const hours = Math.floor(totalMinutes / 60);
             const mins = totalMinutes % 60;
-            elTime.textContent = hours + ':' + String(mins).padStart(2, '0');
-            elLabel.textContent = 'horas · min hasta llegar al aeropuerto (1 Abril · 08:00)';
+            elAirport.textContent = hours + ' h ' + mins + ' min hasta llegar al aeropuerto (1 Abril · 08:00)';
         }
 
         // Show city detail
