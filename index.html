@@ -1288,9 +1288,9 @@
     <!-- VUELOS PAGE -->
     <div id="page-vuelos" class="page active">
         <div class="countdown" id="countdown">
-            <div class="countdown-title">⏱️ Cuenta atrás para el viaje</div>
-            <div class="countdown-time" id="countdown-time">--</div>
-            <div class="countdown-label" id="countdown-label">días</div>
+            <div class="countdown-title">⏱️ Horas hasta llegar al aeropuerto</div>
+            <div class="countdown-time" id="countdown-time">--:--</div>
+            <div class="countdown-label" id="countdown-label">horas · min (1 Abril · 08:00)</div>
         </div>
 
         <h2 class="section-title">✈️ Vuelos Internacionales</h2>
@@ -1946,7 +1946,8 @@
     <script>
         // ==================== DATA ====================
         const tripData = {
-            startDate: new Date('2026-04-01T12:30:00'),
+            /** Hora local a la que llegáis al aeropuerto (cuenta atrás en horas · min) */
+            startDate: new Date(2026, 3, 1, 8, 0, 0),
 
             /** Por ciudad: hotel base para estimaciones Didi/taxi → primer sitio del día */
             hotels: {
@@ -2591,26 +2592,25 @@
             }
         }
 
-        // Countdown (días desde 00:00 de hoy hasta 00:00 del día de salida)
+        // Cuenta atrás en horas y minutos hasta la llegada al aeropuerto (tripData.startDate)
         function updateCountdown() {
             const now = new Date();
-            const today00 = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-            const tripStart00 = new Date(tripData.startDate.getFullYear(), tripData.startDate.getMonth(), tripData.startDate.getDate());
-            const diffMs = tripStart00 - today00;
-            const days = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+            const target = tripData.startDate;
+            const diffMs = target - now;
+            const elTime = document.getElementById('countdown-time');
+            const elLabel = document.getElementById('countdown-label');
+            if (!elTime || !elLabel) return;
 
-            if (days < 0) {
-                document.getElementById('countdown-time').textContent = '¡Ya!';
-                document.getElementById('countdown-label').textContent = 'El viaje ha comenzado';
+            if (diffMs <= 0) {
+                elTime.textContent = '¡Ya!';
+                elLabel.textContent = 'Hora de estar en el aeropuerto';
                 return;
             }
-            if (days === 0) {
-                document.getElementById('countdown-time').textContent = '¡Hoy!';
-                document.getElementById('countdown-label').textContent = 'Empieza el viaje';
-                return;
-            }
-            document.getElementById('countdown-time').textContent = days;
-            document.getElementById('countdown-label').textContent = days === 1 ? 'día' : 'días';
+            const totalMinutes = Math.floor(diffMs / 60000);
+            const hours = Math.floor(totalMinutes / 60);
+            const mins = totalMinutes % 60;
+            elTime.textContent = hours + ':' + String(mins).padStart(2, '0');
+            elLabel.textContent = 'horas · min hasta llegar al aeropuerto (1 Abril · 08:00)';
         }
 
         // Show city detail
@@ -3014,7 +3014,7 @@
         document.addEventListener('DOMContentLoaded', function() {
             // Update countdown
             updateCountdown();
-            setInterval(updateCountdown, 60000);
+            setInterval(updateCountdown, 1000);
             // Hora Madrid / China (visible en todas las pestañas)
             updateTimezoneDisplay();
             setInterval(updateTimezoneDisplay, 1000);
